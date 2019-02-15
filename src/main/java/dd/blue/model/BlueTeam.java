@@ -1,4 +1,4 @@
-package dd.model;
+package dd.blue.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,23 +6,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="REGIONS")
-public class Region {
+@Table(name="BLUE_TEAMS")
+public class BlueTeam {
 	@Id
-	@Column(name="REGION_ID")
+	@Column(name="TEAM_ID")
 	private long id;
 
-	@Column(name="REGION_NAME")
+	@Column(name="TEAM_NAME")
 	private String name;
 
 	public long getId() {
 		return id;
 	}
 
-	protected Region() {
+	protected BlueTeam() {
 	}
 
-	public Region(long id, String name) {
+	public BlueTeam(long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -41,6 +41,6 @@ public class Region {
 
 	@Override
 	public String toString() {
-		return "Region [id=" + id + ", name=" + name + "]";
+		return "BlueTeam [id=" + id + ", name=" + name + "]";
 	}
 }

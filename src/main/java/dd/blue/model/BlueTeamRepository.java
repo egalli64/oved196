@@ -1,8 +1,8 @@
-package dd.model;
+package dd.blue.model;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegionRepository extends CrudRepository<Region, Long> {
+public interface BlueTeamRepository extends CrudRepository<BlueTeam, Long> {
 }

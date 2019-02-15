@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import dd.model.RegionRepository;
+import dd.blue.model.BlueTeamRepository;
 
 @Controller
 public class RedRegionController {
 	private static final Logger logger = LoggerFactory.getLogger(RedRegionController.class);
 
 	@Autowired
-	RegionRepository repository;
+	BlueTeamRepository repository;
 
 	@GetMapping("/red/regions")
 	public String getRegions(Model model) {
