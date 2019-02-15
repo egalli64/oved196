@@ -21,6 +21,6 @@ public class BlueTeamController {
 		logger.info("getTeams");
 		
 		model.addAttribute("data", repository.findAll());
-		return "/blue/regions";
+		return "/blue/teams";
 	}
 }

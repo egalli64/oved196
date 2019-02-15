@@ -16,11 +16,11 @@ public class RedRegionController {
 	@Autowired
 	BlueTeamRepository repository;
 
-	@GetMapping("/red/regions")
-	public String getRegions(Model model) {
-		logger.info("getRegions");
+	@GetMapping("/red/teams")
+	public String getTeams(Model model) {
+		logger.info("getTeams");
 		
 		model.addAttribute("data", repository.findAll());
-		return "/red/regions";
+		return "/red/teams";
 	}
 }
