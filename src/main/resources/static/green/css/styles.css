@@ -1,0 +1,15 @@
+body {
+	background-color: #97ff97;
+}
+
+h1 {
+	font-family: arial;
+	text-align: center;
+	color: #008000;
+	font-size: 50px;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}

@@ -2,11 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Teams (blue)</title>
+<title>Teams (green)</title>
+<link rel="stylesheet" type="text/css" th:href="@{/green/css/styles.css}">
 </head>
 <body>
-	<div th:text="${data}">[]</div>
-
-	<p>Back to <a href="/green/index.html">green homepage</a></p>
+	<h1>Teams</h1>
+	<p>
+		This is just for debugging purpose: <span th:text="${data}">[]</span>
+	</p>
+	<hr />
+	<div th:if="${msg}">
+		<p>A message for you: <span th:text=${msg}>hello!</span></p>
+		<hr />	
+	</div>
+	<p>The available teams:</p>
+	<table>
+		<tr>
+			<th>NAME</th>
+		</tr>
+		<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">green</td>
+		</tr>
+	</table>
+	<hr />
+	
+	<form action="/green/team/create">
+		<p>Create new team</p>
+		<label>Id:
+			<input name="id" required="required">
+		</label>
+		<label>Name:
+			<input name="name" required="required">
+		</label>
+		<button>Go!</button>
+	</form>
+	<hr />
+	<form action="/green/team/rename">
+		<label>Rename team:
+			<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
+		</label>
+		<label>as:
+			<input name="name" required="required">
+		</label>
+		<button>Go!</button>
+	</form>
+	<hr />
+	<form action="/green/team/delete">
+		<label>Delete team:
+			<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
+		</label>
+		<button>Go!</button>
+	</form>
+	<hr />
+	<p>
+		Back to <a href="/green/index.html">green homepage</a>
+	</p>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Coders (green)</title>
+<link rel="stylesheet" type="text/css" th:href="@{/green/css/styles.css}">
+</head>
+<body>
+	<h1>Coders</h1>
+	<p>
+		This is just for debugging purpose: <span th:text="${data}">[]</span>
+	</p>
+	<hr />
+	<p>The coders:</p>
+	<table>
+		<tr>
+			<th>NAME</th>
+			<th>TEAM</th>
+		</tr>
+		<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">Bjarne</td>
+			<td th:text="${cur.team.name}">green</td>
+		</tr>
+	</table>
+	<hr />
+
+</body>
+</html>

@@ -11,3 +11,9 @@ FROM blue_teams;
 
 SELECT *
 FROM green_teams;
+
+SELECT *
+FROM green_coders;
+
+SELECT *
+FROM green_roles;
