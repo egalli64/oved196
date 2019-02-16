@@ -38,7 +38,12 @@ public class GreenTeamController {
         try {
             repository.save(team);
         } catch (DataAccessException dae) {
-            String message = String.format("Can't save name %s for team %d", team.getName(), team.getId());
+            String message = "Can't give name " + team.getName() + " to ";
+            if (team.getId() != 0) {
+                message += " team " + team.getId();
+            } else {
+                message += " your new team";
+            }
             logger.error(message);
             model.addAttribute("msg", message);
         }
@@ -46,19 +51,11 @@ public class GreenTeamController {
 
     @GetMapping("/green/team/create")
     public String create( //
-            @RequestParam long id, //
             @RequestParam String name, //
             Model model) {
         logger.trace("create()");
 
-        if (repository.existsById(id)) {
-            String message = String.format("Team %d has been already created", id);
-            logger.error(message);
-            model.addAttribute("msg", message);
-        } else {
-            save(new GreenTeam(id, name), model);
-        }
-
+        save(new GreenTeam(name), model);
         return findAll(model);
     }
 

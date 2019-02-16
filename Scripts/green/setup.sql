@@ -7,13 +7,13 @@
 
 -- teams
 CREATE TABLE green_teams(
-	team_id integer PRIMARY KEY,
-	team_name varchar2(10)
+	team_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	team_name varchar2(10) UNIQUE
 );
 
-INSERT INTO green_teams values(1, 'red');
-INSERT INTO green_teams values(2, 'blue');
-INSERT INTO green_teams values(3, 'green');
+INSERT INTO green_teams (team_name) values('red');
+INSERT INTO green_teams (team_name) values('blue');
+INSERT INTO green_teams (team_name) values('green');
 
 -- coders
 CREATE TABLE green_coders(
