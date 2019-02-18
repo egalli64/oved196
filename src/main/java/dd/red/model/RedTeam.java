@@ -2,6 +2,8 @@ package dd.red.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,8 +11,9 @@ import javax.persistence.Table;
 @Table(name="RED_TEAMS")
 public class RedTeam {
 	@Id
-	@Column(name="TEAM_ID")
-	private long id;
+    @Column(name = "TEAM_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
 	@Column(name="TEAM_NAME")
 	private String name;
@@ -22,8 +25,7 @@ public class RedTeam {
 	protected RedTeam() {
 	}
 
-	public RedTeam(long id, String name) {
-		this.id = id;
+	public RedTeam( String name) {
 		this.name = name;
 	}
 
@@ -41,6 +43,6 @@ public class RedTeam {
 
 	@Override
 	public String toString() {
-		return "RedTeam [id=" + id + ", name=" + name + "]";
+		return "I team sono " + name + ".";
 	}
 }
