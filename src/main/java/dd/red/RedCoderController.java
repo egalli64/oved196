@@ -7,20 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import dd.blue.model.BlueTeamRepository;
+import dd.red.model.RedCoderRepository;
 
 @Controller
-public class RedRegionController {
-	private static final Logger logger = LoggerFactory.getLogger(RedRegionController.class);
+public class RedCoderController {
+	private static final Logger logger = LoggerFactory.getLogger(RedCoderController.class);
 
 	@Autowired
-	BlueTeamRepository repository;
+	RedCoderRepository repository;
 
-	@GetMapping("/red/teams")
-	public String getTeams(Model model) {
-		logger.info("getTeams");
+	@GetMapping("/red/coders")
+	public String getCoders(Model model) {
+		logger.trace("red getCoders");
 		
 		model.addAttribute("data", repository.findAll());
-		return "/red/teams";
+		return "/red/coders";
 	}
 }

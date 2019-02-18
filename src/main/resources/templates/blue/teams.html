@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Teams (blue)</title>
+	<meta charset="ISO-8859-1">
+	<title>Squadre</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
 </head>
 <body>
-	<div th:text="${data}">[]</div>
-
-	<p>Back to <a href="/blue/index.html">blue homepage</a></p>
+	<table>
+		<thead>
+			<tr th:each="cur: ${data}">
+				<td th:text="${cur.name}" rowspan="2">nomi squadre</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cur: ${code}">
+				<td th:text="${cur.lastname}"></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

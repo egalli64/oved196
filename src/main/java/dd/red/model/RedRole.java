@@ -2,31 +2,32 @@ package dd.red.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="RED_TEAMS")
-public class RedTeam {
-	@Id
-    @Column(name = "TEAM_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@Table(name = "RED_ROLES")
+public class RedRole {
 
-	@Column(name="TEAM_NAME")
+
+
+	@Id
+	@Column(name = "ROLE_ID")
+	private long id;
+
+	@Column(name = "ROLE_NAME")
 	private String name;
+
+	protected RedRole() {
+	}
+
+	public RedRole(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	public long getId() {
 		return id;
-	}
-
-	protected RedTeam() {
-	}
-
-	public RedTeam( String name) {
-		this.name = name;
 	}
 
 	public void setId(long id) {
@@ -43,6 +44,8 @@ public class RedTeam {
 
 	@Override
 	public String toString() {
-		return " Il team è " + name + ".";
+		return "RedRole [id=" + id + ", name=" + name + "]";
 	}
 }
+
+

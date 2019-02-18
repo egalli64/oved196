@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #8dccf1;
+}
+
+h1 {
+	font-family: fantasy;
+	text-align: center;
+	color: #3831ce;
+}
+
+h3 {
+	font-family: cursive;
+	text-align: center;
+	color: #ffff00;
+}
+
+p {
+	text-align: center
+}
