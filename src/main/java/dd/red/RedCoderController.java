@@ -8,13 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import dd.green.model.GreenCoderRepository;
+import dd.red.model.RedCoderRepository;
 
 @Controller
 public class RedCoderController {
 	private static final Logger logger = LoggerFactory.getLogger(RedCoderController.class);
 
 	@Autowired
-	GreenCoderRepository repository;
+	RedCoderRepository repository;
 
 	@GetMapping("/red/coders")
 	public String getCoders(Model model) {

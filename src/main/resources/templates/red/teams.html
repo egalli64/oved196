@@ -3,9 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Teams (red)</title>
+<link rel="stylesheet" type="text/css" th:href="@{/red/css/style.css}">
 </head>
 <body>
+	<h1>teams</h1>
+	<hr>
 	<div th:text="${data}">[]</div>
+	<p>The coders:</p>
+	<table>
+		<tr>
+			
+			<th>TEAM</th>
+		</tr>
+		<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">Bjarne</td>
+			
+		</tr>
+	</table>
 
 	<p>Back to <a href="/red/index.html">red homepage</a></p>
 </body>
