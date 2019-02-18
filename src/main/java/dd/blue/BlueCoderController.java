@@ -14,6 +14,8 @@ import dd.blue.model.BlueCoder;
 import dd.blue.model.BlueCoderRepository;
 import dd.blue.model.BlueRole;
 import dd.blue.model.BlueRoleRepository;
+import dd.blue.model.BlueTeam;
+import dd.blue.model.BlueTeamRepository;
 
 @Controller
 public class BlueCoderController {
@@ -22,7 +24,8 @@ public class BlueCoderController {
 
 	@Autowired
 	BlueCoderRepository repository;
-	BlueRoleRepository repo;
+	BlueRoleRepository roleRepo;
+	BlueTeamRepository teamRepo;
 	
 	private String findAll (Model model) {
 		logger.trace("findAll()");
@@ -34,7 +37,7 @@ public class BlueCoderController {
 	public String addRole(@RequestParam long coderid, @RequestParam long roleid, Model model) {
 		logger.trace("addRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
-        Optional<BlueRole> optRole = repo.findById(roleid);
+        Optional<BlueRole> optRole = roleRepo.findById(roleid);
         
 		if (opt.isPresent() && optRole.isPresent()) {			
 			BlueCoder coder = opt.get();
@@ -60,8 +63,8 @@ public class BlueCoderController {
 	public String changeRole(@RequestParam long coderid, @RequestParam long newroleid, @RequestParam long oldroleid, Model model) {
 		logger.trace("changeRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
-        Optional<BlueRole> oldRole = repo.findById(oldroleid);
-        Optional<BlueRole> newRole = repo.findById(newroleid);
+        Optional<BlueRole> oldRole = roleRepo.findById(oldroleid);
+        Optional<BlueRole> newRole = roleRepo.findById(newroleid);
 
 		if (opt.isPresent() ) {			
 			BlueCoder coder = opt.get();
@@ -90,11 +93,12 @@ public class BlueCoderController {
 		}
 	 return findAll(model);
 	}
+	
 	@GetMapping("/blue/coders/removerole")
 	public String removeRole(@RequestParam long coderid, @RequestParam long roleid, Model model) {
 		logger.trace("removeRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
-        Optional<BlueRole> role = repo.findById(roleid);
+        Optional<BlueRole> role = roleRepo.findById(roleid);
 
 		if (opt.isPresent()) {			
 			BlueCoder coder = opt.get();
@@ -111,6 +115,33 @@ public class BlueCoderController {
 		
 		} else {
 			String message = "Attenzione: id o ruolo non validi.";
+			logger.error(message);
+            model.addAttribute("msg", message);
+		}
+	 return findAll(model);
+	}
+	
+	@GetMapping("/blue/coders/changeteam")
+	public String changeTeam(@RequestParam long coderid, @RequestParam long teamId, Model model) {
+		logger.trace("changeTeam()");
+        Optional<BlueCoder> opt = repository.findById(coderid);
+        Optional<BlueTeam> team = teamRepo.findById(teamId);
+
+		if (opt.isPresent()) {			
+			BlueCoder coder = opt.get();
+			if (!(coder.getIdTeam()==teamId)) 
+			{
+				coder.setIdTeam(teamId);
+				repository.save(coder);
+			} 
+			else {
+				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " è gia nel team " + team.get().getName() + "!";
+				logger.error(message);
+	            model.addAttribute("msg", message);
+			}
+		
+		} else {
+			String message = "Attenzione: id non valido.";
 			logger.error(message);
             model.addAttribute("msg", message);
 		}
