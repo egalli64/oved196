@@ -2,6 +2,8 @@ package dd.blue.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class BlueTeam {
 	@Id
 	@Column(name="TEAM_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(name="TEAM_NAME")
@@ -22,8 +25,7 @@ public class BlueTeam {
 	protected BlueTeam() {
 	}
 
-	public BlueTeam(long id, String name) {
-		this.id = id;
+	public BlueTeam(String name) {
 		this.name = name;
 	}
 
