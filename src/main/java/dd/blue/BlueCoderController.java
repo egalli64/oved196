@@ -31,7 +31,7 @@ public class BlueCoderController {
         return "/blue/coders";
 	}
 	
-	@GetMapping("/blue/roles")
+	@GetMapping("/blue/coders")
 	public String getCoders(Model model) {
 		logger.trace("blue getCoders");
 		
