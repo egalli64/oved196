@@ -1,7 +1,6 @@
 package dd.blue;
 
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import dd.blue.model.BlueCoder;
 import dd.blue.model.BlueCoderRepository;
 import dd.blue.model.BlueRole;
@@ -34,7 +32,7 @@ public class BlueCoderController {
 	}
 
 	@GetMapping("/blue/coders/adderole")
-	public String addRole(@RequestParam long coderid, @RequestParam long roleid, Model model) {
+	public String addRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("addRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
         Optional<BlueRole> optRole = roleRepo.findById(roleid);
@@ -60,7 +58,7 @@ public class BlueCoderController {
 	
 	
 	@GetMapping("/blue/coders/changerole")
-	public String changeRole(@RequestParam long coderid, @RequestParam long newroleid, @RequestParam long oldroleid, Model model) {
+	public String changeRole(@RequestParam Integer coderid, @RequestParam Integer newroleid, @RequestParam Integer oldroleid, Model model) {
 		logger.trace("changeRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
         Optional<BlueRole> oldRole = roleRepo.findById(oldroleid);
@@ -95,7 +93,7 @@ public class BlueCoderController {
 	}
 	
 	@GetMapping("/blue/coders/removerole")
-	public String removeRole(@RequestParam long coderid, @RequestParam long roleid, Model model) {
+	public String removeRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("removeRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
         Optional<BlueRole> role = roleRepo.findById(roleid);
@@ -122,16 +120,16 @@ public class BlueCoderController {
 	}
 	
 	@GetMapping("/blue/coders/changeteam")
-	public String changeTeam(@RequestParam long coderid, @RequestParam long teamId, Model model) {
+	public String changeTeam(@RequestParam Integer coderid, @RequestParam Integer teamId, Model model) {
 		logger.trace("changeTeam()");
         Optional<BlueCoder> opt = repository.findById(coderid);
         Optional<BlueTeam> team = teamRepo.findById(teamId);
 
 		if (opt.isPresent()) {			
 			BlueCoder coder = opt.get();
-			if (!(coder.getIdTeam()==teamId)) 
+			if (!(coder.getTeam().getId()==teamId)) 
 			{
-				coder.setIdTeam(teamId);
+				coder.getTeam().setId(teamId);
 				repository.save(coder);
 			} 
 			else {

@@ -4,13 +4,14 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+@Entity
 @Table(name = "BLUE_CODERS")
 public class BlueCoder {
 
 	@Column(name = "CODER_ID")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idCoder;
+	private int idCoder;
 
 	@Column(name = "CODER_FIRSTNAME")
 	private String firstname;
@@ -18,9 +19,9 @@ public class BlueCoder {
 	@Column(name = "CODER_LASTNAME")
 	private String lastname;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "TEAM_ID")
-	private long idTeam;
+	private BlueTeam team;
 
 	@ManyToMany
 	@JoinTable(name = "ROLES_CODERS", joinColumns = @JoinColumn(name = "ROLE_ID"), inverseJoinColumns = @JoinColumn(name = "CODER_ID"))
@@ -30,19 +31,19 @@ public class BlueCoder {
 		super();
 	}
 
-	public BlueCoder(long idCoder, String firstname, String lastname, long idTeam) {
+	public BlueCoder(int idCoder, String firstname, String lastname, BlueTeam team) {
 		super();
 		this.idCoder = idCoder;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.idTeam = idTeam;
+		this.team = team;
 	}
 
 	public long getIdCoder() {
 		return idCoder;
 	}
 
-	public void setIdCoder(long idCoder) {
+	public void setIdCoder(int idCoder) {
 		this.idCoder = idCoder;
 	}
 
@@ -62,12 +63,12 @@ public class BlueCoder {
 		this.lastname = lastname;
 	}
 
-	public long getIdTeam() {
-		return idTeam;
+	public BlueTeam getTeam() {
+		return team;
 	}
 
-	public void setIdTeam(long idTeam) {
-		this.idTeam = idTeam;
+	public void setTeam(BlueTeam team) {
+		this.team = team;
 	}
 
 	public Set<BlueRole> getRole() {
@@ -81,7 +82,7 @@ public class BlueCoder {
 	@Override
 	public String toString() {
 		return "BlueCoder [idCoder=" + idCoder + ", firstname=" + firstname + ", lastname=" + lastname + ", idTeam="
-				+ idTeam + "]";
+				+ team + "]";
 	}
 
 }

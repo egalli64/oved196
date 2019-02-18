@@ -13,13 +13,13 @@ public class BlueTeam {
 	@Id
 	@Column(name="TEAM_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int idTeam;
 
 	@Column(name="TEAM_NAME")
 	private String name;
 
-	public long getId() {
-		return id;
+	public int getId() {
+		return idTeam;
 	}
 
 	protected BlueTeam() {
@@ -29,8 +29,8 @@ public class BlueTeam {
 		this.name = name;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(int idTeam) {
+		this.idTeam = idTeam;
 	}
 
 	public String getName() {
@@ -43,6 +43,6 @@ public class BlueTeam {
 
 	@Override
 	public String toString() {
-		return "BlueTeam [id=" + id + ", name=" + name + "]";
+		return "BlueTeam [id=" + idTeam + ", name=" + name + "]";
 	}
 }

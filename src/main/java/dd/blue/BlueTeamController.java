@@ -60,7 +60,7 @@ public class BlueTeamController {
 
     @GetMapping("/blue/team/settings/rename")
     public String rename( //
-            @RequestParam long id, @RequestParam String name, Model model) {
+            @RequestParam Integer id, @RequestParam String name, Model model) {
         logger.trace("rename()");
 
         Optional<BlueTeam> opt = repository.findById(id);
@@ -80,7 +80,7 @@ public class BlueTeamController {
 
     @GetMapping("/blue/team/settings/delete")
     public String delete( //
-            @RequestParam long id, Model model) {
+            @RequestParam Integer id, Model model) {
         try {
             repository.deleteById(id);
         } catch (DataAccessException dae) {
