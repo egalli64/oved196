@@ -43,6 +43,6 @@ public class RedTeam {
 
 	@Override
 	public String toString() {
-		return "I team sono " + name + ".";
+		return " Il team è " + name + ".";
 	}
 }

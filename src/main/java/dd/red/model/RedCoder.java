@@ -61,6 +61,6 @@ public class RedCoder {
 
     @Override
     public String toString() {
-        return "I componenti sono " + name + " nel team" + team ;
+        return " I componenti sono " + name + " nel team" + team ;
     }
 }
