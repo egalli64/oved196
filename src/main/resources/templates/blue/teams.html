@@ -7,6 +7,17 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
 </head>
 <body>
-
+	<table>
+		<thead>
+			<tr th:each="cur: ${data}">
+				<td th:text="${cur.name}" rowspan="2">nomi squadre</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cur: ${code}">
+				<td th:text="${cur.lastname}"></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
