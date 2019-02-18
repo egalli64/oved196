@@ -18,7 +18,7 @@ import dd.blue.model.BlueTeamRepository;
 @Controller
 public class BlueCoderController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(BlueTeamController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BlueCoderController.class);
 
 	@Autowired
 	BlueCoderRepository repository;
@@ -29,6 +29,14 @@ public class BlueCoderController {
 		logger.trace("findAll()");
         model.addAttribute("data", repository.findAll());
         return "/blue/coders";
+	}
+	
+	@GetMapping("/blue/roles")
+	public String getCoders(Model model) {
+		logger.trace("blue getCoders");
+		
+		model.addAttribute("data", repository.findAll());
+		return "/blue/coders";
 	}
 
 	@GetMapping("/blue/coders/adderole")
