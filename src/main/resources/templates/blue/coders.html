@@ -7,6 +7,101 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
 </head>
 <body>
-	<p>qua invece i tasti di modifica ruoli e persone</p>
+	<h1>Coders Editing</h1>
+
+	<hr />
+	<div th:if="${msg}">
+		<p>Un messaggio per te: <span th:text=${msg}>hello!</span></p>
+		<hr />	
+	</div>
+	<p>I nostri team</p>
+	
+	<table>
+		<tr> 
+		<th scope="col">ID</th>
+			<th scope="col">Nome</th>
+		</tr>
+		<tr th:each="t : ${teams}">
+			<td th:text="${t.id}">[]</td>		
+			<td th:text="${t.name}">[]</td>
+		</tr>
+	</table>
+	<hr/>
+	<table>
+		<tr> 
+		<th scope="col">ID</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Cognome</th>
+			<th scope="col">Team</th>
+			<th scope="col">Ruolo</th>
+		</tr>
+		<tr th:each="cod : ${coders}">
+			<td th:text="${cod.idCoder}">[]</td>		
+			<td th:text="${cod.firstname}">[]</td>
+			<td th:text="${cod.lastname}">[]</td>
+			<td th:text="${cod.team.name}">[]</td>
+			<th:block th:each="role : ${cod.role}">
+				<td th:text="${role.nomeRole}">Model</td>
+			</th:block>		
+		</tr>
+	</table>
+	<hr/>
+
+		<form action="/blue/coders/changeteam">
+	<label> Cambia il team a una persona: <br>
+	Coder:
+			<select name="coderId">
+				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+					caio
+				</option>
+			</select>
+	</label>
+	<label>Scegli il nuovo team:
+			<select name="teamId">
+				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
+					blue
+				</option>
+			</select>
+		</label>
+		<button>OK</button>
+	</form>
+	
+	<form action="/blue/coders/changerole">
+		<label> Cambia il ruolo all'impiegato <br>
+			Coder:
+			<select name="coderId">
+				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+					caio
+				</option>
+			</select>
+		</label>
+		<label> Vecchio ruolo:
+			<select name="roleId">
+				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
+					old
+				</option>
+			</select>
+		</label>
+		<label> Nuovo ruolo:
+			<select name="roleId">
+				<option th:each="cod : ${roles}" th:value="${cod.idRole}" th:text="${role.nomeRole}">
+					new
+				</option>
+			</select>
+		</label>
+		<button>OK</button>
+	</form>
+	
+	
+	<p>
+		Back to <a href="/blue/homepage.html">Blue homepage</a>
+	</p>
+	<p>
+		Go to <a href="/blue/settings">teams editing</a>
+	</p>
+	<p>
+		<a href="/blue/coders">Refresh</a>
+	</p>
+		
 </body>
 </html>

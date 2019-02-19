@@ -15,13 +15,35 @@
 	<p>The roles:</p>
 	<table>
 		<tr>
+			<th>ROLES</th>
 			<th>NAME</th>
+			
 		</tr>
-		<tr th:each="cur: ${data}">
-			<td th:text="${cur.name}">Controller</td>
-		</tr>
+		<!--<tr th:each="cur: ${data}">  
+			<td th:text="${cur.name}"></td>-->
+			
+						</tr>
+							
+	
+							
 	</table>
 	<hr />
+<form action="/green/team/rename">
+		<label>Change role:
+			<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
+		</label>
+		<label>as:
+			<input name="name" required="required">
+		</label>
+		<button>Go!</button>
+	</form>
+	<hr />
+	
 
 </body>
+
 </html>

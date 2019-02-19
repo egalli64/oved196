@@ -25,7 +25,7 @@ public class BlueCoder {
 	private BlueTeam team;
 
 	@ManyToMany (fetch = FetchType.EAGER)
-	@JoinTable(name = "ROLES_CODERS", joinColumns = @JoinColumn(name = "CODER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	@JoinTable(name = "BLUE_ROLES_CODERS", joinColumns = @JoinColumn(name = "CODER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<BlueRole> role;
 
 	public BlueCoder() {
