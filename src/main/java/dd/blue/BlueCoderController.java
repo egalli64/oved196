@@ -74,7 +74,8 @@ public class BlueCoderController {
 				logger.error(message);
 	            model.addAttribute("msg", message);
 			}
-		model.addAttribute("data", coderRepo.findAll());
+		model.addAttribute("coders", coderRepo.findAll());
+		model.addAttribute("roles", roleRepo.findAll());
 		return "/blue/coders";
 		}
 	
@@ -112,6 +113,7 @@ public class BlueCoderController {
             model.addAttribute("msg", message);
 		}
 		model.addAttribute("coders", coderRepo.findAll());
+		model.addAttribute("roles", roleRepo.findAll());
 		return "/blue/coders";
 		}
 	
@@ -139,7 +141,8 @@ public class BlueCoderController {
 			logger.error(message);
             model.addAttribute("msg", message);
 		}
-		model.addAttribute("data", coderRepo.findAll());
+		model.addAttribute("coders", coderRepo.findAll());
+		model.addAttribute("roles", roleRepo.findAll());
 		return "/blue/coders";
 		}
 	
