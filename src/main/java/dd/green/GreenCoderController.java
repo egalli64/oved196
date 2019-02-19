@@ -40,7 +40,6 @@ public class GreenCoderController {
 	@GetMapping("/green/coders")
 	public String getCoders(Model model) {
 		logger.trace("green getCoders");
-		
 		model.addAttribute("data", repository.findAll());
 		return "/green/coders";
 	}
