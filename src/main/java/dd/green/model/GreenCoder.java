@@ -14,7 +14,7 @@ public class GreenCoder {
     @Column(name = "CODER_ID")
     private long id;
 
-    @Column(name = "CODER_NAME")
+    @Column(name = "FIRST_NAME")
     private String name;
 
     @ManyToOne

@@ -2,27 +2,94 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Coders (green)</title>
+<center><title>CODERS (green)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/green/css/styles.css}">
 </head>
+	<h1>CODERS</h1>
 <body>
-	<h1>Coders</h1>
+	<!--<h1>Coders</h1>
 	<p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
-	</p>
-	<hr />
-	<p>The coders:</p>
+	</p>-->
+	
 	<table>
 		<tr>
-			<th>NAME</th>
-			<th>TEAM</th>
+			<th>
+			
+			<font face="Verdana" size="6" color="green">
+			
+			<h3>NAMES</h3></font>
+			
+			</th>
+			<th>
+			<font face="Verdana" size="6" color="green">
+			<h3>TEAMS</h3>
+			<!--  </font>
+			<font face="Verdana" size="6" color="green">
+			<h3>ROLES</h3>
+			</font>-->
+			</th>
+			
 		</tr>
 		<tr th:each="cur: ${data}">
-			<td th:text="${cur.name}">Bjarne</td>
-			<td th:text="${cur.team.name}">green</td>
-		</tr>
+			<td th:text="${cur.name}"></td>
+			<td th:text="${cur.team.name}"></td>
+			<!-- <th:block th:each="roles : ${cur.roles}">
+				<td th:text="${roles.name}">green</td>
+			</th:block> -->
+							</tr>
 	</table>
+	<br></br>
 	<hr />
+	<form action="/green/team/rename">
+		<label><font face="Verdana" size="5" color="green">Cambia team:
+			<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.team.name}">
+					green
+				</option>
+			</select></font>
+		</label>
+		<label><font face="Verdana" size="4" color="green">con:
+			<input name="team.name" required="required">
+		</label>
+		<button>Go!</button></font>
+	</form>
+	
+	<hr />
+	<form action="/green/team/create">
+	
+		<label>
+		<font face="Verdana" size="5" color="green">
+		<center>Aggiungi nuovo Role:
+			<input name="roles.name" required="required">
+			</font>
+		</label>
+		<button>Go!</button>
+		</center>
+	</form>
+	<hr />
+	<form action="/green/team/rename">
+	
+		<label>
+		<font face="Verdana" size="5" color="green">
+		<center>Sostituisci Role:
+			<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
+			</font>
+		</label>
+		<label>con:
+			<input name="roles.name" required="required">
+		</label>
+		<button>Go!</button></center>
+	</form>
+	<hr />
+	<p>
+		Torna <a href="/green/index.html">homepage team green</a>
+	</p>
+	
 
-</body>
+</body></center>
 </html>

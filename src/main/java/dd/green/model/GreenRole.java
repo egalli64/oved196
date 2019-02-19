@@ -1,8 +1,12 @@
 package dd.green.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,11 @@ public class GreenRole {
 
     @Column(name = "ROLE_NAME")
     private String name;
+    @ManyToMany
+  	@JoinTable(name = "COD_ROLE", //
+  			joinColumns = @JoinColumn(name = "CODER_ID"), //
+  			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+  	Set<GreenCoder> coders;
 
     protected GreenRole() {
     }
