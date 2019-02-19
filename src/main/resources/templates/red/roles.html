@@ -18,7 +18,9 @@
 			<th>NAME</th>
 		</tr>
 		<tr th:each="cur: ${data}">
+		<td th:text="${cur.name}">Bjarne</td>
 			<td th:text="${cur.name}">Controller</td>
+			
 		</tr>
 	</table>
 	<hr />

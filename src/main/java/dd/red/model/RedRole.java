@@ -1,9 +1,20 @@
 package dd.red.model;
 
+import java.util.List;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
+
+
 
 @Entity
 @Table(name = "RED_ROLES")
@@ -17,6 +28,13 @@ public class RedRole {
 
 	@Column(name = "ROLE_NAME")
 	private String name;
+	
+	@ManyToMany (fetch=FetchType.EAGER)
+	@JoinTable(name = "RED_CODERS_ROLES", //
+			joinColumns = @JoinColumn(name = "CODER_ID"), //
+			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	List<RedCoder> coders;
+
 
 	protected RedRole() {
 	}
