@@ -15,22 +15,44 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "GREEN_CODERS")
 public class GreenCoder {
-	@Id
-	@Column(name = "CODER_ID")
-	private Long id;
+    @Id
+    @Column(name = "CODER_ID")
+    private long id;
 
-	@Column(name = "FIRST_NAME")
-	private String name;
+    @Column(name = "FIRST_NAME")
+    private String name;
+    
+    @Column(name = "LAST_NAME")
+    private String surname;
 
-	@ManyToOne
-	@JoinColumn(name = "TEAM_ID")
-	private GreenTeam team;
-
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private GreenTeam team;
+    
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "COD_ROLE", //
 			joinColumns = @JoinColumn(name = "CODER_ID"), //
 			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	Set<GreenRole> roles;
+	
+	
+
+    public GreenCoder(long id, String name, String surname, GreenTeam team, Set<GreenRole> roles) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.team = team;
+		this.roles = roles;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
 	public Set<GreenRole> getRoles() {
 		return roles;
@@ -40,52 +62,50 @@ public class GreenCoder {
 		this.roles = roles;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	protected GreenCoder() {
-	}
+    }
 
-	public GreenCoder(Long id, String name, GreenTeam team, Set<GreenRole> roles) {
-		this.id = id;
-		this.name = name;
-		this.team = team;
-		this.roles = roles;
-	}
-	
-	public GreenCoder(String name) {
-		this.name = name;
-	}
-	
-	
-	
-	public long getId() {
-		return id;
-	}
+    public GreenCoder(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public GreenCoder(long id, String name, GreenTeam team) {
+        this.id = id;
+        this.name = name;
+        this.team = team;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public GreenTeam getTeam() {
-		return team;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setTeam(GreenTeam team) {
-		this.team = team;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public GreenTeam getTeam() {
+        return team;
+    }
+
+    public void setTeam(GreenTeam team) {
+        this.team = team;
+    }
 
 	@Override
 	public String toString() {
-		return "GreenCoder [id=" + id + ", name=" + name + ", team=" + team + ", roles=" + roles + "]";
+		return "GreenCoder [id=" + id + ", name=" + name + ", surname=" + surname + ", team=" + team + ", roles="
+				+ roles + "]";
 	}
+
+
+
 }
