@@ -14,12 +14,17 @@
 	<hr />
 	<p>The roles:</p>
 	<table>
+	<tr><th>ROLES</th></tr>
 		<tr>
-			<th>NAME</th>
+		
+			<td>NAME</td>
+			<td>id</td>
 		</tr>
 		<tr th:each="cur: ${data}">
 		<td th:text="${cur.name}">Bjarne</td>
-			<td th:text="${cur.name}">Controller</td>
+		
+		
+			<td th:text="${cur.id}">Controller</td>
 			
 		</tr>
 	</table>
