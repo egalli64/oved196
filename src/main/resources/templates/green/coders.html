@@ -15,12 +15,15 @@
 	<table>
 		<tr>
 			<th>NAME</th>
-			<th>TEAM</th>
+			<th>ROLE</th>
 		</tr>
-		<tr th:each="cur: ${data}">
-			<td th:text="${cur.name}">Bjarne</td>
-			<td th:text="${cur.team.name}">green</td>
+			<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">EU</td>
+			<th:block th:each="roles : ${cur.roles}">
+				<td th:text="${roles.name}">green</td>
+			</th:block>
 		</tr>
+		
 	</table>
 	<hr />
 

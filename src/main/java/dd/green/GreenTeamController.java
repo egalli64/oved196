@@ -29,12 +29,12 @@ public class GreenTeamController {
 
     @GetMapping("/green/teams")
     public String getAll(Model model) {
-        logger.trace("getAll()");
+        logger.trace("ho chiamato la getAll()");
         return findAll(model);
     }
 
     private void save(GreenTeam team, Model model) {
-        logger.trace("save()");
+        logger.trace("Saved");
         try {
             repository.save(team);
         } catch (DataAccessException dae) {
@@ -65,18 +65,24 @@ public class GreenTeamController {
             @RequestParam String name, //
             Model model) {
         logger.trace("rename()");
-
+        
+        
         Optional<GreenTeam> opt = repository.findById(id);
-        if (opt.isPresent()) {
+                	
+        
+        if (opt.isPresent() && name != opt.get().getName()) {
             GreenTeam team = opt.get();
             logger.debug(String.format("Renaming team %s as %s", team.getName(), name));
             team.setName(name);
             save(team, model);
-        } else {
+            
+        }else {
             String message = String.format("Can't save team %d: not found", id);
+            
             logger.error(message);
             model.addAttribute("msg", message);
         }
+        
 
         return findAll(model);
     }

@@ -26,40 +26,41 @@
 	</table>
 	<hr />
 	
-	<form action="/green/team/create">
-		<label>Create new team with name:
+	<form method="get" action="/green/team/create">
+		<label>Crea la tua squadra:
 			<input name="name" required="required">
 		</label>
-		<button>Go!</button>
+		<button>Crea</button>
 	</form>
 	<hr />
-	<form action="/green/team/rename">
-		<label>Rename team:
+	<form method="get" action = "/green/team/rename">
+		<label>Cambia il nome alla tua squadra:
 			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
 		</label>
-		<label>as:
+		<label>come:
 			<input name="name" required="required">
 		</label>
-		<button>Go!</button>
+		<button>Rinomina</button>
 	</form>
 	<hr />
-	<form action="/green/team/delete">
-		<label>Delete team:
+	<form method="get" action = "/green/team/delete">
+		<label>Rimuovi:
 			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
 		</label>
-		<button>Go!</button>
+		<button>Rimuovi</button>
 	</form>
 	<hr />
 	<p>
-		Back to <a href="/green/index.html">green homepage</a>
+		Torna indietro <a href="/green/index.html">homepage Verdi </a>
 	</p>
+	 
 </body>
 </html>

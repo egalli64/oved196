@@ -11,17 +11,21 @@
 	<p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
 	</p>
-	<hr />
+	<hr/>
 	<p>The roles:</p>
 	<table>
 		<tr>
-			<th>NAME</th>
+			<th>ROLES</th>
+			<th>ID</th>
 		</tr>
 		<tr th:each="cur: ${data}">
 			<td th:text="${cur.name}">Controller</td>
+			<td th:text="${cur.id}">green</td>
 		</tr>
 	</table>
-	<hr />
+	<hr/>
+	
+	
 
 </body>
 </html>
