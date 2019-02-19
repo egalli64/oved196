@@ -32,6 +32,7 @@ public class GreenTeamController {
         logger.trace("getAll()");
         return findAll(model);
     }
+    
 
     private void save(GreenTeam team, Model model) {
         logger.trace("save()");

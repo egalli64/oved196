@@ -8,39 +8,45 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "GREEN_ROLES")
 public class GreenRole {
-    @Id
-    @Column(name = "ROLE_ID")
-    private long id;
+	@Id
+	@Column(name = "ROLE_ID")
+	private long id;
 
-    @Column(name = "ROLE_NAME")
-    private String name;
+	@Column(name = "ROLE_NAME")
+	private String name;
 
-    protected GreenRole() {
-    }
+	public GreenRole(String name) {
+		super();
+		this.name = name;
+	}
 
-    public GreenRole(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	protected GreenRole() {
+	}
 
-    public long getId() {
-        return id;
-    }
+	public GreenRole(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public String toString() {
-        return "GreenRole [id=" + id + ", name=" + name + "]";
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "GreenRole [id=" + id + ", name=" + name + ", coders=" + "]";
+	}
+
 }
