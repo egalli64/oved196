@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -28,7 +29,7 @@ public class RedRole {
 	@Column(name = "ROLE_NAME")
 	private String name;
 	
-	@ManyToMany
+	@ManyToMany (fetch=FetchType.EAGER)
 	@JoinTable(name = "RED_CODERS_ROLES", //
 			joinColumns = @JoinColumn(name = "CODER_ID"), //
 			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

@@ -43,6 +43,11 @@ public class RedTeam {
 
 	@Override
 	public String toString() {
-		return " Il team è " + name + ".";
+		return "RedTeam [id=" + id + ", name=" + name + "]";
 	}
+
+	
+	
+
+	
 }
