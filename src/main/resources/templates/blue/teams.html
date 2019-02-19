@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Squadre</title>
@@ -8,16 +7,22 @@
 </head>
 <body>
 	<table>
-		<thead>
-			<tr th:each="cur: ${data}">
-				<td th:text="${cur.name}" rowspan="2">nomi squadre</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="cur: ${code}">
-				<td th:text="${cur.lastname}"></td>
-			</tr>
-		</tbody>
+		<tr> 
+		<th scope="col">ID</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Cognome</th>
+			<th scope="col">Team</th>
+			<th scope="col">Ruolo</th>
+			
+		</tr>
+		<tr th:each ="cur : ${coders}">
+			<td th:text="${cur.idCoder}">[]</td>		
+			<td th:text="${cur.firstname}">[]</td>
+			<td th:text="${cur.lastname}">[]</td>
+			<td th:text="${cur.team.name}">[]</td>
+			<th:block th:each="role : ${cur.role}">
+				<td th:text="${role.nomeRole}">Model</td>
+			</th:block>		</tr>
 	</table>
 </body>
 </html>

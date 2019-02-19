@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "BLUE_CODERS")
 public class BlueCoder {
@@ -23,9 +24,9 @@ public class BlueCoder {
 	@JoinColumn(name = "TEAM_ID")
 	private BlueTeam team;
 
-	@ManyToMany
-	@JoinTable(name = "ROLES_CODERS", joinColumns = @JoinColumn(name = "ROLE_ID"), inverseJoinColumns = @JoinColumn(name = "CODER_ID"))
-	Set<BlueRole> role;
+	@ManyToMany (fetch = FetchType.EAGER)
+	@JoinTable(name = "ROLES_CODERS", joinColumns = @JoinColumn(name = "CODER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	private Set<BlueRole> role;
 
 	public BlueCoder() {
 		super();

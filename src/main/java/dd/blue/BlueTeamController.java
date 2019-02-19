@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dd.blue.model.BlueCoder;
+import dd.blue.model.BlueCoderRepository;
 import dd.blue.model.BlueTeam;
 import dd.blue.model.BlueTeamRepository;
 
@@ -20,6 +22,7 @@ public class BlueTeamController {
 
 	@Autowired
 	BlueTeamRepository repository;
+	BlueCoderRepository coderRepo;
 	
     private String findAll(Model model) {
         logger.trace("findAll()");
@@ -27,11 +30,14 @@ public class BlueTeamController {
         return "/blue/teams";
     }
 
-    @GetMapping("/blue/teams")
-    public String getAll(Model model) {
-        logger.trace("getAll()");
-        return findAll(model);
-    }
+//    @GetMapping("/blue/teams")
+//    public String getAll(Model model) {
+//        logger.trace("getAll()");
+//        Iterable<BlueCoder> coder = coderRepo.findAll();
+//        model.addAttribute("data", coder);
+//        return "/blue/teams";
+//        //return findAll(model);
+//    }
 
     private void save(BlueTeam team, Model model) {
         logger.trace("save()");
