@@ -18,25 +18,30 @@
 			
 			<font face="Verdana" size="6" color="green">
 			
-			<h3>NAMES</h3></font>
+			<h3>NAME</h3></font>
 			
 			</th>
 			<th>
 			<font face="Verdana" size="6" color="green">
-			<h3>TEAMS</h3>
-			<!--  </font>
+			<h3>TEAM</h3>
+			</font>
+			</th>
+			
+			<th>
+			
 			<font face="Verdana" size="6" color="green">
-			<h3>ROLES</h3>
-			</font>-->
+			
+			<h3>ROLE</h3></font>
+			
 			</th>
 			
 		</tr>
 		<tr th:each="cur: ${data}">
 			<td th:text="${cur.name}"></td>
 			<td th:text="${cur.team.name}"></td>
-			<!-- <th:block th:each="roles : ${cur.roles}">
+			<th:block th:each="roles : ${cur.roles}">
 				<td th:text="${roles.name}">green</td>
-			</th:block> -->
+			</th:block>
 							</tr>
 	</table>
 	<br></br>
@@ -86,9 +91,6 @@
 		<button>Go!</button></center>
 	</form>
 	<hr />
-	<p>
-		Torna <a href="/green/index.html">homepage team green</a>
-	</p>
 	
 
 </body></center>

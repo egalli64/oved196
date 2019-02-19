@@ -1,9 +1,14 @@
 package dd.green.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,12 +21,48 @@ public class GreenCoder {
 
     @Column(name = "FIRST_NAME")
     private String name;
+    
+    @Column(name = "LAST_NAME")
+    private String surname;
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private GreenTeam team;
+    
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "COD_ROLE", //
+			joinColumns = @JoinColumn(name = "CODER_ID"), //
+			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	Set<GreenRole> roles;
+	
+	
 
-    protected GreenCoder() {
+    public GreenCoder(long id, String name, String surname, GreenTeam team, Set<GreenRole> roles) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.team = team;
+		this.roles = roles;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public Set<GreenRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<GreenRole> roles) {
+		this.roles = roles;
+	}
+
+	protected GreenCoder() {
     }
 
     public GreenCoder(long id, String name) {
@@ -59,8 +100,12 @@ public class GreenCoder {
         this.team = team;
     }
 
-    @Override
-    public String toString() {
-        return "GreenCoder [id=" + id + ", name=" + name + ", team=" + team + "]";
-    }
+	@Override
+	public String toString() {
+		return "GreenCoder [id=" + id + ", name=" + name + ", surname=" + surname + ", team=" + team + ", roles="
+				+ roles + "]";
+	}
+
+
+
 }
