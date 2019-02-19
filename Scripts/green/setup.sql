@@ -78,7 +78,7 @@ REM INSERTING into OVED.GREEN_TEAMS
 SET DEFINE OFF;
 Insert into OVED.GREEN_TEAMS (TEAM_ID,TEAM_NAME) values ('1','GREEN');
 Insert into OVED.GREEN_TEAMS (TEAM_ID,TEAM_NAME) values ('2','RED');
-Insert into OVED.GREEN_TEAMS (TEAM_ID,TEAM_NAME) values ('3','BLUE');
+Insert into OVED.GREEN_TEAMS (TEAM_ID,TEAM_NAME) values ('3','BLUE'); 
 
 --------------------------------------------------------
 --  DDL for Index SYS_C007763
