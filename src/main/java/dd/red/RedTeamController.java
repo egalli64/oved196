@@ -61,19 +61,19 @@ public class RedTeamController {
 	 
 	 @GetMapping("/red/team/rename")
 	    public String rename( //
-	            @RequestParam long id, //
+	            @RequestParam String id, //
 	            @RequestParam String name, //
 	            Model model) {
 	        logger.trace("rename()");
 
-	        Optional<RedTeam> opt = repository.findById(id);
+	        Optional<RedTeam> opt = repository.findByName(id);
 	        if (opt.isPresent()) {
 	            RedTeam team = opt.get();
-	            logger.debug(String.format("Renaming team %s as %s", team.getName(), name));
+	            logger.debug(String.format("Renaming team ", team.getName(), name));
 	            team.setName(name);
 	            save(team, model);
 	        } else {
-	            String message = String.format("Can't save team %d: not found", id);
+	            String message = String.format("Can't save team : not found", id);
 	            logger.error(message);
 	            model.addAttribute("msg", message);
 	        }
@@ -82,15 +82,19 @@ public class RedTeamController {
 	    }
 	 
 	 @GetMapping("/red/team/delete")
-	    public String delete( //
-	            @RequestParam long id, //
+	    public String delete( 
+	            @RequestParam String id, 
 	            Model model) {
 	        try {
-	            repository.deleteById(id);
-	            String message = String.format("Il team  %d è stato eliminato correttamente", id);
+	            
+	            RedTeam team = new RedTeam();
+	            team=repository.findByName(id).get();
+	            long a = team.getId();
+	            repository.deleteById(a);
+	            String message = String.format("Il team  è stato eliminato correttamente", id);
 	            System.out.println(message);
 	        } catch (DataAccessException dae) {
-	            String message = String.format("Can't delete team %d", id);
+	            String message = String.format("Can't delete team ", id);
 	            logger.error(message);
 	            model.addAttribute("msg", message);
 	        }

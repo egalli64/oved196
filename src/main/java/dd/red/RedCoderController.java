@@ -6,6 +6,7 @@
 
 package dd.red;
 
+
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import dd.red.model.RedCoder;
 
 import dd.red.model.RedCoderRepository;
 import dd.red.model.RedTeam;
+import dd.red.model.RedTeamRepository;
 
 @Controller
 public class RedCoderController {
@@ -28,11 +30,13 @@ public class RedCoderController {
 
 	@Autowired
 	RedCoderRepository repository;
+	@Autowired
+	RedTeamRepository repositoryTeam;
 
 	private String findAll(Model model) {
 		logger.trace("findAll()");
 		model.addAttribute("data", repository.findAll());
-		return "/red/teams";
+		return "/red/coders";
 	}
 
 	private void save(RedCoder team, Model model) {
@@ -59,11 +63,11 @@ public class RedCoderController {
 		return "/red/coders";
 	}
 
-	@GetMapping("/red/setTeam")
-	public String setTeam(Model model, @RequestParam long id, @RequestParam RedTeam test) {
+	@GetMapping("/red/coder/setTeam")
+	public String setTeam(Model model, @RequestParam String name, @RequestParam RedTeam test) {
 
 		logger.trace("setTeam()");
-		Optional<RedCoder> opt = repository.findById(id);
+		Optional<RedCoder> opt = repository.findByName(name);
 		if (opt.isPresent()) {
 			RedCoder team = opt.get();
 			logger.debug(String.format("Change team %s as %s", team.getName(), test));
@@ -71,7 +75,7 @@ public class RedCoderController {
 			save(team, model);
 
 		} else {
-			String message = String.format("Can't save team %d: not found", id);
+			String message = String.format("Can't save team %d: not found", name);
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
@@ -79,6 +83,41 @@ public class RedCoderController {
 		return findAll(model);
 
 	}
+	
+	 @GetMapping("/red/coder/createCoder")
+	    public String create(@RequestParam long id, @RequestParam String name, @RequestParam RedTeam id_t, Model model) {
+	        logger.trace("create()");
+	        //RedTeam team = new  RedTeam ("null");
+	        if (id_t== null) {
+	        	id_t =repositoryTeam.findByName("bench").get();
+	        	
+	        }
+	        
+
+	        save(new RedCoder(id, name, id_t), model);
+	        return findAll(model);
+	    }
+	 
+	 @GetMapping("/red/coder/deleteCoder")
+	    public String delete( 
+	            @RequestParam String name, 
+	            Model model) {
+	        try {
+	        	RedCoder team = new RedCoder();
+		            team=repository.findByName(name).get();
+		            long a = team.getId();
+		            repository.deleteById(a);
+	            String message = String.format("la persona  è stata eliminata correttamente", name);
+	            System.out.println(message);
+	        } catch (DataAccessException dae) {
+	            String message = String.format("Can't delete person ", name);
+	            logger.error(message);
+	            model.addAttribute("msg", message);
+	        }
+
+	        return findAll(model);
+	        
+	    }
 	
 	
 

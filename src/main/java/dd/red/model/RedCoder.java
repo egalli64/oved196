@@ -21,7 +21,7 @@ public class RedCoder {
     @JoinColumn(name = "TEAM_ID")
     private RedTeam team;
 
-    protected RedCoder() {
+    public RedCoder() {
     }
 
     public RedCoder(long id, String name) {

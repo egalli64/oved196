@@ -14,18 +14,18 @@
 		<tr>
 			
 			<td>TEAM</td>
-			<td>id</td>
+			
 		</tr>
 		<tr th:each="cur: ${data}">
 			<td th:text="${cur.name}">Bjarne</td>
-			<td th:text="${cur.id}">id</td>
+			
 			
 		</tr>
 	</table>
 	<hr>
 	
 	<form  method="get" action="/red/team/delete">
-   <p> inserisci ID team da eliminare : <input type="long" name="id"> </p>
+   <p> inserisci team da eliminare : <input type="text" name="id"> </p>
    <button >conferma</button>
    </form>
 
@@ -34,7 +34,7 @@
    <button >conferma</button></form>
    
    <form  method="get" action="/red/team/rename">
-    <p> inserisci ID team da modificare : <input type="long" name="id"> </p>
+    <p> inserisci team da modificare : <input type="text" name="id"> </p>
    <p> inserisci il nome nuovo : <input type="text" name="name"> </p>
    <button >conferma</button></form>
    
