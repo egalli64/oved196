@@ -2,65 +2,99 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Teams (green)</title>
+<center><title>TEAMS (green)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/green/css/styles.css}">
 </head>
+<h1>TEAMS</h1>
 <body>
-	<h1>Teams</h1>
+	
+	<!--
+	
 	<p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
-	</p>
-	<hr />
+		<hr />
 	<div th:if="${msg}">
 		<p>A message for you: <span th:text=${msg}>hello!</span></p>
 		<hr />	
 	</div>
-	<p>The available teams:</p>
+		
+	</p> -->
+	
+	<!-- <p>Teams:</p> -->
+	<center>
 	<table>
 		<tr>
-			<th>NAME</th>
+			<th>
+			<font face="Verdana" size="6" color="green">
+			
+			<h3>NAME</h3>
+			</font>
+			</th>
 		</tr>
-		<tr th:each="cur: ${data}">
-			<td th:text="${cur.name}">green</td>
+	<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">green</td>	
 		</tr>
+		
+		
 	</table>
+	</center>
+	
+	<br>
+	
+	</br>
+	
+	<br>
+	
+	</br>
+	
 	<hr />
 	
-	<form method="get" action="/green/team/create">
-		<label>Crea la tua squadra:
+	<form action="/green/team/create">
+	
+		<label>
+		<font face="Verdana" size="5" color="green">
+		<center>Crea nuovo Team:
 			<input name="name" required="required">
+			</font>
 		</label>
-		<button>Crea</button>
+		<button>Go!</button>
+		</center>
 	</form>
 	<hr />
-	<form method="get" action = "/green/team/rename">
-		<label>Cambia il nome alla tua squadra:
+	<form action="/green/team/rename">
+	
+		<label>
+		<font face="Verdana" size="5" color="green">
+		<center>Sostituisci team:
 			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
+			</font>
 		</label>
-		<label>come:
-			<input name="name" required="required">
+		<label>con:
+			<input name="team.name" required="required">
 		</label>
-		<button>Rinomina</button>
+		<button>Go!</button></center>
 	</form>
 	<hr />
-	<form method="get" action = "/green/team/delete">
-		<label>Rimuovi:
+	<form action="/green/team/delete">
+		<label>
+		<font face="Verdana" size="5" color="green">
+		<center>Elimina team:
 			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
+			</font>
 		</label>
-		<button>Rimuovi</button>
+		<button>Go!</button></center>
 	</form>
 	<hr />
 	<p>
-		Torna indietro <a href="/green/index.html">homepage Verdi </a>
+		Torna <a href="/green/index.html">homepage team green</a>
 	</p>
-	 
-</body>
+</body></center>
 </html>

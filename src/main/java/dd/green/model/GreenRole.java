@@ -1,8 +1,12 @@
 package dd.green.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +16,10 @@ public class GreenRole {
 	@Column(name = "ROLE_ID")
 	private long id;
 
+
 	@Column(name = "ROLE_NAME")
 	private String name;
+
 
 	public GreenRole(String name) {
 		super();

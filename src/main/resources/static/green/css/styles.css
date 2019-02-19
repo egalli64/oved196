@@ -1,15 +1,21 @@
 body {
-	background-color: #97ff97;
+	background-color: #00dd00;
 }
 
 h1 {
-	font-family: arial;
+	font-family: verdana;
 	text-align: center;
-	color: #008000;
-	font-size: 50px;
+	color: green;
+	font-size: 70px;
 }
 
 table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
+	
+	text-align: center;
+	border: 2px dotted white;
+	border-collapse: separate;
+	font-size: 30px;
+	width: 100px;
 }
+
+img { border: 7px solid #ff0000; }
