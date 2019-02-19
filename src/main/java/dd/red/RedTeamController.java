@@ -87,6 +87,8 @@ public class RedTeamController {
 	            Model model) {
 	        try {
 	            repository.deleteById(id);
+	            String message = String.format("Il team  %d è stato eliminato correttamente", id);
+	            System.out.println(message);
 	        } catch (DataAccessException dae) {
 	            String message = String.format("Can't delete team %d", id);
 	            logger.error(message);
@@ -94,5 +96,6 @@ public class RedTeamController {
 	        }
 
 	        return findAll(model);
+	        
 	    }
 }
