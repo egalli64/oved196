@@ -34,21 +34,24 @@ public class BlueCoderController {
         model.addAttribute("teams", teamRepo.findAll());
         return "/blue/teams";	  
      }
+	 
 	 @GetMapping("/blue/settings")
 	    public String settings(Model model) {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
-     model.addAttribute("teams", teamRepo.findAll());
-     return "/blue/settings";	  
-  }
+	    model.addAttribute("teams", teamRepo.findAll());
+	    return "/blue/settings";	  
+	 }
+	 
+	 @GetMapping("/blue/coders")
+	    public String coders(Model model) {
+	        //logger.trace("getAll()");
+	    model.addAttribute("coders", coderRepo.findAll());
+	    model.addAttribute("teams", teamRepo.findAll());
+	    return "/blue/coders";	  
+	 }
 
-	@GetMapping("/blue/coders")
-	public String getCoders(Model model) {
-		logger.trace("blue getCoders");
-		model.addAttribute("data", coderRepo.findAll());
-		return "/blue/coders";
-	}
-
+	 
 	@GetMapping("/blue/coders/addrole")
 	public String addRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("addRole()");
@@ -104,11 +107,11 @@ public class BlueCoderController {
 			}
 		
 		} else {
-			String message = "Attenzione: id o ruolo non validi.";
+			String message = "Attenzione: id non valido.";
 			logger.error(message);
             model.addAttribute("msg", message);
 		}
-		model.addAttribute("data", coderRepo.findAll());
+		model.addAttribute("coders", coderRepo.findAll());
 		return "/blue/coders";
 		}
 	
@@ -140,7 +143,7 @@ public class BlueCoderController {
 		return "/blue/coders";
 		}
 	
-	@GetMapping("/blue/teams/changeteam")
+	@GetMapping("/blue/coders/changeteam")
 	public String changeTeam(@RequestParam Integer coderId, @RequestParam Integer teamId, Model model) {
 		logger.trace("changeTeam()");
         Optional<BlueCoder> opt = coderRepo.findById(coderId);
@@ -167,7 +170,7 @@ public class BlueCoderController {
 		
 		model.addAttribute("teams", teamRepo.findAll());
 		model.addAttribute("coders", coderRepo.findAll());
-		return "/blue/teams";
+		return "/blue/coders";
 		}
 	
 }
