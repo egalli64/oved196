@@ -31,15 +31,22 @@ public class BlueCoderController {
         return "/blue/coders";
 	}
 	
-	@GetMapping("/blue/roles")
+	 @GetMapping("/blue/teams")
+	    public String getAll(Model model) {
+	        logger.trace("getAll()");
+	        Iterable<BlueCoder> coder = repository.findAll();
+        	model.addAttribute("coders",coder);
+	        return "/blue/teams";
+	    }
+	
+	@GetMapping("/blue/coders")
 	public String getCoders(Model model) {
 		logger.trace("blue getCoders");
-		
 		model.addAttribute("data", repository.findAll());
 		return "/blue/coders";
 	}
 
-	@GetMapping("/blue/coders/adderole")
+	@GetMapping("/blue/coders/addrole")
 	public String addRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("addRole()");
         Optional<BlueCoder> opt = repository.findById(coderid);
