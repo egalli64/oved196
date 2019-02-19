@@ -8,5 +8,23 @@
 </head>
 <body>
 	<p>qua invece i tasti di modifica ruoli e persone</p>
+		<form action="/blue/teams/changeteam">
+	<p> Cambia il team a una persona</p> 
+	<label>Coder:
+			<select name="coderId">
+				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+					caio
+				</option>
+			</select>
+	</label>
+	<label>Scegli il nuovo team:
+			<select name="teamId">
+				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
+					blue
+				</option>
+			</select>
+		</label>
+		<button>OK</button>
+	</form>
 </body>
 </html>
