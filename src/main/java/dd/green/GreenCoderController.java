@@ -60,7 +60,7 @@ public class GreenCoderController {
         }
     }
 
-    @GetMapping("/green/coders/create")
+    @GetMapping("/green/coders/create_role")
     public String create( //
     		@RequestParam String name, //
     		@RequestParam long id, //
@@ -72,7 +72,7 @@ public class GreenCoderController {
         return findAll(model);
     }
 
-    @GetMapping("/green/coders/rename")
+    @GetMapping("/green/coders/rename_role")
     public String rename( //
             @RequestParam long id, //
             @RequestParam String name, //
@@ -94,7 +94,7 @@ public class GreenCoderController {
         return findAll(model);
     }
 
-    @GetMapping("/green/coders/delete")
+    @GetMapping("/green/coders/delete_role")
     public String delete( //
             @RequestParam long id, //
             Model model) {
