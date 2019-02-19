@@ -32,6 +32,7 @@ public class BlueCoderController {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
         model.addAttribute("teams", teamRepo.findAll());
+        model.addAttribute("roles", roleRepo.findAll());
         return "/blue/teams";	  
      }
 	 
@@ -40,6 +41,7 @@ public class BlueCoderController {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
 	    model.addAttribute("teams", teamRepo.findAll());
+	    model.addAttribute("roles", roleRepo.findAll());
 	    return "/blue/settings";	  
 	 }
 	 
@@ -48,6 +50,7 @@ public class BlueCoderController {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
 	    model.addAttribute("teams", teamRepo.findAll());
+	    model.addAttribute("roles", roleRepo.findAll());
 	    return "/blue/coders";	  
 	 }
 
@@ -89,23 +92,25 @@ public class BlueCoderController {
 
 		if (opt.isPresent() ) {			
 			BlueCoder coder = opt.get();
-			if (!(coder.getRole().contains(newRole.get()))
-				&& coder.getRole().contains(oldRole.get())) 
-			{
-				coder.getRole().add(newRole.get());
-				coder.getRole().remove(oldRole.get());
-				coderRepo.save(coder);
-			} 
-			else if (coder.getRole().contains(newRole.get())) {
-				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " ha già il ruolo di " + newRole.get().getNomeRole() + "!";
-				logger.error(message);
-	            model.addAttribute("msg", message);
-			}
-			else {
+			if (!(coder.getRole().contains(oldRole.get()))) {
 				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " non ha il ruolo di " + newRole.get().getNomeRole() + "!";
 				logger.error(message);
 	            model.addAttribute("msg", message);
 			}
+			if (coder.getRole().contains(newRole.get())) 
+			{
+				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " ha già il ruolo di " + newRole.get().getNomeRole() + "!";
+				logger.error(message);
+	            model.addAttribute("msg", message);
+				
+			} 
+			else 
+			{
+				coder.getRole().add(newRole.get());
+				coder.getRole().remove(oldRole.get());
+				coderRepo.save(coder);
+			}
+			 
 		
 		} else {
 			String message = "Attenzione: id non valido.";
@@ -140,7 +145,7 @@ public class BlueCoderController {
 			String message = "Attenzione: id o ruolo non validi.";
 			logger.error(message);
             model.addAttribute("msg", message);
-		}
+			}
 		model.addAttribute("coders", coderRepo.findAll());
 		model.addAttribute("roles", roleRepo.findAll());
 		return "/blue/coders";

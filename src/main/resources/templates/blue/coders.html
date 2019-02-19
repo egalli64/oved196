@@ -69,21 +69,21 @@
 	<form action="/blue/coders/changerole">
 		<label> Cambia il ruolo all'impiegato <br>
 			Coder:
-			<select name="coderId">
+			<select name="coderid">
 				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
 					caio
 				</option>
 			</select>
 		</label>
 		<label> Vecchio ruolo:
-			<select name="roleId">
-				<option th:each="rol : ${roles}" th:value="${rol.idRole}" th:text="${rol.nomeRole}">
+			<select name="oldroleid">
+				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 					old
 				</option>
 			</select>
 		</label>
 		<label> Nuovo ruolo:
-			<select name="roleId">
+			<select name="newroleid">
 				<option th:each="rol : ${roles}" th:value="${rol.idRole}" th:text="${rol.nomeRole}">
 					new
 				</option>
