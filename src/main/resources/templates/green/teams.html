@@ -49,7 +49,7 @@
 	
 	<hr />
 	
-	<form action="/green/team/create">
+	<form method="get" action="/green/team/create">
 	
 		<label>
 		<font face="Verdana" size="5" color="green">
@@ -61,7 +61,7 @@
 		</center>
 	</form>
 	<hr />
-	<form action="/green/team/rename">
+	<form method="get" action ="/green/team/rename">
 	
 		<label>
 		<font face="Verdana" size="5" color="green">
@@ -74,12 +74,12 @@
 			</font>
 		</label>
 		<label>con:
-			<input name="team.name" required="required">
+			<input name="name" required="required">
 		</label>
 		<button>Go!</button></center>
 	</form>
 	<hr />
-	<form action="/green/team/delete">
+	<form method="get" action="/green/team/delete">
 		<label>
 		<font face="Verdana" size="5" color="green">
 		<center>Elimina team:
