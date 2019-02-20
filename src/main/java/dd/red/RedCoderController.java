@@ -64,14 +64,17 @@ public class RedCoderController {
 	}
 
 	@GetMapping("/red/coder/setTeam")
-	public String setTeam(Model model, @RequestParam String name, @RequestParam RedTeam test) {
+	public String setTeam(Model model, @RequestParam String name, @RequestParam String test) {
 
 		logger.trace("setTeam()");
 		Optional<RedCoder> opt = repository.findByName(name);
 		if (opt.isPresent()) {
 			RedCoder team = opt.get();
 			logger.debug(String.format("Change team %s as %s", team.getName(), test));
-			team.setTeam(test);
+			RedTeam team1 = new RedTeam();
+					team1 = repositoryTeam.findByName(test).get();
+					long a = team1.getId();
+			team.setTeam(team1);
 			save(team, model);
 
 		} else {
