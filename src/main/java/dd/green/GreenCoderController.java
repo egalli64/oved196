@@ -30,9 +30,9 @@ public class GreenCoderController {
     private String findAll(Model model) {
         logger.trace("findAll()");
         model.addAttribute("data", repository.findAll());
-        model.addAttribute("data", repositoryRole.findAll());
         return "/green/coders";
     }
+    
     /*
     @GetMapping("/green/coders")
     public String getAll(Model model) {
@@ -100,12 +100,12 @@ public class GreenCoderController {
     
     @GetMapping("/green/coders/rename")
     public String change_team( //
-            @RequestParam String id_name, //
-            @RequestParam String id_team, //
+            @RequestParam long id_name, //
+            @RequestParam long id_team, //
             Model model) {
         logger.trace("rename()");
 
-        Optional<GreenCoder> opt = repository.findByName(id_name);
+        Optional<GreenCoder> opt = repository.findById(id_name);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
             logger.debug(String.format("Changed team %s as %s", coder.getName(), id_team));
