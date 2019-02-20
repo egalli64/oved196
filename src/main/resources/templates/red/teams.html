@@ -34,14 +34,13 @@
 	<hr>
 	
 	<form  method="get" action="/red/team/delete">
-   <p> inserisci team da eliminare : <input type="text" name="id"> Select option:<br />
-			<select name="os">
-				<option value="none">-</option>
-				<option value="linux">Linux</option>
-				<option value="windows">Windows</option>
-				<option value="macOs">MacOS</option>
-			</select></p>
-   <button >conferma</button>
+   <p>
+				inserisci team da eliminare : <select
+					name="id">
+
+					<option th:each="cur: ${data}" th:text="${cur.name}">
+				</select>
+				<button >conferma</button>
    </form>
 
 	<form  method="get" action="/red/team/create">
@@ -49,7 +48,16 @@
    <button >conferma</button></form>
    
    <form  method="get" action="/red/team/rename">
-    <p> inserisci team da modificare : <input type="text" name="id"> </p>
+    <p> inserisci team da modificare : <select
+					name="id">
+
+					<option th:each="cur: ${data}" th:text="${cur.name}">
+				</select>
+
+
+
+
+ </p>
    <p> inserisci il nome nuovo : <input type="text" name="name"> </p>
    <button >conferma</button></form>
    
