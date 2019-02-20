@@ -5,6 +5,7 @@
 	<meta charset="ISO-8859-1">
 	<title>Modifica Coders</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
+	<script src="@{scrpt/myscrpt.js}"></script>
 </head>
 <body>
 	<h1>Coders Editing</h1>
@@ -131,10 +132,10 @@
 	<form action="/blue/coders/removecoder">
 		<label> Rimuovi un programmatore<br>
 		<br>
-		ID:
+		Coder:
 		<select name="id">
 			<option value="0">-</option>			
-			<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.idCoder}">
+			<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
 			</option>
 		</select>
 		</label>
