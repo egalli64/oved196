@@ -91,9 +91,9 @@ public class RedCoderController {
 	    public String create(@RequestParam long id, @RequestParam String name, @RequestParam String id_t, Model model) {
 	        logger.trace("create()");
 	        //RedTeam team = new  RedTeam ("null");
-	        if (id_t== null) {
+	        if (id_t == null) {
 	        	logger.trace("benching()");
-	        	id_t = "bench";
+	        	id_t= "bench";
 	        }
 	        RedTeam team = repositoryTeam.findByName(id_t).get();
 	        

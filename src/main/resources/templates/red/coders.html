@@ -8,10 +8,11 @@
 </head>
 
 <body>
-<section>
+
 <center>
 	 <h1><span>C</span> <span>O</span> <span>D</span> <span>E</span> <span>R</span> <span>S</span> </h1>
 	<p>
+	
 	<!--	This is just for debugging purpose: <span th:text="${data}">[]</span> -->
 	</p>
 	<hr />
@@ -38,21 +39,21 @@
 	<form  method="get" action="/red/coder/createCoder">
    <p> inserisci l'id della nuova persona : <input type="long" name="id"> </p>
    <p> inserisci nome della nuova persona : <input type="text" name="name"> </p>
-   <p> inserisci l'id del team : <input type="long" name="id_t"> </p> 
+   <p> inserisci il nome del team : <input type="text" name="id_t"> </p> 
    
    
    <button >conferma</button></form>
    
    <form  method="get" action="/red/coder/setTeam">
     <p> Inserisci il nome della persona da modificare : <input type="text" name="name"> </p>
-   <p> Inserisci il nome del nuovo team : <input type="long" name="test"> </p>
+   <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p>
    <button >conferma</button></form>
    
 	
 	
 	<hr />
 </center>
-</section>
+
 </body>
 
 </html>
