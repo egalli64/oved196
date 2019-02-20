@@ -48,7 +48,7 @@ public class RedCoderController {
 			if (team.getId() != 0) {
 				message += " team " + team.getId();
 			} else {
-				message += " il tuo cambiamneto";
+				message += " il tuo cambiamento";
 			}
 			logger.error(message);
 			model.addAttribute("msg", message);
@@ -70,7 +70,7 @@ public class RedCoderController {
 		Optional<RedCoder> opt = repository.findByName(name);
 		if (opt.isPresent()) {
 			RedCoder team = opt.get();
-			logger.debug(String.format("Change team %s as %s", team.getName(), test));
+			logger.debug(String.format("Change team ", team.getName(), test));
 			RedTeam team1 = new RedTeam();
 					team1 = repositoryTeam.findByName(test).get();
 					long a = team1.getId();
@@ -78,7 +78,7 @@ public class RedCoderController {
 			save(team, model);
 
 		} else {
-			String message = String.format("Can't save team %d: not found", name);
+			String message = String.format("Can't save team : not found", name);
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
@@ -88,16 +88,18 @@ public class RedCoderController {
 	}
 	
 	 @GetMapping("/red/coder/createCoder")
-	    public String create(@RequestParam long id, @RequestParam String name, @RequestParam RedTeam id_t, Model model) {
+	    public String create(@RequestParam long id, @RequestParam String name, @RequestParam String id_t, Model model) {
 	        logger.trace("create()");
 	        //RedTeam team = new  RedTeam ("null");
 	        if (id_t== null) {
-	        	id_t =repositoryTeam.findByName("bench").get();
-	        	
+	        	logger.trace("benching()");
+	        	id_t = "bench";
 	        }
+	        RedTeam team = repositoryTeam.findByName(id_t).get();
+	        
 	        
 
-	        save(new RedCoder(id, name, id_t), model);
+	        save(new RedCoder(id, name, team), model);
 	        return findAll(model);
 	    }
 	 
