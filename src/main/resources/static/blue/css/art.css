@@ -13,7 +13,7 @@ h1 {
 h3 {
 	font-family: cursive;
 	text-align: center;
-	color: #ff8040;
+	color: #d88967;
 }
 
 p {
@@ -87,9 +87,10 @@ table.uno {
   text-align: center;
   border-collapse: collapse;
 }
-table.uno td, table.steelBlueCols th {
+table.uno td, table.uno th {
   border: 1px solid #555555;
   padding: 5px 10px;
+  color : #c0c0c0;
 }
 table.uno tbody td {
   font-size: 12px;
