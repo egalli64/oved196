@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dd.green.model.GreenCoder;
 import dd.green.model.GreenCoderRepository;
+import dd.green.model.GreenRoleRepository;
 import dd.green.model.GreenTeam;
 
 
@@ -22,10 +23,14 @@ public class GreenCoderController {
 
 	@Autowired
 	GreenCoderRepository repository;
+	
+	@Autowired
+	GreenRoleRepository repositoryRole;
 
     private String findAll(Model model) {
         logger.trace("findAll()");
         model.addAttribute("data", repository.findAll());
+        model.addAttribute("data", repositoryRole.findAll());
         return "/green/coders";
     }
     /*
@@ -95,19 +100,19 @@ public class GreenCoderController {
     
     @GetMapping("/green/coders/rename")
     public String change_team( //
-            @RequestParam long id, //
-            @RequestParam String name, //
+            @RequestParam String id_name, //
+            @RequestParam String id_team, //
             Model model) {
         logger.trace("rename()");
 
-        Optional<GreenCoder> opt = repository.findByName(name);
+        Optional<GreenCoder> opt = repository.findByName(id_name);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
-            logger.debug(String.format("Changed team %s as %s", coder.getName(), name));
-            coder.setName(name);
+            logger.debug(String.format("Changed team %s as %s", coder.getName(), id_team));
+            coder.setName(id_team);
             save(coder, model);
         } else {
-            String message = String.format("Can't change team %d: not found", name);
+            String message = String.format("Can't change team %d: not found", id_team);
             logger.error(message);
             model.addAttribute("msg", message);
         }
