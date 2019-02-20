@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dd.green.model.GreenCoder;
 import dd.green.model.GreenCoderRepository;
+import dd.green.model.GreenRole;
 import dd.green.model.GreenRoleRepository;
 import dd.green.model.GreenTeam;
 import dd.green.model.GreenTeamRepository;
@@ -23,15 +24,19 @@ public class GreenCoderController {
 	private static final Logger logger = LoggerFactory.getLogger(GreenCoderController.class);
 
 	@Autowired
-	GreenCoderRepository repository;
+	GreenTeamRepository repositoryTeams;
 	
 	@Autowired
-	GreenRoleRepository repositoryRole;
+	GreenCoderRepository repositoryCoders;
+	
+	@Autowired
+	GreenRoleRepository repositoryRoles;
 
     private String findAll(Model model) {
         logger.trace("findAll()");
-        model.addAttribute("data", repository.findAll());
-        model.addAttribute("data", repositoryRole.findAll());
+        model.addAttribute("dataCoders", repositoryCoders.findAll());
+        model.addAttribute("dataTeams", repositoryTeams.findAll());
+        model.addAttribute("dataRoles", repositoryRoles.findAll());
         return "/green/coders";
     }
     /*
@@ -45,14 +50,16 @@ public class GreenCoderController {
 	@GetMapping("/green/coders")
 	public String getCoders(Model model) {
 		logger.trace("green getCoders");
-		model.addAttribute("data", repository.findAll());
+		 model.addAttribute("dataCoders", repositoryCoders.findAll());
+	        model.addAttribute("dataTeams", repositoryTeams.findAll());
+	        model.addAttribute("dataRoles", repositoryRoles.findAll());
 		return "/green/coders";
 	}
 	
     private void save(GreenCoder coder, Model model) {
         logger.trace("save()");
         try {
-            repository.save(coder);
+            repositoryCoders.save(coder);
         } catch (DataAccessException dae) {
             String message = "Non posso aggiungere " + coder.getName() + " al ";
             if (coder.getId() != 0) {
@@ -84,9 +91,10 @@ public class GreenCoderController {
             Model model) {
         logger.trace("rename()");
 
-        Optional<GreenCoder> opt = repository.findById(id);
-        if (opt.isPresent()) {
-        	GreenCoder coder = opt.get();
+        Optional<GreenCoder> optCoders = repositoryCoders.findById(id);
+        Optional<GreenRole> optRole = repositoryRoles.findById(id);
+        if (optCoders.isPresent()) {
+        	GreenCoder coder = optCoders.get();
             logger.debug(String.format("Renaming team %s as %s", coder.getName(), name));
             coder.setName(name);
             save(coder, model);
@@ -101,16 +109,16 @@ public class GreenCoderController {
     
     @GetMapping("/green/coders/rename")
     public String change_team( //
-            @RequestParam String id_name, //
-            @RequestParam String id_team, //
+            @RequestParam long id_name, //
+            @RequestParam long id_team, //
             Model model) {
         logger.trace("rename()");
 
-        Optional<GreenCoder> opt = repository.findByName(id_name);
+        Optional<GreenCoder> opt = repositoryCoders.findById(id_name);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
             logger.debug(String.format("Changed team %s as %s", coder.getName(), id_team));
-            coder.setName(id_team);
+          //  coder.setName(id_team);
             save(coder, model);
         } else {
             String message = String.format("Can't change team %d: not found", id_team);
@@ -126,7 +134,7 @@ public class GreenCoderController {
             @RequestParam long id, //
             Model model) {
         try {
-            repository.deleteById(id);
+            repositoryCoders.deleteById(id);
         } catch (DataAccessException dae) {
             String message = String.format("Can't delete coder %d", id);
             logger.error(message);
