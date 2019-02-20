@@ -2,6 +2,8 @@ package dd.red.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "RED_CODERS")
 public class RedCoder {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODER_ID")
     private long id;
 
@@ -24,13 +27,13 @@ public class RedCoder {
     public RedCoder() {
     }
 
-    public RedCoder(long id, String name) {
-        this.id = id;
+    public RedCoder( String name) {
+       
         this.name = name;
     }
 
-    public RedCoder(long id, String name, RedTeam team) {
-        this.id = id;
+    public RedCoder( String name, RedTeam team) {
+        
         this.name = name;
         this.team = team;
     }
