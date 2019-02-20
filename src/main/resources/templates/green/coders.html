@@ -13,7 +13,7 @@
 <body>
 
 	<p>
-		This is just for debugging purpose: <span th:text="${data}">[]</span>
+		This is just for debugging purpose: <span th:text="${dataCoders}">[]</span>,<span th:text="${dataTeams}">[]</span>,<span th:text="${dataRoles}">[]</span>
 	</p>
 
 	<table>
@@ -32,7 +32,7 @@
 			</font></th>
 
 		</tr>
-		<tr th:each="cur: ${data}">
+		<tr th:each="cur: ${dataCoders}">
 			<td th:text="${cur.name}"></td>
 			<td th:text="${cur.team.name}"></td>
 			<th:block th:each="roles : ${cur.roles}">
@@ -46,56 +46,41 @@
 
 		<label><font face="Verdana" size="5" color="green">Cambia team:
 			<select name="id">
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+				<option th:each="cur: ${dataCoders}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select></font>
 		</label>
 		<label><font face="Verdana" size="5" color="green">con:
 			<select name="id">
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.team.name}">
+				<option th:each="cur: ${dataTeams}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select></font>
 			</label>
->>>>>>> branch 'master' of https://github.com/egalli64/oved196.git
+
 		<button>Go!</button>
 	</form>
 	<hr />
 
 	<form method="get" action="/green/coders/create">
-<<<<<<< HEAD
 
-		<label> <font face="Verdana" size="5" color="green">
-				<center>
-					Aggiungi nuovo Role: <select name="id">
-						<option th:each="cur: ${data}" th:value="${cur.id}"
-							th:text="${cur.name}">green</option>
-					</select>
-		</font>
-		</label> <select name="id">
-			<option th:each="cur: ${data}" th:value="${cur.id}"
-				th:text="${cur.name}">green</option>
-		</select>
-		<button>Go!</button>
-=======
-	
 		<label>
 		<font face="Verdana" size="5" color="green">
 		<center>Aggiungi nuovo Role:
 			<select name="id">
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+				<option th:each="cur: ${dataCoders}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select></font>
 				</label>
 				<select name="id">
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
 			<button>Go!</button>
->>>>>>> branch 'master' of https://github.com/egalli64/oved196.git
+
 		</center>
 	</form>
 	<hr />
@@ -104,7 +89,7 @@
 		<label> <font face="Verdana" size="5" color="green">
 				<center>
 					Sostituisci Role: <select name="id">
-						<option th:each="cur: ${data}" th:value="${cur.id}"
+						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
 					</select>
 		</font>
