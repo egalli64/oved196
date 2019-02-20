@@ -38,6 +38,13 @@ public class BlueRole {
 	public void setNomeRole(String nomeRole) {
 		this.nomeRole = nomeRole;
 	}
+
+	@Override
+	public String toString() {
+		return "BlueRole [idRole=" + idRole + ", nomeRole=" + nomeRole + "]";
+	}
+	
+	
 	
 	
 }

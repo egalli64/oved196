@@ -82,9 +82,11 @@ public class BlueCoder {
 
 	@Override
 	public String toString() {
-		return "BlueCoder [idCoder=" + idCoder + ", firstname=" + firstname + ", lastname=" + lastname + ", idTeam="
-				+ team + "]";
+		return "BlueCoder [idCoder=" + idCoder + ", firstname=" + firstname + ", lastname=" + lastname + ", team="
+				+ team + ", role=" + role + "]";
 	}
+
+
 
 }
 
