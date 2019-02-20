@@ -15,6 +15,7 @@ import dd.green.model.GreenCoder;
 import dd.green.model.GreenCoderRepository;
 import dd.green.model.GreenRoleRepository;
 import dd.green.model.GreenTeam;
+import dd.green.model.GreenTeamRepository;
 
 
 @Controller
@@ -30,9 +31,9 @@ public class GreenCoderController {
     private String findAll(Model model) {
         logger.trace("findAll()");
         model.addAttribute("data", repository.findAll());
+        model.addAttribute("data", repositoryRole.findAll());
         return "/green/coders";
     }
-    
     /*
     @GetMapping("/green/coders")
     public String getAll(Model model) {
@@ -65,7 +66,7 @@ public class GreenCoderController {
     }
 
     @GetMapping("/green/coders/create_role")
-    public String create_role( //
+    public String create( //
     		@RequestParam String name, //
     		@RequestParam long id, //
     		@RequestParam GreenTeam team, //
@@ -77,7 +78,7 @@ public class GreenCoderController {
     }
 
     @GetMapping("/green/coders/rename_role")
-    public String rename_role( //
+    public String rename( //
             @RequestParam long id, //
             @RequestParam String name, //
             Model model) {
@@ -86,7 +87,7 @@ public class GreenCoderController {
         Optional<GreenCoder> opt = repository.findById(id);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
-            logger.debug(String.format("Renaming coder %s as %s", coder.getName(), name));
+            logger.debug(String.format("Renaming team %s as %s", coder.getName(), name));
             coder.setName(name);
             save(coder, model);
         } else {
@@ -100,12 +101,12 @@ public class GreenCoderController {
     
     @GetMapping("/green/coders/rename")
     public String change_team( //
-            @RequestParam long id_name, //
-            @RequestParam long id_team, //
+            @RequestParam String id_name, //
+            @RequestParam String id_team, //
             Model model) {
         logger.trace("rename()");
 
-        Optional<GreenCoder> opt = repository.findById(id_name);
+        Optional<GreenCoder> opt = repository.findByName(id_name);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
             logger.debug(String.format("Changed team %s as %s", coder.getName(), id_team));
@@ -121,7 +122,7 @@ public class GreenCoderController {
     }
 
     @GetMapping("/green/coders/delete_role")
-    public String delete_role( //
+    public String delete( //
             @RequestParam long id, //
             Model model) {
         try {
