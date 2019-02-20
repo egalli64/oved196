@@ -5,21 +5,22 @@
 <center><title>TEAMS (green)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/green/css/styles.css}">
 </head>
-<h1>TEAMS</h1>
+<font face="Verdana" size="6" color="green">
+<h1>TEAMS</h1></font>
 <body>
 	
-	<!--
+
 	
-	<p>
+	<!--<p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
-		<hr />
+		<hr /> --> 
 	<div th:if="${msg}">
-		<p>A message for you: <span th:text=${msg}>hello!</span></p>
+		<p>Comando ricevuto: <span th:text=${msg}>hello!</span></p>
 		<hr />	
 	</div>
 		
-	</p> -->
-	
+	</p> 
+
 	<!-- <p>Teams:</p> -->
 	<center>
 	<table>
@@ -49,7 +50,7 @@
 	
 	<hr />
 	
-	<form method="get" action="/green/team/create">
+	<form method="get" action="/green/teams/create">
 	
 		<label>
 		<font face="Verdana" size="5" color="green">
@@ -61,11 +62,11 @@
 		</center>
 	</form>
 	<hr />
-	<form method="get" action ="/green/team/rename">
+	<form method="get" action ="/green/teams/rename">
 	
 		<label>
 		<font face="Verdana" size="5" color="green">
-		<center>Sostituisci team:
+		<center>Rinomina team:
 			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
@@ -79,7 +80,7 @@
 		<button>Go!</button></center>
 	</form>
 	<hr />
-	<form method="get" action="/green/team/delete">
+	<form method="get" action="/green/teams/delete">
 		<label>
 		<font face="Verdana" size="5" color="green">
 		<center>Elimina team:

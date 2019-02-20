@@ -16,7 +16,7 @@
 	</div>
 	<p>I nostri team</p>
 	
-	<table>
+	<table class = uno align = center>
 		<tr> 
 		<th scope="col">ID</th>
 			<th scope="col">Nome</th>
@@ -27,7 +27,9 @@
 		</tr>
 	</table>
 	<hr/>
-	<table>
+	
+	<!-- 
+		<table>
 		<tr> 
 		<th scope="col">ID</th>
 			<th scope="col">Nome</th>
@@ -44,8 +46,10 @@
 				<td th:text="${role.nomeRole}">Model</td>
 			</th:block>		
 		</tr>
-	</table>
-	<hr/>
+	</table>   
+	<hr/>   -->
+	
+	
 	<form action="/blue/settings/create">
 		<label>Crea un nuovo team con il nome:
 			<input name="name" required="required">

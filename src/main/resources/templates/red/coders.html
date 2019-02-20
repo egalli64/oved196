@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Coders (green)</title>
-<link rel="stylesheet" type="text/css" th:href="@{/red/css/style.css}">
+<title>Red Coders </title>
+<link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
-<center>
+
 <body>
-	<h1>Coders</h1>
+
+<center>
+	 <h1><span>C</span> <span>O</span> <span>D</span> <span>E</span> <span>R</span> <span>S</span> </h1>
 	<p>
+	
 	<!--	This is just for debugging purpose: <span th:text="${data}">[]</span> -->
 	</p>
 	<hr />
-	<p>The coders:</p>
+	
 	
 	<table>
 	
@@ -23,32 +26,34 @@
 		</tr>
 		<tr th:each="cur: ${data}">
 			<td th:text="${cur.name}">Bjarne</td>
-			<td th:text="${cur.team.name}">red</td>
+		  	<td th:text="${cur.team.name}">red</td> 
 		</tr>
 		
 	</table>
 	
-	<form  method="get" action="/red/team/delete">
-   <p> inserisci ID team da eliminare : <input type="long" name="id"> </p>
+	<form  method="get" action="/red/coder/deleteCoder">
+   <p> inserisci il nome della persona da eliminare : <input type="text" name="name"> </p>
    <button >conferma</button>
    </form>
 
-	<form  method="get" action="/red/team/create">
-   <p> inserisci nome del team da creare : <input type="text" name="name"> </p>
+	<form  method="get" action="/red/coder/createCoder">
+   <p> inserisci l'id della nuova persona : <input type="long" name="id"> </p>
+   <p> inserisci nome della nuova persona : <input type="text" name="name"> </p>
+   <p> inserisci il nome del team : <input type="text" name="id_t"> </p> 
+   
+   
    <button >conferma</button></form>
    
-   <form  method="get" action="/red/team/rename">
-    <p> inserisci ID team da modificare : <input type="long" name="id"> </p>
-   <p> inserisci il nome nuovo : <input type="text" name="name"> </p>
+   <form  method="get" action="/red/coder/setTeam">
+    <p> Inserisci il nome della persona da modificare : <input type="text" name="name"> </p>
+   <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p>
    <button >conferma</button></form>
    
-	<img src="C:\Users\Administrator\Desktop\foto\Giovanni_P.jpg" alt="Giovanni P." height="300" >
-	  <img src="C:\Users\Administrator\Desktop\foto\luca_m.jpg " alt="Giovanni C." height="300" >
-	<img src="C:\Users\Administrator\Desktop\foto\Christian_R.jpg" alt="Luca M." height="300" >
-	<img src="C:\Users\Administrator\Desktop\foto\giovanni_C.jpg" alt="Christian R." height="300" >
+	
 	
 	<hr />
+</center>
 
 </body>
-</center>
+
 </html>

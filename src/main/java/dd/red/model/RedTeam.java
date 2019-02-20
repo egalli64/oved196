@@ -22,7 +22,7 @@ public class RedTeam {
 		return id;
 	}
 
-	protected RedTeam() {
+	public RedTeam() {
 	}
 
 	public RedTeam( String name) {

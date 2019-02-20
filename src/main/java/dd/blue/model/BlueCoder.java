@@ -25,7 +25,7 @@ public class BlueCoder {
 	private BlueTeam team;
 
 	@ManyToMany (fetch = FetchType.EAGER)
-	@JoinTable(name = "ROLES_CODERS", joinColumns = @JoinColumn(name = "CODER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	@JoinTable(name = "BLUE_ROLES_CODERS", joinColumns = @JoinColumn(name = "CODER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<BlueRole> role;
 
 	public BlueCoder() {
@@ -82,9 +82,11 @@ public class BlueCoder {
 
 	@Override
 	public String toString() {
-		return "BlueCoder [idCoder=" + idCoder + ", firstname=" + firstname + ", lastname=" + lastname + ", idTeam="
-				+ team + "]";
+		return "BlueCoder [idCoder=" + idCoder + ", firstname=" + firstname + ", lastname=" + lastname + ", team="
+				+ team + ", role=" + role + "]";
 	}
+
+
 
 }
 
