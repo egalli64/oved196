@@ -17,8 +17,21 @@ public class GreenTeam {
 
     @Column(name = "TEAM_NAME")
     private String name;
+    
+    
 
-    public long getId() {
+    public GreenTeam(long id) {
+		super();
+		this.id = id;
+	}
+
+	public GreenTeam(long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public long getId() {
         return id;
     }
 

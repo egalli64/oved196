@@ -30,7 +30,7 @@ public class GreenCoder {
     private GreenTeam team;
     
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "COD_ROLE", //
+	@JoinTable(name = "GREEN_COD_ROLE", //
 			joinColumns = @JoinColumn(name = "CODER_ID"), //
 			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	Set<GreenRole> roles;

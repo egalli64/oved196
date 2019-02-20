@@ -54,6 +54,7 @@ public class GreenCoderController {
 	        model.addAttribute("dataTeams", repositoryTeams.findAll());
 	        model.addAttribute("dataRoles", repositoryRoles.findAll());
 		return "/green/coders";
+		
 	}
 	
     private void save(GreenCoder coder, Model model) {
@@ -70,6 +71,31 @@ public class GreenCoderController {
             logger.error(message);
             model.addAttribute("msg", message);
         }
+    }
+    
+    @GetMapping("/green/coders/change_team")
+    public String change_team( //
+            @RequestParam long id_coder, //
+            @RequestParam long id_team, //
+            Model model) {
+        logger.trace("rename()");
+
+        Optional<GreenCoder> optCoders = repositoryCoders.findById(id_coder);
+        Optional<GreenRole> optRole = repositoryRoles.findById(id_team);
+        
+        if (optCoders.isPresent()) {
+        	GreenCoder coder = optCoders.get();
+            logger.debug(String.format("Changed team %s as %s", coder.getName(), id_team));
+            GreenTeam team = new GreenTeam(id_team);
+            coder.setTeam(team);
+            save(coder, model);
+        } else {
+            String message = String.format("Can't change team %d: not found", id_team);
+            logger.error(message);
+            model.addAttribute("msg", message);
+        }
+
+        return findAll(model);
     }
 
     @GetMapping("/green/coders/create_role")
@@ -107,27 +133,6 @@ public class GreenCoderController {
         return findAll(model);
     }
     
-    @GetMapping("/green/coders/rename")
-    public String change_team( //
-            @RequestParam long id_name, //
-            @RequestParam long id_team, //
-            Model model) {
-        logger.trace("rename()");
-
-        Optional<GreenCoder> opt = repositoryCoders.findById(id_name);
-        if (opt.isPresent()) {
-        	GreenCoder coder = opt.get();
-            logger.debug(String.format("Changed team %s as %s", coder.getName(), id_team));
-          //  coder.setName(id_team);
-            save(coder, model);
-        } else {
-            String message = String.format("Can't change team %d: not found", id_team);
-            logger.error(message);
-            model.addAttribute("msg", message);
-        }
-
-        return findAll(model);
-    }
 
     @GetMapping("/green/coders/delete_role")
     public String delete( //
