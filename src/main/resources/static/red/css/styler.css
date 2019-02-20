@@ -47,7 +47,7 @@ h1{
    
  width: 100%;
     
- text-align:right;
+ text-align:center;
  
     
  color:#ddd;
@@ -92,5 +92,10 @@ h1 span{
  filter: blur(0);
    
  }
-
+ 
+ h2 {
+color: #00ff00;
+background-color: #00ff00;
+ } 
+ 
 }

@@ -8,44 +8,40 @@
 </head>
 <body>
 	<h1>Roles</h1>
-	<p>
+	<!-- <p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
 	</p>
-	<hr />
+	<hr />-->
 	<p>The roles:</p>
 	<table>
 		<tr>
 			<th>ROLES</th>
 			<!-- <th>NAME</th> -->
-			
+
 		</tr>
 		<!--<tr th:each="cur: ${data}">  
 			<td th:text="${cur.name}"></td>-->
-			
-						</tr>
-			
-			<tr th:each="cur: ${data}">
-			<td th:text="${cur.name}">green</td>	
+
 		</tr>
-	
-							
+
+		<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">green</td>
+		</tr>
+
+
 	</table>
-	<hr />
-<form action="/green/roles/rename">
-		<label>Change role:
-			<select name="id">
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
-					green
-				</option>
-			</select>
-		</label>
-		<label>as:
-			<input name="name" required="required">
+
+	<form action="/green/roles/rename">
+		<label>Change role: <select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}"
+					th:text="${cur.name}">green</option>
+		</select>
+		</label> <label>as: <input name="name" required="required">
 		</label>
 		<button>Go!</button>
 	</form>
-	<hr />
-	
+
+
 
 </body>
 

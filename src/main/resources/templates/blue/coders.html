@@ -34,9 +34,10 @@
 		</tr>
 	</table>
 	<hr/>
-
+<br>
 		<form action="/blue/coders/changeteam" >
 	<label> Cambia il team a una persona: <br>
+	<br>
 	Coder:
 			<select name="coderId">
 				<option value="0">-</option>			
@@ -56,9 +57,10 @@
 		<button>OK</button>
 	</form>
 	<hr/>
-	
+	<br>
 	<form action="/blue/coders/addrole" >
 		<label> Aggiungi un ruolo ad un programmatore<br>
+		<br>
 			Coder:
 			<select name="coderid">
 				<option value="0">-</option>			
@@ -78,9 +80,10 @@
 		<button>OK</button>
 	</form>
 	<hr/>
-	
+	<br>
 	<form action="/blue/coders/removerole" >
 		<label> Rimuovi un ruolo ad un programmatore<br>
+		<br>
 			Coder:
 			<select name="coderid">
 				<option value="0">-</option>			
@@ -100,6 +103,49 @@
 		<button>OK</button>
 	</form>
 	<hr/>
+	<br>
+	
+	<form action="/blue/coders/addcoder">
+		<label> Aggiungi un nuovo programmatore<br>
+		<br>
+		Nome:
+			<input name="firstname" required="required">
+		</label>
+		<label>
+			Cognome:
+			<input name="lastname" required="required">
+		</label>
+		<label> Team:
+			<select name="teamid">
+				<option value="0">-</option>			
+				<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
+				</option>
+			</select>
+		</label>
+		<label> Ruolo:
+			<select name="roleid">
+				<option value="0">-</option>			
+				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
+				</option>
+			</select>
+		</label>
+	<button>OK</button>
+	</form>
+	<hr/>
+	<br>
+	<form action="/blue/coders/removecoder">
+		<label> Rimuovi un programmatore<br>
+		<br>
+		ID:
+		<select name="id">
+			<option value="0">-</option>			
+			<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.idCoder}">
+			</option>
+		</select>
+		</label>
+	<button>OK</button>
+	</form>
+		<hr/>
 	
 	<p>
 		Back to <a href="/blue/homepage.html">Blue homepage</a>

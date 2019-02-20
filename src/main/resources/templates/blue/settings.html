@@ -61,6 +61,7 @@
 	<form action="/blue/settings/rename">
 		<label>Rinomina un team:
 			<select name="id">
+				<option value="0" > - </option>
 				<option th:each="cur: ${teams}" 
 				th:value="${cur.id}" th:text="${cur.name}">
 					blue
@@ -76,6 +77,7 @@
 	<form action="/blue/settings/delete">
 		<label>Elimina un team:
 			<select name="id">
+				<option value="0" > - </option>
 				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
 					blue
 				</option>

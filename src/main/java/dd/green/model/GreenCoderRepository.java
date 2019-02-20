@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface GreenCoderRepository extends CrudRepository<GreenCoder, Long> {
 
 	Optional<GreenCoder> findByName(String id_name);
+
+	
 }

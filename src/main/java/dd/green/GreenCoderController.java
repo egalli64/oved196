@@ -1,6 +1,7 @@
 package dd.green;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import dd.green.model.GreenCoder;
 import dd.green.model.GreenCoderRepository;
@@ -73,6 +75,22 @@ public class GreenCoderController {
         }
     }
     
+    private void saveRole(GreenRole role, Model model) {
+        logger.trace("save()");
+        try {
+            repositoryRoles.save(role);
+        } catch (DataAccessException dae) {
+            String message = "Non posso aggiungere " + role.getName() + " al ";
+            if (role.getId() != 0) {
+                message += " coder " + role.getId();
+            } else {
+                message += " il tuo nuovo coder";
+            }
+            logger.error(message);
+            model.addAttribute("msg", message);
+        }
+    }
+    
     @GetMapping("/green/coders/change_team")
     public String change_team( //
             @RequestParam long id_coder, //
@@ -100,13 +118,27 @@ public class GreenCoderController {
 
     @GetMapping("/green/coders/create_role")
     public String create( //
-    		@RequestParam String name, //
-    		@RequestParam long id, //
-    		@RequestParam GreenTeam team, //
+    		@RequestParam long id_coder, //
+    		@RequestParam long id_role, //
+    		
             Model model) {
         logger.trace("create()");
+        
+        GreenCoder coder = (repositoryCoders.findById(id_coder)).get();
+        GreenRole role =(repositoryRoles.findById(id_role)).get();
+		Set<GreenRole> codrol = coder.getRoles();
+		boolean check = false;
+		for (GreenRole r : codrol) {
+			if (r.getId()==id_role) { 
+				check = true;
+				break;
+			}
+		}
+		if (check==false) {
+			codrol.add(role);
+			repositoryCoders.save(coder);			
+		}
 
-        save(new GreenCoder(id,name,team), model);
         return findAll(model);
     }
 

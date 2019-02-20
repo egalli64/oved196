@@ -32,12 +32,12 @@ public class BlueCoder {
 		super();
 	}
 
-	public BlueCoder(int idCoder, String firstname, String lastname, BlueTeam team) {
+	public BlueCoder(String firstname, String lastname, BlueTeam team, Set<BlueRole> role) {
 		super();
-		this.idCoder = idCoder;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.team = team;
+		this.role = role;
 	}
 
 	public long getIdCoder() {

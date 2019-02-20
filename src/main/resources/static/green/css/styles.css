@@ -1,5 +1,5 @@
 body {
-	background: -webkit-linear-gradient(top, #e6f0a3 0%,#d2e638 50%,#c3d825 51%,#dbf043 100%); 
+	background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%); 
 }
 
 h1 {
@@ -10,12 +10,14 @@ h1 {
 }
 
 table, th, td {
-	
 	text-align: center;
 	border: 2px dotted white;
-	border-collapse: separate;
-	font-size: 30px;
+	border-collapse: separate; font-size : 30px;
 	width: 100px;
+	font-size: 30px;
 }
 
-img { border: 7px solid #009700; 
+img {
+	border: 7px solid #009700
+}
+;
