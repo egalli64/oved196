@@ -21,6 +21,18 @@ p {
 	font-size: large;
 }
 
+p.you {
+	color: #d88967;
+	font-size: x-large;
+}
+
+p.me {
+	color: #ca3535;
+	border: medium;
+	border-color: black;
+	font-size: x-large;
+}
+
 a {
 	color: #ca3535;
 }
@@ -82,7 +94,7 @@ table.due tfoot .links a{
 
 table.uno {
   border: 4px solid #555555;
-  background-color: #555555;
+  background-color: #d88967;
   width: 400px;
   text-align: center;
   border-collapse: collapse;
@@ -90,7 +102,7 @@ table.uno {
 table.uno td, table.uno th {
   border: 1px solid #555555;
   padding: 5px 10px;
-  color : #c0c0c0;
+  color : #ffffff;
 }
 table.uno tbody td {
   font-size: 12px;
