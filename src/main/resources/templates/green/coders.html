@@ -76,7 +76,12 @@
 					green
 				</option>
 			</select></font>
-		</label>
+				</label>
+				<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
 			<button>Go!</button>
 		</center>
 	</form>
