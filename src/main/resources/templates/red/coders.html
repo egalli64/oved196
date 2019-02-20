@@ -31,17 +31,19 @@
 		
 	</table>
 	
+	
+	
 	<form  method="get" action="/red/coder/deleteCoder">
-   <p> inserisci il nome della persona da eliminare : <select
-					name="name">
+   <p> inserisci il nome della persona da eliminare : 
+   <select name="name">
 
 					<option th:each="cur: ${data}" th:text="${cur.name}">
 				</select>
 
-</p>
+
    <button >conferma</button>
    </form>
-
+</p>
 	<form  method="get" action="/red/coder/createCoder">
    
    <p> inserisci nome della nuova persona : <input type="text" name="name"> </p>
