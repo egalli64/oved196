@@ -16,20 +16,57 @@
 	<hr />
 	
 	<table>
-	<tr><th>ROLES</th></tr>
+	<tr><th>NOMI</th></tr>
 		<tr>
 		
 			
 			
 		</tr>
-		<tr th:each="cur: ${data}">
-		<td th:text="${cur.name}">Bjarne</td>
+		<tr th:each="cur: ${coder}">
+		<td th:text="${cur.name}">Bjarne
+	<!--  	<td th:text="${cur.role.name}">Bjarne</td> -->
+		<th:block th:each="role : ${role}">
+				<span th:text="${role.name}">[]</span><span>&nbsp-</span>
+			</th:block>
+		</td>
+			
+		
+		
+			
+			
+		</tr>
+		<tr>
+		
+	
 		
 		
 			
 		</tr>
+		
 	</table>
 	<hr />
+	
+	<form  method="get" action="/red/role/createRole">
+   
+   
+   <p> inserisci il nome della persona :
+   <select name="name">
+
+					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
+					</option>
+				</select> 
+				<p> inserisci il nome del ruolo :
+   <select name="role">
+
+					<option th:each="cur: ${role}" th:text="${cur.name}"  >
+					</option>
+				</select> 
+				
+
+ </p> 
+   
+   
+   <button >conferma</button></form>
 	
 	
 		 <p></p>
