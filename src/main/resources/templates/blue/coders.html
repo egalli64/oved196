@@ -35,11 +35,11 @@
 	</table>
 	<hr/>
 
-		<form action="/blue/coders/changeteam">
+		<form action="/blue/coders/changeteam" >
 	<label> Cambia il team a una persona: <br>
 	Coder:
 			<select name="coderId">
-				<option value="none">-</option>			
+				<option value="0">-</option>			
 				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
 					caio
 				</option>
@@ -47,7 +47,7 @@
 	</label>
 	<label>Scegli il nuovo team:
 			<select name="teamId">
-				<option value="none">-</option>			
+				<option value="0">-</option>			
 				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
 					blue
 				</option>
@@ -57,11 +57,11 @@
 	</form>
 	<hr/>
 	
-	<form action="/blue/coders/addrole">
+	<form action="/blue/coders/addrole" >
 		<label> Aggiungi un ruolo ad un programmatore<br>
 			Coder:
 			<select name="coderid">
-				<option value="none">-</option>			
+				<option value="0">-</option>			
 				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
 					caio
 				</option>
@@ -69,7 +69,7 @@
 		</label>
 		<label> Ruolo:
 			<select name="roleid">
-				<option value="none">-</option>			
+				<option value="0">-</option>			
 				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 					old
 				</option>
@@ -79,11 +79,11 @@
 	</form>
 	<hr/>
 	
-	<form action="/blue/coders/removerole">
+	<form action="/blue/coders/removerole" >
 		<label> Rimuovi un ruolo ad un programmatore<br>
 			Coder:
 			<select name="coderid">
-				<option value="none">-</option>			
+				<option value="0">-</option>			
 				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
 					caio
 				</option>
@@ -91,7 +91,7 @@
 		</label>
 		<label> Ruolo:
 			<select name="roleid">
-				<option value="none">-</option>			
+				<option value="0">-</option>			
 				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 					old
 				</option>

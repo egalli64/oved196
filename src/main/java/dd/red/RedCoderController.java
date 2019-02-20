@@ -36,6 +36,7 @@ public class RedCoderController {
 	private String findAll(Model model) {
 		logger.trace("findAll()");
 		model.addAttribute("data", repository.findAll());
+		model.addAttribute("team", repositoryTeam.findAll());
 		return "/red/coders";
 	}
 
@@ -91,10 +92,7 @@ public class RedCoderController {
 	    public String create( @RequestParam String name, @RequestParam String id_t, Model model) {
 	        logger.trace("create()");
 	        //RedTeam team = new  RedTeam ("null");
-	        if (id_t == null) {
-	        	logger.trace("benching()");
-	        	id_t= "bench";
-	        }
+	        
 	        RedTeam team = repositoryTeam.findByName(id_t).get();
 	        
 	        

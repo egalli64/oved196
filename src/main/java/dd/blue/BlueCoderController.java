@@ -30,6 +30,7 @@ public class BlueCoderController {
 	@Autowired
 	BlueTeamRepository teamRepo;
 	
+	
 	 @GetMapping("/blue/teams")
 	    public String getAll(Model model) {
 	        //logger.trace("getAll()");
@@ -60,6 +61,10 @@ public class BlueCoderController {
 	@GetMapping("/blue/coders/addrole")
 	public String addRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("addRole()");
+		if (coderid == 0 || roleid == 0) {
+			String message = "Attenzione seleziona tutti i campi!";
+			model.addAttribute("msg", message);
+		} else { 
 		BlueCoder coder = (coderRepo.findById(coderid)).get();
 		BlueRole role =(roleRepo.findById(roleid)).get();
 		Set<BlueRole> codrol = coder.getRole();
@@ -79,58 +84,52 @@ public class BlueCoderController {
 			logger.error(message);
 	        model.addAttribute("msg", message);
 			}
-		return coders(model);
-		
-		
-//        Optional<BlueCoder> opt = coderRepo.findById(coderid);
-//        Optional<BlueRole> optRole = roleRepo.findById(roleid);
-//        
-//		if (opt.isPresent() && optRole.isPresent()) {			
-//			BlueCoder coder = opt.get();
-//			BlueRole newrole = optRole.get();
-//			if (!(coder.getRole().contains(newrole))){
-//				coder.getRole().add(newrole);
-//				coderRepo.save(coder);
-//			} else {
-//				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " ha già il ruolo di " + newrole.getNomeRole()  + "!";
-//				logger.error(message);
-//	            model.addAttribute("msg", message);
-//			}
-//		} else {
-//				String message = "Attenzione: id o ruolo non validi.";
-//				logger.error(message);
-//	            model.addAttribute("msg", message);
-//			}
-//		model.addAttribute("coders", coderRepo.findAll());
-//		model.addAttribute("roles", roleRepo.findAll());
-//		return "/blue/coders";
 		}
+		return coders(model);
+	}
 
 	@GetMapping("/blue/coders/removerole")
 	public String removeRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("removeRole()");
+		if (coderid == 0 || roleid == 0) {
+			String message = "Attenzione seleziona tutti i campi!";
+			model.addAttribute("msg", message);
+		} else {
 		BlueCoder coder = (coderRepo.findById(coderid)).get();
 		BlueRole role =(roleRepo.findById(roleid)).get();
 		Set<BlueRole> codrol = coder.getRole();
 		Iterator<BlueRole> itr = codrol.iterator();
-		while (itr.hasNext()) {
-			if (itr.next().getIdRole() == roleid) { //c'è
-				itr.remove();
-				coderRepo.save(coder);
-				break;
-			}		
-		else {
-			String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " non ha il ruolo di " + role.getNomeRole() + "!";
-			logger.error(message);
-	        model.addAttribute("msg", message);
+		int size = codrol.size();
+		if (size > 1) {
+			while (itr.hasNext()) {
+				if (itr.next().getIdRole() == roleid) { // c'è
+					itr.remove();
+					coderRepo.save(coder);
+					break;
+				} else {
+					String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname()
+							+ " non ha il ruolo di " + role.getNomeRole() + "!";
+					logger.error(message);
+					model.addAttribute("msg", message);
+				}
 			}
+		} else {
+			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname()
+			+ " deve avere almeno un ruolo!";
+	logger.error(message);
+	model.addAttribute("msg", message);
+		}
 		}
 		return coders(model);
 	}
-	
+
 	@GetMapping("/blue/coders/changeteam")
 	public String changeTeam(@RequestParam Integer coderId, @RequestParam Integer teamId, Model model) {
 		logger.trace("changeTeam()");
+		if (coderId == 0 || teamId == 0) {
+			String message = "Attenzione seleziona tutti i campi!";
+			model.addAttribute("msg", message);
+		} else {
         Optional<BlueCoder> opt = coderRepo.findById(coderId);
         Optional<BlueTeam> team = teamRepo.findById(teamId);
 
@@ -152,10 +151,9 @@ public class BlueCoderController {
 			logger.error(message);
             model.addAttribute("msg", message);
 		}
-		
-		model.addAttribute("teams", teamRepo.findAll());
-		model.addAttribute("coders", coderRepo.findAll());
-		return "/blue/coders";
+		}
+
+		return coders(model);
 		}
 //	@GetMapping("/blue/coders/changerole")
 //	public String changeRole(@RequestParam Integer coderid, @RequestParam Integer oldroleid , @RequestParam Integer newroleid, Model model) {

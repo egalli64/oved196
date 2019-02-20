@@ -45,11 +45,13 @@
 	<form  method="get" action="/red/coder/createCoder">
    
    <p> inserisci nome della nuova persona : <input type="text" name="name"> </p>
-   <p> inserisci il nome del team :<select
-					name="id_t">
+   <p> inserisci il nome del team :
+   <select name="id_t">
 
-					<option th:each="cur: ${data}" th:text="${cur.team.name}">
+					<option th:each="cur: ${team}" th:text="${cur.name}"  >
+					</option>
 				</select> 
+				
 
  </p> 
    
