@@ -20,8 +20,13 @@ table, th, td {
 	
 	text-align: center;
 	
-	font-size: 30px;
-	width: 100px;
+	table-layout : fixed;
+    width : 300px;
+    background : Silver;
+    caption-side : bottom;
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 5px;
 }
 
 
@@ -42,7 +47,8 @@ h1{
    
  width: 100%;
     
- text-align: center;
+ text-align:right;
+ 
     
  color:#ddd;
   

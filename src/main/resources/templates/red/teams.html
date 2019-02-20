@@ -5,11 +5,20 @@
 <title>Teams (red)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
+<center>
 <body>
-	<h1>teams</h1>
+<section>
+	<h1>
+
+			<span>T</span> <span>E</span> <span>A</span> <span>M</span> <span>S</span>
+			
+
+			
+
+		</h1>
 	<hr>
 	<!--  <div th:text="${data}">[]</div> -->
-	<p>The coders:</p>
+	<p>The teams:</p>
 	<table>
 		<tr>
 			
@@ -25,7 +34,13 @@
 	<hr>
 	
 	<form  method="get" action="/red/team/delete">
-   <p> inserisci team da eliminare : <input type="text" name="id"> </p>
+   <p> inserisci team da eliminare : <input type="text" name="id"> Select option:<br />
+			<select name="os">
+				<option value="none">-</option>
+				<option value="linux">Linux</option>
+				<option value="windows">Windows</option>
+				<option value="macOs">MacOS</option>
+			</select></p>
    <button >conferma</button>
    </form>
 
@@ -38,8 +53,13 @@
    <p> inserisci il nome nuovo : <input type="text" name="name"> </p>
    <button >conferma</button></form>
    
- 
+ <p></p>
+ <p></p>
+ <p></p>
 
-	<p>Back to <a href="/red/index.html">red homepage</a></p>
+
+	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
+	</center>
+	</section>
 </body>
 </html>

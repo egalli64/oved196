@@ -1,5 +1,5 @@
 body {
-background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%);
+	background: -webkit-linear-gradient(top, #e6f0a3 0%,#d2e638 50%,#c3d825 51%,#dbf043 100%); 
 }
 
 h1 {
@@ -18,4 +18,4 @@ table, th, td {
 	width: 100px;
 }
 
-img { border: 7px solid #009700; }
+img { border: 7px solid #009700; 

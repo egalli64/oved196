@@ -16,14 +16,17 @@
 	<table>
 		<tr>
 			<th>ROLES</th>
-			<th>NAME</th>
+			<!-- <th>NAME</th> -->
 			
 		</tr>
 		<!--<tr th:each="cur: ${data}">  
 			<td th:text="${cur.name}"></td>-->
 			
 						</tr>
-							
+			
+			<tr th:each="cur: ${data}">
+			<td th:text="${cur.name}">green</td>	
+		</tr>
 	
 							
 	</table>
