@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dd.green.model.GreenCoder;
 import dd.green.model.GreenCoderRepository;
 import dd.green.model.GreenTeam;
-import dd.green.model.GreenTeamRepository;
 
 
 @Controller
@@ -61,7 +60,7 @@ public class GreenCoderController {
     }
 
     @GetMapping("/green/coders/create_role")
-    public String create( //
+    public String create_role( //
     		@RequestParam String name, //
     		@RequestParam long id, //
     		@RequestParam GreenTeam team, //
@@ -73,7 +72,7 @@ public class GreenCoderController {
     }
 
     @GetMapping("/green/coders/rename_role")
-    public String rename( //
+    public String rename_role( //
             @RequestParam long id, //
             @RequestParam String name, //
             Model model) {
@@ -82,11 +81,33 @@ public class GreenCoderController {
         Optional<GreenCoder> opt = repository.findById(id);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
-            logger.debug(String.format("Renaming team %s as %s", coder.getName(), name));
+            logger.debug(String.format("Renaming coder %s as %s", coder.getName(), name));
             coder.setName(name);
             save(coder, model);
         } else {
-            String message = String.format("Can't save team %d: not found", id);
+            String message = String.format("Can't save coder %d: not found", id);
+            logger.error(message);
+            model.addAttribute("msg", message);
+        }
+
+        return findAll(model);
+    }
+    
+    @GetMapping("/green/coders/rename")
+    public String change_team( //
+            @RequestParam long id, //
+            @RequestParam String name, //
+            Model model) {
+        logger.trace("rename()");
+
+        Optional<GreenCoder> opt = repository.findByName(name);
+        if (opt.isPresent()) {
+        	GreenCoder coder = opt.get();
+            logger.debug(String.format("Changed team %s as %s", coder.getName(), name));
+            coder.setName(name);
+            save(coder, model);
+        } else {
+            String message = String.format("Can't change team %d: not found", name);
             logger.error(message);
             model.addAttribute("msg", message);
         }
@@ -95,7 +116,7 @@ public class GreenCoderController {
     }
 
     @GetMapping("/green/coders/delete_role")
-    public String delete( //
+    public String delete_role( //
             @RequestParam long id, //
             Model model) {
         try {

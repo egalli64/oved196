@@ -88,7 +88,7 @@ public class RedCoderController {
 	}
 	
 	 @GetMapping("/red/coder/createCoder")
-	    public String create(@RequestParam long id, @RequestParam String name, @RequestParam String id_t, Model model) {
+	    public String create( @RequestParam String name, @RequestParam String id_t, Model model) {
 	        logger.trace("create()");
 	        //RedTeam team = new  RedTeam ("null");
 	        if (id_t == null) {
@@ -97,9 +97,9 @@ public class RedCoderController {
 	        }
 	        RedTeam team = repositoryTeam.findByName(id_t).get();
 	        
-	        
+	       
 
-	        save(new RedCoder(id, name, team), model);
+	        save(new RedCoder( name, team), model);
 	        return findAll(model);
 	    }
 	 
