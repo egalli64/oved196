@@ -11,46 +11,17 @@
 
 	<hr />
 	<div th:if="${msg}">
-		<p class = me>Un messaggio per te: <span th:text=${msg}>hello!</span></p>
+		<p class = me><span th:text=${msg}>hello!</span></p>
 		<hr />	
 	</div>
 	<p class = you>I nostri team</p>
 	
 	<table class = uno align = center>
-		<tr> 
-		<th scope="col">ID</th>
-			<th scope="col">Nome</th>
-		</tr>
-		<tr th:each="t : ${teams}">
-			<td th:text="${t.id}">[]</td>		
+		<tr th:each="t : ${teams}">		
 			<td th:text="${t.name}">[]</td>
 		</tr>
 	</table>
-	<hr/>
-	
-	<!-- 
-		<table>
-		<tr> 
-		<th scope="col">ID</th>
-			<th scope="col">Nome</th>
-			<th scope="col">Cognome</th>
-			<th scope="col">Team</th>
-			<th scope="col">Ruolo</th>
-		</tr>
-		<tr th:each="cod : ${coders}">
-			<td th:text="${cod.idCoder}">[]</td>		
-			<td th:text="${cod.firstname}">[]</td>
-			<td th:text="${cod.lastname}">[]</td>
-			<td th:text="${cod.team.name}">[]</td>
-			<th:block th:each="role : ${cod.role}">
-				<td th:text="${role.nomeRole}">Model</td>
-			</th:block>		
-		</tr>
-	</table>   
-	<hr/>   -->
-	
-	
-	<form action="/blue/settings/create">
+	<hr/><form action="/blue/settings/create">
 		<label>Crea un nuovo team con il nome:
 			<input name="name" required="required">
 		</label>
@@ -61,7 +32,6 @@
 	<form action="/blue/settings/rename">
 		<label>Rinomina un team:
 			<select name="id">
-				<option value="0" > - </option>
 				<option th:each="cur: ${teams}" 
 				th:value="${cur.id}" th:text="${cur.name}">
 					blue
@@ -91,7 +61,7 @@
 		Back to <a href="/blue/homepage.html">Blue homepage</a>
 	</p>
 	<p>
-		<a href="/blue/settings">Refresh</a>
+		Go to <a href="/blue/coders">coders editing</a>
 	</p>
 		
 </body>

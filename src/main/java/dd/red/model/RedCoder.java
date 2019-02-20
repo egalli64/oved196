@@ -1,11 +1,17 @@
 package dd.red.model;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,6 +26,13 @@ public class RedCoder {
     @Column(name = "CODER_NAME")
     private String name;
 
+	@ManyToMany (fetch=FetchType.EAGER)
+	@JoinTable(name = "RED_CODERS_ROLES", //
+			joinColumns = @JoinColumn(name = "CODER_ID"), //
+			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	Set<RedRole> roles;
+    
+    
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private RedTeam team;
@@ -61,8 +74,17 @@ public class RedCoder {
     public void setTeam(RedTeam team) {
         this.team = team;
     }
+    
 
-    @Override
+    public Set<RedRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RedRole> roles) {
+		this.roles = roles;
+	}
+
+	@Override
     public String toString() {
         return " I componenti sono " + name + " nel team" + team ;
     }
