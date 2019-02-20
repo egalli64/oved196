@@ -19,6 +19,7 @@ CREATE TABLE RED_teams(
 INSERT INTO RED_teams (team_name) values('red');
 INSERT INTO RED_teams (team_name) values('blue');
 INSERT INTO RED_teams (team_name) values('green');
+INSERT INTO RED_teams (team_name) values('bench');
 
 -- coders
 CREATE TABLE RED_coders(
