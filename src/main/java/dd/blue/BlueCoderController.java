@@ -1,6 +1,8 @@
 package dd.blue;
 
 import java.util.Optional;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,7 @@ public class BlueCoderController {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
         model.addAttribute("teams", teamRepo.findAll());
+        model.addAttribute("roles", roleRepo.findAll());
         return "/blue/teams";	  
      }
 	 
@@ -40,6 +43,7 @@ public class BlueCoderController {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
 	    model.addAttribute("teams", teamRepo.findAll());
+	    model.addAttribute("roles", roleRepo.findAll());
 	    return "/blue/settings";	  
 	 }
 	 
@@ -48,6 +52,7 @@ public class BlueCoderController {
 	        //logger.trace("getAll()");
 	    model.addAttribute("coders", coderRepo.findAll());
 	    model.addAttribute("teams", teamRepo.findAll());
+	    model.addAttribute("roles", roleRepo.findAll());
 	    return "/blue/coders";	  
 	 }
 
@@ -81,68 +86,68 @@ public class BlueCoderController {
 	
 	
 	@GetMapping("/blue/coders/changerole")
-	public String changeRole(@RequestParam Integer coderid, @RequestParam Integer newroleid, @RequestParam Integer oldroleid, Model model) {
+	public String changeRole(@RequestParam Integer coderid, @RequestParam Integer oldroleid , @RequestParam Integer newroleid, Model model) {
 		logger.trace("changeRole()");
         Optional<BlueCoder> opt = coderRepo.findById(coderid);
-        Optional<BlueRole> oldRole = roleRepo.findById(oldroleid);
-        Optional<BlueRole> newRole = roleRepo.findById(newroleid);
+        Optional<BlueRole> oldR = roleRepo.findById(oldroleid);
+        Optional<BlueRole> newR = roleRepo.findById(newroleid);
 
-		if (opt.isPresent() ) {			
-			BlueCoder coder = opt.get();
-			if (!(coder.getRole().contains(newRole.get()))
-				&& coder.getRole().contains(oldRole.get())) 
-			{
-				coder.getRole().add(newRole.get());
-				coder.getRole().remove(oldRole.get());
-				coderRepo.save(coder);
-			} 
-			else if (coder.getRole().contains(newRole.get())) {
-				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " ha già il ruolo di " + newRole.get().getNomeRole() + "!";
-				logger.error(message);
-	            model.addAttribute("msg", message);
-			}
-			else {
-				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " non ha il ruolo di " + newRole.get().getNomeRole() + "!";
-				logger.error(message);
-	            model.addAttribute("msg", message);
-			}
+        BlueCoder coder = opt.get();
+		Set<BlueRole> coderRoles = coder.getRole();
+		BlueRole oldRole = oldR.get();
+		BlueRole newRole = newR.get();
+//			System.out.println("new " + newRole);
+//			if (!(coderRoles.contains(oldRole))) 
+//			{
+//			String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " non ha il ruolo di " + oldRole.getNomeRole() + "!";
+//			logger.error(message);
+//            model.addAttribute("msg", message);	
+//			}
+//			if ((coderRoles.contains(oldRole)) && !(coderRoles.contains(newRole))) {
+		coderRoles.add(newRole);
+		coderRoles.remove(oldRole);		
+		coderRepo.save(coder);
+//			}
+//			if (coderRoles.contains(oldRole) && (coderRoles.contains(newRole))) {
+//				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " ha già il ruolo di " + newRole.getNomeRole() + "!";
+//				logger.error(message);
+//	            model.addAttribute("msg", message);
+//			}
+//			if (!(coderRoles.contains(oldRole)) && (coderRoles.contains(newRole))) {
+//				String message = "Attenzione: forse hai invertito i ruoli da modificare!";
+//				logger.error(message);
+//	            model.addAttribute("msg", message);
+//			}
+//			
+//			
+//		} else {
+//			String message = "Attenzione: id non valido.";
+//			logger.error(message);
+//            model.addAttribute("msg", message);
 		
-		} else {
-			String message = "Attenzione: id non valido.";
-			logger.error(message);
-            model.addAttribute("msg", message);
-		}
 		model.addAttribute("coders", coderRepo.findAll());
 		model.addAttribute("roles", roleRepo.findAll());
 		return "/blue/coders";
-		}
+	}
 	
 	@GetMapping("/blue/coders/removerole")
 	public String removeRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		logger.trace("removeRole()");
-        Optional<BlueCoder> opt = coderRepo.findById(coderid);
-        Optional<BlueRole> role = roleRepo.findById(roleid);
-
-		if (opt.isPresent()) {			
-			BlueCoder coder = opt.get();
-			if (!(coder.getRole().contains(role.get()))) 
+		BlueCoder coder = (coderRepo.findById(coderid)).get();
+		BlueRole role =(roleRepo.findById(roleid)).get();
+		Set<BlueRole> codrol = coder.getRole();
+		if (codrol.contains(role)) 
 			{
-				coder.getRole().remove(role.get());
-				coderRepo.save(coder);
+			codrol.remove(role);
+			coderRepo.save(coder);
 			} 
-			else {
-				String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " non ha il ruolo di " + role.get().getNomeRole() + "!";
-				logger.error(message);
-	            model.addAttribute("msg", message);
-			}
-		
-		} else {
-			String message = "Attenzione: id o ruolo non validi.";
+		else {
+			String message = "Attenzione: " + coder.getFirstname() + " "+ coder.getLastname() + " non ha il ruolo di " + role.getNomeRole() + "!";
 			logger.error(message);
-            model.addAttribute("msg", message);
-		}
+	        model.addAttribute("msg", message);
+			}	 
 		model.addAttribute("coders", coderRepo.findAll());
-		model.addAttribute("roles", roleRepo.findAll());
+		model.addAttribute("roles", codrol);
 		return "/blue/coders";
 		}
 	

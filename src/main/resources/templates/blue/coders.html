@@ -51,6 +51,7 @@
 	<label> Cambia il team a una persona: <br>
 	Coder:
 			<select name="coderId">
+				<option value="none">-</option>			
 				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
 					caio
 				</option>
@@ -58,6 +59,7 @@
 	</label>
 	<label>Scegli il nuovo team:
 			<select name="teamId">
+				<option value="none">-</option>			
 				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
 					blue
 				</option>
@@ -66,26 +68,22 @@
 		<button>OK</button>
 	</form>
 	<hr/>
-	<form action="/blue/coders/changerole">
-		<label> Cambia il ruolo all'impiegato <br>
+	
+	<form action="/blue/coders/removerole">
+		<label> Rimuovi un ruolo ad un impiegato <br>
 			Coder:
-			<select name="coderId">
+			<select name="coderid">
+				<option value="none">-</option>			
 				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
 					caio
 				</option>
 			</select>
 		</label>
-		<label> Vecchio ruolo:
-			<select name="roleId">
-				<option th:each="rol : ${roles}" th:value="${rol.idRole}" th:text="${rol.nomeRole}">
+		<label> Ruolo:
+			<select name="roleid">
+				<option value="none">-</option>			
+				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 					old
-				</option>
-			</select>
-		</label>
-		<label> Nuovo ruolo:
-			<select name="roleId">
-				<option th:each="rol : ${roles}" th:value="${rol.idRole}" th:text="${rol.nomeRole}">
-					new
 				</option>
 			</select>
 		</label>
