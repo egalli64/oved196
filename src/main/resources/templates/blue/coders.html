@@ -69,6 +69,29 @@
 	</form>
 	<hr/>
 	
+	<form action="/blue/coders/addrole">
+		<label> Aggiungi un ruolo ad un impiegato <br>
+			Coder:
+			<select name="coderid">
+				<option value="none">-</option>			
+				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+					caio
+				</option>
+			</select>
+		</label>
+		<label> Ruolo:
+			<select name="roleid">
+				<option value="none">-</option>			
+				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
+					old
+				</option>
+			</select>
+		</label>
+		<button>OK</button>
+	</form>
+	
+		<hr/>
+	
 	<form action="/blue/coders/removerole">
 		<label> Rimuovi un ruolo ad un impiegato <br>
 			Coder:
