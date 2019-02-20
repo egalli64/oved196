@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GreenCoderRepository extends CrudRepository<GreenCoder, Long> {
-	public Optional<GreenCoder> findByName(String name);
-	public Optional<GreenCoder> deleteByName (String name);
+
+	Optional<GreenCoder> findByName(String id_name);
 }

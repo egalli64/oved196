@@ -49,14 +49,14 @@
 	<hr />
 	<form method="get" action="/green/coders/rename">
 		<label><font face="Verdana" size="5" color="green">Cambia team:
-			<select name="id_name">
+			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select></font>
 		</label>
 		<label><font face="Verdana" size="5" color="green">con:
-			<select name="id_team">
+			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.team.name}">
 					green
 				</option>
@@ -78,8 +78,7 @@
 			</select></font>
 				</label>
 				<select name="id">
-				<!--  <option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.roles}">-->
-				
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
