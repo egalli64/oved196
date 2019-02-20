@@ -27,6 +27,14 @@ public class BlueTeamController {
 //        model.addAttribute("teams", teamRepo.findAll());
 //        return "/blue/teams";
 //    }
+	@GetMapping("/blue/settings")
+	public String settings(Model model) {
+		// logger.trace("getAll()");
+		model.addAttribute("coders", coderRepo.findAll());
+		model.addAttribute("teams", teamRepo.findAll());
+		return "/blue/settings";
+	}
+
 	private void save(BlueTeam team, Model model) {
 		// logger.trace("save()");
 		try {
@@ -60,52 +68,59 @@ public class BlueTeamController {
 			save(new BlueTeam(newname), model);
 		}
 
-		model.addAttribute("teams", teamRepo.findAll());
-		return "/blue/settings";
+		return settings(model);
 
 	}
 
 	@GetMapping("/blue/settings/rename")
 	public String rename(@RequestParam Integer id, @RequestParam String name, Model model) {
 		// logger.trace("rename()");
-		String newname = name.toUpperCase();
-		String message = "";
-		Optional<BlueTeam> opt = teamRepo.findById(id);
-		Iterable<BlueTeam> teams = teamRepo.findAll();
-		for (BlueTeam t : teams) {
-			if (t.getName().equalsIgnoreCase(name)) {
-				message = "Il team " + newname + " è già presente!!";
-				model.addAttribute("msg", message);
-				break;
+		if (id == 0) {
+			String message = "Attenzione seleziona tutti i campi!";
+			model.addAttribute("msg", message);
+		} else {
+			String newname = name.toUpperCase();
+			String message = "";
+			Optional<BlueTeam> opt = teamRepo.findById(id);
+			Iterable<BlueTeam> teams = teamRepo.findAll();
+			for (BlueTeam t : teams) {
+				if (t.getName().equalsIgnoreCase(name)) {
+					message = "Il team " + newname + " è già presente!!";
+					model.addAttribute("msg", message);
+					break;
+				}
+			}
+			if (message.equals("")) {
+				if (opt.isPresent()) {
+					BlueTeam team = opt.get();
+					// logger.debug(String.format("Renaming team %s as %s", team.getName(), name));
+					team.setName(newname);
+					save(team, model);
+				} else {
+					message = String.format("Can't save team %d: not found", id);
+					// logger.error(message);
+					model.addAttribute("msg", message);
+				}
 			}
 		}
-		if (message.equals("")) {
-			if (opt.isPresent()) {
-				BlueTeam team = opt.get();
-				// logger.debug(String.format("Renaming team %s as %s", team.getName(), name));
-				team.setName(newname);
-				save(team, model);
-			} else {
-				message = String.format("Can't save team %d: not found", id);
+		return settings(model);
+
+	}
+
+	@GetMapping("/blue/settings/delete")
+	public String delete(@RequestParam Integer id, Model model) {
+		if (id == 0) {
+			String message = "Attenzione seleziona tutti i campi!";
+			model.addAttribute("msg", message);
+		} else {
+			try {
+				teamRepo.deleteById(id);
+			} catch (DataAccessException dae) {
+				String message = String.format("Can't delete team %d", id);
 				// logger.error(message);
 				model.addAttribute("msg", message);
 			}
 		}
-		model.addAttribute("teams", teamRepo.findAll());
-		return "/blue/settings";
-	}
-
-	@GetMapping("/blue/settings/delete")
-	public String delete( //
-			@RequestParam Integer id, Model model) {
-		try {
-			teamRepo.deleteById(id);
-		} catch (DataAccessException dae) {
-			String message = String.format("Can't delete team %d", id);
-			// logger.error(message);
-			model.addAttribute("msg", message);
-		}
-		model.addAttribute("teams", teamRepo.findAll());
-		return "/blue/settings";
+		return settings(model);
 	}
 }
