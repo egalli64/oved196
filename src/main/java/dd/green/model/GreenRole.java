@@ -16,30 +16,7 @@ public class GreenRole {
 	@Column(name = "ROLE_NAME")
 	private String name;
 	
-	@Column(name = "CODER_ID")
-	private long id_cod;	
 
-
-	public GreenRole(long id, long id_cod) {
-		super();
-		this.id = id;
-		this.id_cod = id_cod;
-	}
-
-	public GreenRole(long id, String name, long id_cod) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.id_cod = id_cod;
-	}
-
-	public long getId_cod() {
-		return id_cod;
-	}
-
-	public void setId_cod(long id_cod) {
-		this.id_cod = id_cod;
-	}
 
 	public GreenRole(String name) {
 		super();
@@ -72,7 +49,7 @@ public class GreenRole {
 
 	@Override
 	public String toString() {
-		return "GreenRole [id=" + id + ", name=" + name + ", id_cod=" + id_cod + "]";
+		return "GreenRole [id=" + id + ", name=" + name + "]";
 	}
 
 	}
