@@ -100,14 +100,14 @@ public class GreenCoderController {
             Model model) {
         logger.trace("rename()");
 
-        Optional<GreenCoder> opt = repository.findById(id);
+        Optional<GreenCoder> opt = repository.findByName(name);
         if (opt.isPresent()) {
         	GreenCoder coder = opt.get();
             logger.debug(String.format("Changed team %s as %s", coder.getName(), name));
             coder.setName(name);
             save(coder, model);
         } else {
-            String message = String.format("Can't change team %d: not found", id);
+            String message = String.format("Can't change team %d: not found", name);
             logger.error(message);
             model.addAttribute("msg", message);
         }
