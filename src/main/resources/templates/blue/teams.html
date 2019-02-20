@@ -39,9 +39,9 @@
 			<td th:text="${cod.firstname}">[]</td>
 			<td th:text="${cod.lastname}">[]</td>
 			<td th:text="${cod.team.name}">[]</td>
-			<th:block th:each="role : ${cod.role}">
-				<td th:text="${role.nomeRole}">Model</td>
-			</th:block>		
+			<td><th:block th:each="role : ${cod.role}">
+				<span th:text="${role.nomeRole}">[]</span><span>&nbsp-</span>
+			</th:block></td>		
 		</tr>
 	</table>
 	<hr/>
