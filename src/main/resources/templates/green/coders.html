@@ -68,33 +68,55 @@
 		<font face="Verdana" size="5" color="green">
 		<center>Aggiungi nuovo Role:
 				</label>
-				<select name="id">
+				<select name="id_coder">
+				<option th:each="cur: ${dataCoders}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select></font>
+					<select name="id">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
 			<button>Go!</button>
-			<label>
-		<font face="Verdana" size="5" color="green">
-		Aggiungi nuovo Coder:
-		<button>Go!</button>
-	</font></label>
-	</form>
-	<hr />
-	<form method="get" action="/green/coders/rename">
-
-		<label> <font face="Verdana" size="5" color="green">
-				<center>
-					Sostituisci Role: <select name="id">
-						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
-							th:text="${cur.name}">green</option>
-					</select>
-		</font>
+			<font face="Verdana" size="5" color="green">Elimina Role:
+			</label>
+					<select name="id_coder">
+				<option th:each="cur: ${dataCoders}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
 				<select name="id">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
+				
+			</select></center><button>Go!</button>	
+	</form>
+	<hr />
+	<form method="get" action="/green/coders/rename">
+	<label>
+		<font face="Verdana" size="5" color="green">
+		Aggiungi nuovo Coder:<input name="name" required="required">
+		<select name="id_team">
+				<option th:each="cur: ${dataTeams}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
 			</select>
+			<select name="id">
+				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
+		<button>Go!</button>
+	</font>
+	 <font face="Verdana" size="5" color="green">
+				<center><font face="Verdana" size="5" color="green">Elimina Coder: <select name="id">
+						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
+							th:text="${cur.name}">green</option>
+					</select>
+		</font>
+			</label>
 		<button>Go!</button>
 		</center>
 	</form>
