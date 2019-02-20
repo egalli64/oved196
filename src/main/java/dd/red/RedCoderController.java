@@ -60,8 +60,7 @@ public class RedCoderController {
 	public String getCoders(Model model) {
 		logger.trace("red getCoders");
 
-		model.addAttribute("data", repository.findAll());
-		return "/red/coders";
+		return findAll(model);
 	}
 
 	@GetMapping("/red/coder/setTeam")
