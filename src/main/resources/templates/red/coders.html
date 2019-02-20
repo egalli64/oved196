@@ -32,29 +32,45 @@
 	</table>
 	
 	<form  method="get" action="/red/coder/deleteCoder">
-   <p> inserisci il nome della persona da eliminare : <input type="text" name="name"> </p>
+   <p> inserisci il nome della persona da eliminare : <select
+					name="name">
+
+					<option th:each="cur: ${data}" th:text="${cur.name}">
+				</select>
+
+</p>
    <button >conferma</button>
    </form>
 
 	<form  method="get" action="/red/coder/createCoder">
-  <!--   <p> inserisci l'id della nuova persona : <input type="long" name="id"> </p> -->
+   
    <p> inserisci nome della nuova persona : <input type="text" name="name"> </p>
-   <p> inserisci il nome del team : <input type="text" name="id_t"> </p> 
+   <p> inserisci il nome del team :<select
+					name="id_t">
+
+					<option th:each="cur: ${data}" th:text="${cur.team.name}">
+				</select> 
+
+ </p> 
    
    
    <button >conferma</button></form>
    
    <form  method="get" action="/red/coder/setTeam">
-    <p> Inserisci il nome della persona da modificare : <input type="text" name="name"> </p>
+    <p> Inserisci il nome della persona da modificare :<select
+					name="name">
+
+					<option th:each="cur: ${data}" th:text="${cur.name}">
+				</select> 
+
+
+ </p>
    <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p>
    <button >conferma</button></form>
    
 	
 	
 	<hr />
-	
-	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
-	</center>
 </center>
 
 </body>

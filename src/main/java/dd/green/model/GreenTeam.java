@@ -46,5 +46,3 @@ public class GreenTeam {
         return "GreenTeam [id=" + id + ", name=" + name + "]";
     }
 }
-
-// 

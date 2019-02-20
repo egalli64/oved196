@@ -97,9 +97,9 @@ public class RedCoderController {
 	        }
 	        RedTeam team = repositoryTeam.findByName(id_t).get();
 	        
-	       
+	        
 
-	        save(new RedCoder( name, team), model);
+	        save(new RedCoder(name, team), model);
 	        return findAll(model);
 	    }
 	 
