@@ -47,7 +47,7 @@
 	</table>
 	<br></br>
 	<hr />
-	<form action="/green/team/rename">
+	<form method="get" action="/green/coders/rename">
 		<label><font face="Verdana" size="5" color="green">Cambia team:
 			<select name="id">
 				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
@@ -66,26 +66,27 @@
 	</form>
 	<hr />
 	
-	<form action="/green/team/create">
+	<form method="get" action="/green/coders/create">
 	
 		<label>
 		<font face="Verdana" size="5" color="green">
 		<center>Aggiungi nuovo Role:
-			<input name="roles.name" required="required">
-			</font>
-		</label>
-		<label><font face="Verdana" size="5" color="green">con:
 			<select name="id">
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.team.name}">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select></font>
-			</label>
-		<button>Go!</button>
+				</label>
+				<select name="id">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
+					green
+				</option>
+			</select>
+			<button>Go!</button>
 		</center>
 	</form>
 	<hr />
-	<form action="/green/team/rename">
+	<form method="get"  action="/green/coders/rename">
 	
 		<label>
 		<font face="Verdana" size="5" color="green">
