@@ -68,17 +68,17 @@ public class RedRoleController {
         return findAll(model);
     }
 	
-	@GetMapping("/red/role/setCoder")
+	@GetMapping("/red/role/setRole")
     public String setCoder( @RequestParam String name, @RequestParam String role, @RequestParam String roleNew,Model model) {
 		logger.trace("modify()");
 		RedRole r= repositoryRole.findByName(role).get();
 		RedRole rn= repositoryRole.findByName(roleNew).get();
 		RedCoder p = repositoryCoder.findByName(name).get();
 		
-		if (p.getRoles().contains(r)) {
+		//if (p.getRoles().contains(r)) {
 			p.getRoles().remove(r);
 			p.getRoles().add(rn);
-		}
+		//}
 		save(p, model);
 		return findAll(model);
 	}
@@ -88,9 +88,10 @@ public class RedRoleController {
         logger.trace("delete()");
         RedRole r= repositoryRole.findByName(role).get();
         RedCoder p = repositoryCoder.findByName(name).get();
-        if(p.getRoles().contains(role)) {
+//        if(p.getRoles().contains(r)) {
+        	logger.trace("deleteif()");
         p.getRoles().remove(r);
-        }
+//        }
         save(p, model);
      
         return findAll(model);
