@@ -154,27 +154,79 @@ public class GreenCoderController {
 		return findAll(model);
 	}
 
-	@GetMapping("/green/coders/rename_role")
-	public String rename( //
-			@RequestParam long id, //
+	@GetMapping("/green/coders/add_coder")
+	public String addCoder( //
+			@RequestParam long id_role, //
 			@RequestParam String name, //
+			@RequestParam String surname, //
 			Model model) {
-		logger.trace("rename()");
+		
+		logger.trace("create()");
+		
+//		Iterable<GreenCoder> coder = repositoryCoders.findAll();
+		
+//		GreenRole role = (repositoryRoles.findById(id_role)).get();
+//		Set<GreenRole> rol_cod = coder.getRoles();
+//		coder.setRoles(rol_cod);
+		
+//		boolean check = false;
+//		for (GreenRole r : rol_cod) {
+//			if (r.getId() == id_role) {
+//				check = true;
+//				break;
+//			}
+//		}
+//		if (check == false) {
+//			rol_cod.add(role);
+//			
+//		}
 
-		Optional<GreenCoder> optCoders = repositoryCoders.findById(id);
-		Optional<GreenRole> optRole = repositoryRoles.findById(id);
+//		rol_cod.add(role);
+//		
+//		GreenTeam team2 = new GreenTeam("NUOVI");
+		
+		
+//		String message = "";
+//		for (GreenCoder gt : coder) {
+//			if (gt.getName().equalsIgnoreCase(name)) {
+//				message = "Non puoi!";
+//				model.addAttribute("msg", message);
+//				break;
+//			}
+//		}
+//		if (message.equals("")) {
+		
+//		save(coder, model);
+			
+//		}
+		
 
-		if (optCoders.isPresent()) {
-			GreenCoder coder = optCoders.get();
-			logger.debug(String.format("Renaming team %s as %s", coder.getName(), name));
-			coder.setName(name);
-			save(coder, model);
-		} else {
-			String message = String.format("Can't save coder %d: not found", id);
+		Optional<GreenTeam> team =  repositoryTeams.findByName("NUOVI");
+		
+//		Optional<GreenTeam> team =  repositoryTeams.findById(4L);	
+
+		
+		GreenCoder coder = new GreenCoder(name,surname,team.get());
+
+		repositoryCoders.save(coder);	
+						
+		return findAll(model);
+		
+
+	}
+	
+	@GetMapping("/green/coders/delete_coder")
+	public String deleteCoder( //
+			@RequestParam long id_coder, //
+		 Model model) {
+		try {
+			repositoryCoders.deleteById(id_coder);
+		} catch (DataAccessException dae) {
+			String message = String.format("Non puoi eliminare");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
 
 		return findAll(model);
-	}
+		}
 }
