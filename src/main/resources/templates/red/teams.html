@@ -17,6 +17,11 @@
 
 		</h2>
 	<hr>
+	<div th:if="${msg}">
+		<p ><span th:text=${msg}>hello!</span></p>
+		<hr />	
+	</div>
+	
 	<!-- <div th:text="${data}">[]</div>  --> 
 	<p>The teams:</p>
 	<table>

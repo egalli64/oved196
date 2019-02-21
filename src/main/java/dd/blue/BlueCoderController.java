@@ -2,12 +2,14 @@ package dd.blue;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ import dd.blue.model.BlueTeamRepository;
 
 @Controller
 public class BlueCoderController {
-	
+
 	String ok = "Operazione conclusa con successo :)";
 
 	private static final Logger logger = LoggerFactory.getLogger(BlueCoderController.class);
@@ -65,6 +67,39 @@ public class BlueCoderController {
 		}
 	}
 
+	@GetMapping("/blue/coders/orderby")
+	public String orderBy(@RequestParam String by, Model model) {
+		logger.trace("orderBy()");
+
+		List<BlueCoder> coders;
+
+		switch (by) {
+		case "firstname":
+			coders = coderRepo.findAllByOrderByFirstname();
+			break;
+
+		case "lastname":
+			coders = coderRepo.findAllByOrderByLastname();
+			break;
+
+//		case "Team":
+//			coders = coderRepo.findAllByOrderById();
+//			break;
+////
+//		case "Role":
+//			coders = coderRepo.findAllOrderByRole();
+//			break;
+
+		default:
+			coders = coderRepo.findAllByOrderByIdCoder();
+		}
+		
+		model.addAttribute("coders", coders);
+		model.addAttribute("teams", teamRepo.findAll());
+		model.addAttribute("roles", roleRepo.findAll());
+		return "/blue/coders";
+	}
+
 	@GetMapping("/blue/coders/addrole")
 	public String addRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
 		if (coderid == 0) {
@@ -72,31 +107,29 @@ public class BlueCoderController {
 			model.addAttribute("msg", message);
 			return coders(model);
 		}
-		
+
 		logger.trace("addRole()");
 		BlueCoder coder = (coderRepo.findById(coderid)).get();
 		BlueRole role = (roleRepo.findById(roleid)).get();
 		Set<BlueRole> codrol = coder.getRole();
 		boolean check = false;
-		
-		
-		
-			for (BlueRole r : codrol) {
-				if (r.getIdRole() == roleid) { // c'è
-					check = true;
-					break;
-				}
+
+		for (BlueRole r : codrol) {
+			if (r.getIdRole() == roleid) { // c'è
+				check = true;
+				break;
 			}
-			if (check == false) {
-				codrol.add(role);
-				coderRepo.save(coder);
-			} else {
-				String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname()
-						+ " ha già il ruolo di " + role.getNomeRole() + "!";
-				logger.error(message);
-				model.addAttribute("msg", message);
-				return coders(model);
-			}
+		}
+		if (check == false) {
+			codrol.add(role);
+			coderRepo.save(coder);
+		} else {
+			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname() + " ha già il ruolo di "
+					+ role.getNomeRole() + "!";
+			logger.error(message);
+			model.addAttribute("msg", message);
+			return coders(model);
+		}
 		model.addAttribute("msg", ok);
 		return coders(model);
 	}
@@ -108,15 +141,13 @@ public class BlueCoderController {
 			model.addAttribute("msg", message);
 			return coders(model);
 		}
-		
+
 		logger.trace("removeRole()");
 		BlueCoder coder = (coderRepo.findById(coderid)).get();
 		BlueRole role = (roleRepo.findById(roleid)).get();
 		Set<BlueRole> codrol = coder.getRole();
 		Iterator<BlueRole> itr = codrol.iterator();
-		
-		 
-		
+
 		if (!(codrol.contains(role))) {
 			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname() + " non ha il ruolo di "
 					+ role.getNomeRole() + "!";
@@ -151,25 +182,23 @@ public class BlueCoderController {
 			model.addAttribute("msg", message);
 			return coders(model);
 		}
-		
+
 		logger.trace("changeTeam()");
 
 		Optional<BlueCoder> opt = coderRepo.findById(coderId);
 		Optional<BlueTeam> team = teamRepo.findById(teamId);
 		BlueCoder coder = opt.get();
-		
-		 
-		
-			if (!(coder.getTeam().getId() == teamId)) {
-				coder.getTeam().setId(teamId);
-				coderRepo.save(coder);
-			} else {
-				String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname()
-							+ " è gia nel team " + team.get().getName() + "!";
-				logger.error(message);
-				model.addAttribute("msg", message);
-				return coders(model);
-			}
+
+		if (!(coder.getTeam().getId() == teamId)) {
+			coder.getTeam().setId(teamId);
+			coderRepo.save(coder);
+		} else {
+			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname() + " è gia nel team "
+					+ team.get().getName() + "!";
+			logger.error(message);
+			model.addAttribute("msg", message);
+			return coders(model);
+		}
 		model.addAttribute("msg", ok);
 		return coders(model);
 	}
@@ -182,7 +211,7 @@ public class BlueCoderController {
 		Iterable<BlueCoder> itc = coderRepo.findAll();
 		for (BlueCoder c : itc) {
 			if (c.getFirstname().equalsIgnoreCase(firstname) && c.getLastname().equalsIgnoreCase(lastname)) {
-				String message = "Attenzione: " + c.getFirstname() + " " + c.getLastname()	+ " è gia staffato!";
+				String message = "Attenzione: " + c.getFirstname() + " " + c.getLastname() + " è gia staffato!";
 				logger.error(message);
 				model.addAttribute("msg", message);
 				return coders(model);
@@ -199,13 +228,13 @@ public class BlueCoderController {
 
 	@GetMapping("/blue/coders/removecoder")
 	public String removeCoder(@RequestParam Integer id, Model model) {
-		
+
 		if (id == 0) {
 			String message = "Attenzione! Selezionare un coder.";
 			model.addAttribute("msg", message);
 			return coders(model);
-		} 
-		
+		}
+
 		coderRepo.deleteById(id);
 		model.addAttribute("msg", ok);
 		return coders(model);
