@@ -2,12 +2,16 @@ package dd.blue.model;
 
 import java.util.List;
 
-
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BlueCoderRepository extends CrudRepository<BlueCoder, Integer> {
+	
+//	@Query("select bc from blue_coders bc inner join blue_teams on bc.team_id= bt.team_id order by bt.team_name")
+//	public List<BlueCoder> teamsort();
+	
 	
 	public List<BlueCoder> findAllByOrderByIdCoder();
 
@@ -15,7 +19,7 @@ public interface BlueCoderRepository extends CrudRepository<BlueCoder, Integer> 
 
 	public List<BlueCoder> findAllByOrderByLastname();
 
-//	public List<BlueCoder> findAllByOrderById();
+    public List<BlueCoder> findAllByOrderByTeam();
 //
 //	public List<BlueCoder> findAllOrderByRole();
 
