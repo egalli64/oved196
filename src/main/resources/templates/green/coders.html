@@ -19,7 +19,7 @@
 	<span th:text="${dataRoles}">[]</span>-->
 
 <center>
-	<table width=”500″ border=”0.5″ cellpadding=”10″>
+	<table  border=”0.5″ >
 		
 		<tr>
 			<td><font face="Verdana" size="6" color="green">
@@ -43,9 +43,9 @@
 			<td th:text="${cur.name}"></td>
 			<td th:text="${cur.surname}"></td>
 			<td th:text="${cur.team.name}"></td>
-			<th:block th:each="roles : ${cur.roles}">
-				<td th:text="${roles.name}">green</td>
-			</th:block>
+			<td><th:block th:each="roles : ${cur.roles}">
+				<span th:text="|-${roles.name}|">green</span><span>&nbsp</span>
+			</th:block></td>
 		</tr>
 		
 	</table>
