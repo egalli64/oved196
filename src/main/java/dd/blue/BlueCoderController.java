@@ -67,11 +67,20 @@ public class BlueCoderController {
 
 	@GetMapping("/blue/coders/addrole")
 	public String addRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
+		if (coderid == 0) {
+			String message = "Attenzione! Selezionare un coder.";
+			model.addAttribute("msg", message);
+			return coders(model);
+		}
+		
 		logger.trace("addRole()");
 		BlueCoder coder = (coderRepo.findById(coderid)).get();
 		BlueRole role = (roleRepo.findById(roleid)).get();
 		Set<BlueRole> codrol = coder.getRole();
 		boolean check = false;
+		
+		
+		
 			for (BlueRole r : codrol) {
 				if (r.getIdRole() == roleid) { // c'è
 					check = true;
@@ -94,11 +103,20 @@ public class BlueCoderController {
 
 	@GetMapping("/blue/coders/removerole")
 	public String removeRole(@RequestParam Integer coderid, @RequestParam Integer roleid, Model model) {
+		if (coderid == 0) {
+			String message = "Attenzione! Selezionare un coder.";
+			model.addAttribute("msg", message);
+			return coders(model);
+		}
+		
 		logger.trace("removeRole()");
 		BlueCoder coder = (coderRepo.findById(coderid)).get();
 		BlueRole role = (roleRepo.findById(roleid)).get();
 		Set<BlueRole> codrol = coder.getRole();
 		Iterator<BlueRole> itr = codrol.iterator();
+		
+		 
+		
 		if (!(codrol.contains(role))) {
 			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname() + " non ha il ruolo di "
 					+ role.getNomeRole() + "!";
@@ -128,11 +146,20 @@ public class BlueCoderController {
 
 	@GetMapping("/blue/coders/changeteam")
 	public String changeTeam(@RequestParam Integer coderId, @RequestParam Integer teamId, Model model) {
+		if (coderId == 0) {
+			String message = "Attenzione! Selezionare un coder.";
+			model.addAttribute("msg", message);
+			return coders(model);
+		}
+		
 		logger.trace("changeTeam()");
 
 		Optional<BlueCoder> opt = coderRepo.findById(coderId);
 		Optional<BlueTeam> team = teamRepo.findById(teamId);
 		BlueCoder coder = opt.get();
+		
+		 
+		
 			if (!(coder.getTeam().getId() == teamId)) {
 				coder.getTeam().setId(teamId);
 				coderRepo.save(coder);
@@ -172,6 +199,13 @@ public class BlueCoderController {
 
 	@GetMapping("/blue/coders/removecoder")
 	public String removeCoder(@RequestParam Integer id, Model model) {
+		
+		if (id == 0) {
+			String message = "Attenzione! Selezionare un coder.";
+			model.addAttribute("msg", message);
+			return coders(model);
+		} 
+		
 		coderRepo.deleteById(id);
 		model.addAttribute("msg", ok);
 		return coders(model);
