@@ -53,11 +53,11 @@ public class RedCoderController {
 		try {
 			repository.save(team);
 		} catch (DataAccessException dae) {
-			String message = "Can't give name " + team.getName() + " to ";
+			String message = " Il nome  " + team.getName() + " non ";
 			if (team.getId() != 0) {
-				message += " team " + team.getId();
+				message += " nome " + team.getId();
 			} else {
-				message += " il tuo cambiamento";
+				message += " può essere aggiunto / nome già presente";
 			}
 			logger.error(message);
 			model.addAttribute("msg", message);
@@ -106,7 +106,7 @@ public class RedCoderController {
 			save(team, model);
 
 		} else {
-			String message = String.format("Can't save team : not found", name);
+			String message = String.format("Non si può salvare il team: ", name + "Non trovato");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
@@ -137,10 +137,10 @@ public class RedCoderController {
 		            team=repository.findByName(name).get();
 		            long a = team.getId();
 		            repository.deleteById(a);
-	            String message = String.format("la persona  è stata eliminata correttamente", name);
+	            String message = String.format("La persona  è stata eliminata correttamente", name);
 	            System.out.println(message);
 	        } catch (DataAccessException dae) {
-	            String message = String.format("Can't delete person ", name);
+	            String message = String.format("Non si può cancellare la persona ", name);
 	            logger.error(message);
 	            model.addAttribute("msg", message);
 	        }
