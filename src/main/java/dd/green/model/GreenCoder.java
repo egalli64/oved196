@@ -38,14 +38,14 @@ public class GreenCoder {
 	
 
     public GreenCoder(String name, String surname, GreenTeam team) {
-		super();
+	
 		this.name = name;
 		this.surname = surname;
 		this.team = team;
 	}
 
 	public GreenCoder(String name, String surname, GreenTeam team, Set<GreenRole> roles) {
-		super();
+	
 		this.name = name;
 		this.surname = surname;
 		this.team = team;
@@ -53,20 +53,20 @@ public class GreenCoder {
 	}
 
 	public GreenCoder(String name, String surname, Set<GreenRole> roles) {
-		super();
+	
 		this.name = name;
 		this.surname = surname;
 		this.roles = roles;
 	}
 
 	public GreenCoder(String name, String surname) {
-		super();
+	
 		this.name = name;
 		this.surname = surname;
 	}
 
 	public GreenCoder(long id, String name, String surname, Set<GreenRole> roles) {
-		super();
+	
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -74,7 +74,7 @@ public class GreenCoder {
 	}
 
 	public GreenCoder(long id, String name, String surname, GreenTeam team, Set<GreenRole> roles) {
-		super();
+	
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
