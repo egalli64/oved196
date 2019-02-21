@@ -70,7 +70,7 @@
 		<label> <font face="Verdana" size="5" color="#ccffcc">
 				<center>
 					Rinomina team: <select name="id_team">
-				<option th:each="cur: ${dataTeams}" th:value="${cur.id}" th:text="${cur.name}">
+				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
@@ -85,7 +85,7 @@
 		<label> <font face="Verdana" size="5" color="#ccffcc">
 				<center>
 					Elimina team: <select name="id">
-						<option th:each="cur: ${dataTeam}" th:value="${cur.id}"
+						<option th:each="cur: ${data}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
 					</select>
 		</font>
