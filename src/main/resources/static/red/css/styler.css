@@ -93,9 +93,9 @@ h1 span{
    
  }
  
- h2 {
-color: #00ff00;
-background-color: #00ff00;
- } 
+
+h2 {
+	color: lime;
+}
  
 }

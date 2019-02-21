@@ -5,26 +5,25 @@
 	<meta charset="ISO-8859-1">
 	<title>Modifica Coders</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
+	<script src="@{scrpt/myscrpt.js}"></script>
 </head>
 <body>
 	<h1>Coders Editing</h1>
 
 	<hr />
 	<div th:if="${msg}">
-		<p class = me>Un messaggio per te: <span th:text=${msg}>hello!</span></p>
+		<p class = me><span th:text=${msg}>hello!</span></p>
 		<hr />	
 	</div>
 	<p class = you>Lista Programmatori</p>
 	<table class = due align = center>
 		<tr> 
-		<th scope="col">ID</th>
 			<th scope="col">Nome</th>
 			<th scope="col">Cognome</th>
 			<th scope="col">Team</th>
 			<th scope="col">Ruolo</th>
 		</tr>
-		<tr th:each="cod : ${coders}">
-			<td th:text="${cod.idCoder}">[]</td>		
+		<tr th:each="cod : ${coders}">		
 			<td th:text="${cod.firstname}">[]</td>
 			<td th:text="${cod.lastname}">[]</td>
 			<td th:text="${cod.team.name}">[]</td>
@@ -39,16 +38,15 @@
 	<label> Cambia il team a una persona: <br>
 	<br>
 	Coder:
-			<select name="coderId">
-				<option value="0">-</option>			
-				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+			<select name="coderId">	
+				<option value="0">-</option>		
+				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
 					caio
 				</option>
 			</select>
 	</label>
 	<label>Scegli il nuovo team:
-			<select name="teamId">
-				<option value="0">-</option>			
+			<select name="teamId">			
 				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
 					blue
 				</option>
@@ -62,16 +60,15 @@
 		<label> Aggiungi un ruolo ad un programmatore<br>
 		<br>
 			Coder:
-			<select name="coderid">
-				<option value="0">-</option>			
-				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+			<select name="coderid">	
+				<option value="0">-</option>	
+				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
 					caio
 				</option>
 			</select>
 		</label>
 		<label> Ruolo:
-			<select name="roleid">
-				<option value="0">-</option>			
+			<select name="roleid">			
 				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 					old
 				</option>
@@ -87,14 +84,13 @@
 			Coder:
 			<select name="coderid">
 				<option value="0">-</option>			
-				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.lastname}">
+				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
 					caio
 				</option>
 			</select>
 		</label>
 		<label> Ruolo:
-			<select name="roleid">
-				<option value="0">-</option>			
+			<select name="roleid">			
 				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 					old
 				</option>
@@ -136,10 +132,10 @@
 	<form action="/blue/coders/removecoder">
 		<label> Rimuovi un programmatore<br>
 		<br>
-		ID:
+		Coder:
 		<select name="id">
 			<option value="0">-</option>			
-			<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.idCoder}">
+			<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
 			</option>
 		</select>
 		</label>
@@ -152,9 +148,6 @@
 	</p>
 	<p>
 		Go to <a href="/blue/settings">teams editing</a>
-	</p>
-	<p>
-		<a href="/blue/coders">Refresh</a>
 	</p>
 		
 </body>

@@ -10,16 +10,19 @@
 	<h1>CODERS</h1>
 </font>
 <body>
-<!--  
-	<p>
+
 		This is just for debugging purpose: <span th:text="${dataCoders}">[]</span>,<span th:text="${dataTeams}">[]</span>,<span th:text="${dataRoles}">[]</span>
-	</p>-->
+
 
 	<table >
 		<tr>
 			<th><font face="Verdana" size="6" color="green">
 
 					<h3>NAME</h3>
+			</font></th>
+				<th><font face="Verdana" size="6" color="green">
+
+					<h3>SURNAME</h3>
 			</font></th>
 			<th><font face="Verdana" size="6" color="green">
 					<h3>TEAM</h3>
@@ -33,9 +36,10 @@
 		</tr>
 		<tr th:each="cur: ${dataCoders}">
 			<td th:text="${cur.name}"></td>
+			<td th:text="${cur.surname}"></td>
 			<td th:text="${cur.team.name}"></td>
 			<th:block th:each="roles : ${cur.roles}">
-				<td th:text="${roles.name}">green</td>
+			<td th:text="${roles.name}">green</td>
 			</th:block>
 		</tr>
 	</table>
@@ -50,7 +54,7 @@
 				</option>
 			</select></font>
 		</label>
-		<label>
+				<label>
 			<select name="id_team">
 				<option th:each="cur: ${dataTeams}" th:value="${cur.id}" th:text="${cur.name}">
 					green
@@ -62,7 +66,7 @@
 	</form>
 	<hr />
 
-	<form method="get" action="/green/coders/create">
+	<form method="get" action="/green/coders/create_role">
 
 		<label>
 		<font face="Verdana" size="5" color="#ccffcc">
@@ -73,12 +77,15 @@
 					green
 				</option>
 			</select></font>
-					<select name="id">
+					<select name="id_role">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
 			</select>
 			<button>Enter</button>
+			</form>
+			
+			<form method="get" action="/green/coders/delete_role">
 			<font face="Verdana" size="5" color="#ccffcc">Elimina Role:
 			</label>
 					<select name="id_coder">
@@ -86,7 +93,7 @@
 					green
 				</option>
 			</select>
-				<select name="id">
+				<select name="id_role">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
@@ -96,14 +103,15 @@
 		</center>
 	</form>
 	<hr />
-	<form method="get" action="/green/coders/rename">
+	
+	<form method="get" action="/green/coders/rename_role">
 	<label>
 		<font face="Verdana" size="5" color="#ccffcc">
-		<center>Aggiungi nuovo Coder: <select name="id">
+		<center>Aggiungi nuovo Coder: <select name="id_coder">
 						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
 					</select>
-			<select name="id">
+			<select name="id_role">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}" th:text="${cur.name}">
 					green
 				</option>
@@ -112,7 +120,7 @@
 	</font>
 	 <font face="Verdana" size="5" color="#ccffcc">
 				<font face="Verdana" size="5" color="#ccffcc">
-				Elimina Coder: <select name="id">
+				Elimina Coder: <select name="id_coder">
 						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
 					</select>
@@ -121,6 +129,7 @@
 		<button>Enter</button>
 		</center>
 	</form>
+	
 	<hr />
 
 	<p>

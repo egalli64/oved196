@@ -31,8 +31,8 @@ public class RedRole {
 	
 	@ManyToMany (fetch=FetchType.EAGER)
 	@JoinTable(name = "RED_CODERS_ROLES", //
-			joinColumns = @JoinColumn(name = "CODER_ID"), //
-			inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+			joinColumns = @JoinColumn(name = "ROLE_ID"), //
+			inverseJoinColumns = @JoinColumn(name = "CODER_ID"))
 	List<RedCoder> coders;
 
 
