@@ -48,11 +48,7 @@ public class BlueTeam implements Comparable<BlueTeam>{
 
 	@Override
 	public int compareTo(BlueTeam o) {
-		if(this.name.compareTo(o.getName()) > 0)
-			return 1;
-		if(this.name.compareTo(o.getName()) < 0)
-			return -1;
-		return 0;
+		return this.name.compareTo(o.getName());
 	}
 	
 }
