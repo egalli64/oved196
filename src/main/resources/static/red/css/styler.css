@@ -1,10 +1,12 @@
 body {
    
- margin: 0;
+ /* margin: 0;
    
  padding: 0;
 
-  background: #ff3c3c;
+  background: #ff3c3c; */
+  
+ background:  -webkit-radial-gradient(center, circle farthest-corner, #FF0000 0%, #ffc1c1 100%);
 }
 
 section
@@ -12,7 +14,7 @@ section
    
  height: 100vh;
   
-  background: #ff8080;
+  background:  -webkit-radial-gradient(center, circle farthest-corner, #FF0000 0%, #ffc1c1 100%);
 
 }
 
