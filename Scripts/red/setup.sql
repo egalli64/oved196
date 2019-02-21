@@ -15,6 +15,7 @@ CREATE TABLE RED_teams(
 	team_name varchar2(10) UNIQUE
 );
 
+INSERT INTO RED_teams (team_name) values('bench');
 INSERT INTO RED_teams (team_name) values('red');
 INSERT INTO RED_teams (team_name) values('blue');
 INSERT INTO RED_teams (team_name) values('green');
@@ -22,7 +23,7 @@ INSERT INTO RED_teams (team_name) values('green');
 -- coders
 CREATE TABLE RED_coders(
 	coder_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	coder_name varchar2(40),
+	coder_name varchar2(40) unique,
 	team_id integer REFERENCES RED_TEAMS(team_id)
 );
 
@@ -43,7 +44,7 @@ INSERT INTO RED_coders (coder_name,team_id)values('Kelly Miotto', 3);
 -- roles
 CREATE TABLE RED_roles(
 	role_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	role_name varchar2(20)
+	role_name varchar2(20) unique
 );
 
 INSERT INTO RED_roles (role_name)values('Model');

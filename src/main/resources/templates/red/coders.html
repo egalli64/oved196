@@ -6,6 +6,7 @@
 <title>Red Coders </title>
 <link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
+<hr>
 
 <body>
 <section>
@@ -13,7 +14,7 @@
 	 <h2>CODERS </h2>
 	<p>
 	
-		<!--  This is just for debugging purpose: <span th:text="${team}">[]</span> -->
+		  This is just for debugging purpose: <span th:text="${team}">[]</span> 
 	</p>
 	<hr />
 	
@@ -28,7 +29,7 @@
 			<td th:text="${cur.name}">Bjarne</td>
 		  	<td th:text="${cur.team.name}">red</td> 
 		</tr>
-		<div th:if="${msg}">
+		
 	</table>
 	
 	
@@ -91,6 +92,11 @@
 
 
 	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
+	
+	<hr>
+<div th:if="${msg}">
+		<p><span th:text=${msg}>hello!</span></p>
+		<hr />	 
 </center>
 </section>
 </body>
