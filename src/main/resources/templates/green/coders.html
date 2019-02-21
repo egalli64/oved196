@@ -10,10 +10,9 @@
 	<h1>CODERS</h1>
 </font>
 <body>
-<!--  
-	<p>
+
 		This is just for debugging purpose: <span th:text="${dataCoders}">[]</span>,<span th:text="${dataTeams}">[]</span>,<span th:text="${dataRoles}">[]</span>
-	</p>-->
+
 
 	<table >
 		<tr>
@@ -84,6 +83,8 @@
 				</option>
 			</select>
 			<button>Enter</button>
+			
+			<form method="get" action="/green/coders/delete_role">
 			<font face="Verdana" size="5" color="#ccffcc">Elimina Role:
 			</label>
 					<select name="id_coder">
