@@ -5,9 +5,9 @@
 <title>Teams (red)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
-<center>
+
 <body>
-<section>
+
 	<h2>
 
 			TEAMS
@@ -16,13 +16,12 @@
 			
 
 		</h2>
-	<hr>
-	<div th:if="${msg}">
-		<p ><span th:text=${msg}>hello!</span></p>
-		<hr />	
-	</div>
+		<div th:if="${msg}">
+		<span th:text=${msg}>hello!</span></div>
 	
-	<!-- <div th:text="${data}">[]</div>  --> 
+	
+	
+	
 	<p>The teams:</p>
 	<table>
 		<tr>
@@ -55,7 +54,7 @@
 	<form  method="get" action="/red/team/create">
    <p> inserisci nome del team da creare : <input type="text" name="name"> 
    <button >conferma</button></form>
-   </p>
+   
    
    <form  method="get" action="/red/team/rename">
     <p> inserisci team da modificare : <select
@@ -78,7 +77,7 @@
 
 
 	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
-	</center>
-	</section>
+	
+	
 </body>
 </html>
