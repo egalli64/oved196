@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="BLUE_TEAMS")
-public class BlueTeam {
+public class BlueTeam implements Comparable<BlueTeam>{
 	@Id
 	@Column(name="TEAM_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +45,16 @@ public class BlueTeam {
 	public String toString() {
 		return "BlueTeam [id=" + id + ", name=" + name + "]";
 	}
+
+	@Override
+	public int compareTo(BlueTeam o) {
+		if(this.name.compareTo(o.getName()) == 0)
+			return 0;
+		if(this.name.compareTo(o.getName()) > 0)
+			return 1;
+		if(this.name.compareTo(o.getName()) < 0)
+			return -1;
+		return 0;
+	}
+	
 }
