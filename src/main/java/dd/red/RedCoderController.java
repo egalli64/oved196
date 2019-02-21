@@ -7,7 +7,9 @@
 package dd.red;
 
 
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dd.red.model.RedCoder;
 
 import dd.red.model.RedCoderRepository;
+import dd.red.model.RedRole;
+import dd.red.model.RedRoleRepository;
 import dd.red.model.RedTeam;
 import dd.red.model.RedTeamRepository;
 
@@ -32,11 +36,15 @@ public class RedCoderController {
 	RedCoderRepository repository;
 	@Autowired
 	RedTeamRepository repositoryTeam;
+	@Autowired
+	RedRoleRepository repositoryRole;
+	
 
 	private String findAll(Model model) {
 		logger.trace("findAll()");
 		model.addAttribute("data", repository.findAll());
 		model.addAttribute("team", repositoryTeam.findAll());
+		model.addAttribute("role", repositoryRole.findAll());
 		return "/red/coders";
 	}
 
@@ -55,6 +63,26 @@ public class RedCoderController {
 			model.addAttribute("msg", message);
 		}
 	}
+	
+	
+	
+	@GetMapping("/red/coder/createRole")
+    public String createRole( @RequestParam String name, @RequestParam String role, Model model) {
+        logger.trace("create()");
+        RedRole r= repositoryRole.findByName(role).get();
+        RedCoder p = repository.findByName(name).get();
+        p.getRoles().add(r);
+        save(p, model);
+        
+     
+        return findAll(model);
+    }
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/red/coders")
 	public String getCoders(Model model) {
@@ -120,6 +148,33 @@ public class RedCoderController {
 	        return findAll(model);
 	        
 	    }
+		@GetMapping("/red/coder/deleteRole")
+	    public String deleteRole( @RequestParam String name, @RequestParam String role, Model model) {
+	        logger.trace("delete()");
+	        RedRole r= repositoryRole.findByName(role).get();
+	        RedCoder p = repository.findByName(name).get();
+	        Set<RedRole> rol = p.getRoles();
+	        Iterator<RedRole> iterator = rol.iterator();
+	 //       if(!p.getRoles().contains(r)) {
+//	        	logger.trace("deleteif()");
+	        int size = p.getRoles().size();
+	        if (size > 1) {
+				while (iterator.hasNext()) {
+					if (iterator.next().getId() == r.getId()) { // c'è
+						iterator.remove();
+						repository.save(p);
+						break;
+					}
+				}
+			}
+	  //      p.getRoles().remove(r);
+	 //       }
+	        save(p, model);
+	     
+	        return findAll(model);
+	    }
+	 
+	 
 	
 	
 

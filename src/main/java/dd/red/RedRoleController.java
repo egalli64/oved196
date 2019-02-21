@@ -60,18 +60,26 @@ public class RedRoleController {
 		return findAll(model);
 	}
 	
-	@GetMapping("/red/role/createRole")
-    public String create( @RequestParam String name, @RequestParam String role, Model model) {
-        logger.trace("create()");
-        RedRole r= repositoryRole.findByName(role).get();
-        RedCoder p = repositoryCoder.findByName(name).get();
-        p.getRoles().add(r);
-        save(p, model);
-        
-     
-        return findAll(model);
+	@GetMapping("/red/role/deleteRole")
+	public String deleteRole(@RequestParam String nameRole, Model model) {
+	try {
+		RedRole role = new RedRole();
+		role = repositoryRole.findByName(nameRole).get();
+		long r = role.getId();
+		repositoryRole.deleteById(r);
+		String message = String.format("Il ruolo è stato eliminato correttamente", nameRole);
+        System.out.println(message);
+	}
+	catch (DataAccessException dae) {
+		String message = String.format("Non si può cancellare il ruolo ", nameRole);
+        logger.error(message);
+        model.addAttribute("msg", message);
+    }
+	   return findAll(model);
+       
     }
 	
+}
 //	@GetMapping("/red/role/setRole")
 //    public String setCoder( @RequestParam String name, @RequestParam String role, @RequestParam String roleNew,Model model) {
 ////		logger.trace("modify()");
@@ -87,35 +95,9 @@ public class RedRoleController {
 //		return findAll(model);
 //	}
 	
-	@GetMapping("/red/role/deleteRole")
-    public String deleteRole( @RequestParam String name, @RequestParam String role, Model model) {
-        logger.trace("delete()");
-        RedRole r= repositoryRole.findByName(role).get();
-        RedCoder p = repositoryCoder.findByName(name).get();
-        Set<RedRole> rol = p.getRoles();
-        Iterator<RedRole> iterator = rol.iterator();
- //       if(!p.getRoles().contains(r)) {
-//        	logger.trace("deleteif()");
-        int size = p.getRoles().size();
-        if (size > 1) {
-			while (iterator.hasNext()) {
-				if (iterator.next().getId() == r.getId()) { // c'è
-					iterator.remove();
-					repositoryCoder.save(p);
-					break;
-				}
-			}
-		}
-  //      p.getRoles().remove(r);
- //       }
-        save(p, model);
-     
-        return findAll(model);
-    }
-	
 	
 
-}
+
 
 
 

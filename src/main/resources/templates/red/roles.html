@@ -16,8 +16,8 @@
 	<hr />
 	
 	<table>
-	<tr><th>NOMI</th>
-	<th>TEAM</th>
+	
+	
 	<th>RUOLI</th>
 	</tr>
 		<tr>
@@ -25,12 +25,9 @@
 			
 			
 		</tr>
-		<tr th:each="cur: ${coder}">
+		<tr th:each="cur: ${role}">
 			<td th:text="${cur.name}"></td>
-			<td th:text="${cur.team.name}"></td>
-			<th:block th:each="roles : ${cur.roles}">
-				<td th:text="${roles.name}">red</td>
-			</th:block>
+
 		</tr>
 		<tr>
 		

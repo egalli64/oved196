@@ -36,7 +36,7 @@ public class RedRole {
 	List<RedCoder> coders;
 
 
-	protected RedRole() {
+	public RedRole() {
 	}
 
 	public RedRole(long id, String name) {
