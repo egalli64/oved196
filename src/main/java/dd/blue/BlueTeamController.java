@@ -1,5 +1,6 @@
 package dd.blue;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dd.blue.model.BlueCoder;
 import dd.blue.model.BlueCoderRepository;
 import dd.blue.model.BlueTeam;
 import dd.blue.model.BlueTeamRepository;
@@ -33,6 +35,37 @@ public class BlueTeamController {
 		model.addAttribute("coders", coderRepo.findAll());
 		model.addAttribute("teams", teamRepo.findAll());
 		return "/blue/settings";
+	}
+	
+	@GetMapping("/blue/teams/orderby")
+	public String orderBy(@RequestParam String by, Model model) {
+
+		List<BlueCoder> coders;
+
+		switch (by) {
+		case "firstname":
+			coders = coderRepo.findAllByOrderByFirstname();
+			break;
+
+		case "lastname":
+			coders = coderRepo.findAllByOrderByLastname();
+			break;
+
+		case "Team":
+		coders = coderRepo.findAllByOrderByTeam();
+		break;
+
+//	case "Role":
+//			coders = coderRepo.findAllOrderByRole();
+//			break;
+
+		default:
+			coders = coderRepo.findAllByOrderByIdCoder();
+		}
+		
+		model.addAttribute("coders", coders);
+		model.addAttribute("teams", teamRepo.findAll());
+		return "/blue/teams";
 	}
 
 	private void save(BlueTeam team, Model model) {
