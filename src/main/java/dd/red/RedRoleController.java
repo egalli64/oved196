@@ -33,6 +33,7 @@ public class RedRoleController {
 		logger.trace("findAll()");
 		model.addAttribute("role", repositoryRole.findAll());
 		model.addAttribute("coder", repositoryCoder.findAll());
+		
 		return "/red/roles";
 	}
 	
@@ -99,7 +100,7 @@ public class RedRoleController {
         int size = p.getRoles().size();
         if (size > 1) {
 			while (iterator.hasNext()) {
-				if (iterator.next().getId() == r.getId()) { // c'è
+				if (iterator.next().getId() == r.getId()) { 
 					iterator.remove();
 					repositoryCoder.save(p);
 					break;
