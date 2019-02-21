@@ -69,7 +69,16 @@
 
 
  </p>
-   <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p>
+  <p> inserisci il nome del team :
+   <select name="test">
+
+					<option th:each="cur: ${team}" th:text="${cur.name}"  >
+					</option>
+				</select> 
+				
+
+ </p> 
+  <!--  <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p> --> 
    <button >conferma</button></form>
    
 	
