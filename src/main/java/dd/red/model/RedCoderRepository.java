@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface RedCoderRepository extends CrudRepository<RedCoder, Long> {
 	public Optional<RedCoder> findByName(String name);
 	public Optional<RedCoder> deleteByName (String name);
+	public void save(RedRole coder);
 
 }
