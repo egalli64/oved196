@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dd.blue.model.BlueCoder;
 import dd.blue.model.BlueCoderRepository;
+import dd.blue.model.BlueRoleRepository;
 import dd.blue.model.BlueTeam;
 import dd.blue.model.BlueTeamRepository;
 
@@ -23,6 +24,8 @@ public class BlueTeamController {
 	BlueTeamRepository teamRepo;
 	@Autowired
 	BlueCoderRepository coderRepo;
+	@Autowired
+	BlueRoleRepository roleRepo;
 
 //    private String findAll(Model model) {
 //        //logger.trace("findAll()");
@@ -36,6 +39,23 @@ public class BlueTeamController {
 		model.addAttribute("teams", teamRepo.findAll());
 		return "/blue/settings";
 	}
+
+	private void save(BlueTeam team, Model model) {
+		// logger.trace("save()");
+		try {
+			teamRepo.save(team);
+		} catch (DataAccessException dae) {
+			String message = "Can't give name " + team.getName() + " to ";
+			if (team.getId() != 0) {
+				message += " team " + team.getId();
+			} else {
+				message += " your new team";
+			}
+			// logger.error(message);
+			model.addAttribute("msg", message);
+		}
+	}
+
 	
 	@GetMapping("/blue/teams/orderby")
 	public String orderBy(@RequestParam String by, Model model) {
@@ -55,35 +75,17 @@ public class BlueTeamController {
 		coders = coderRepo.findAllByOrderByTeam();
 		break;
 
-//	case "Role":
-//			coders = coderRepo.findAllOrderByRole();
-//			break;
-
 		default:
 			coders = coderRepo.findAllByOrderByIdCoder();
 		}
 		
 		model.addAttribute("coders", coders);
 		model.addAttribute("teams", teamRepo.findAll());
+		model.addAttribute("roles", roleRepo.findAll());
 		return "/blue/teams";
 	}
-
-	private void save(BlueTeam team, Model model) {
-		// logger.trace("save()");
-		try {
-			teamRepo.save(team);
-		} catch (DataAccessException dae) {
-			String message = "Can't give name " + team.getName() + " to ";
-			if (team.getId() != 0) {
-				message += " team " + team.getId();
-			} else {
-				message += " your new team";
-			}
-			// logger.error(message);
-			model.addAttribute("msg", message);
-		}
-	}
-
+	
+	
 	@GetMapping("/blue/settings/create")
 	public String create(@RequestParam String name, Model model) {
 		// logger.trace("create()");

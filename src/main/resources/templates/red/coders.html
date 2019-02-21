@@ -20,7 +20,25 @@
 			<span th:text=${msg}>hello!</span>
 		</div>
 		<hr />
-		<table align=center>
+		
+		
+		<form method="get" action="/red/coder/orderByName">
+		
+			<button>Ordina per nome</button>
+			
+		</form>
+		
+			<p style="line-height: 250px"></p>
+				
+		<form method="get" action="/red/coder/orderByTeam">
+		
+			<button>Ordina per team</button>
+			
+		</form>
+		
+			<p style="line-height: 250px"></p>
+		
+	<table>
 			<tr>
 				<th>NOMI</th>
 				<th>TEAM</th>
@@ -38,76 +56,106 @@
 			<tr>
 			</tr>
 		</table>
-		<form method="get" action="/red/coder/deleteCoder">
-			<p>
-				inserisci il nome della persona da eliminare : <select name="name">
 
-					<option th:each="cur: ${data}" th:text="${cur.name}">
-				</select>
-				<button>conferma</button>
-		</form>
-		</p>
+		<p style="line-height: 250px"></p>
+
 		<p>
-		<form method="get" action="/red/coder/createCoder">
-			<p>
-				inserisci nome della nuova persona : <input type="text" name="name">
+		<form method="get" action="/red/coder/deleteCoder">
+			<fieldset>
+				<legend>ELIMINA CODER</legend>
+				<p>
+					persona da eliminare : <select name="name">
 
-
-				inserisci il nome del team : <select name="id_t">
-
-					<option th:each="cur: ${team}" th:text="${cur.name}"></option>
-				</select>
-
-				<button>conferma</button>
+						<option th:each="cur: ${data}" th:text="${cur.name}">
+					</select>
+					<button>conferma</button>
+			</fieldset>
 		</form>
-		</p>
+
+
+		<form method="get" action="/red/coder/createCoder">
+			<fieldset>
+				<legend>INSERISCI CODER</legend>
+				<p>
+					nome della nuova persona : <input type="text" name="name">
+
+
+					inserisci il coder in un team: <select name="id_t">
+
+						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
+					</select>
+				</p>
+				<button>conferma</button>
+
+			</fieldset>
+		</form>
+
 		<p>
 		<form method="get" action="/red/coder/setTeam">
+			<fieldset>
+				<legend>MODIFICA CODER</legend>
 
-			Inserisci il nome della persona da modificare :<select name="name">
-				<option th:each="cur: ${data}" th:text="${cur.name}">
-			</select> inserisci il nome del team : <select name="test">
-				<option th:each="cur: ${team}" th:text="${cur.name}"></option>
-			</select>
-
-			<!--  <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p> -->
-			<button>conferma</button>
+				<p>
+					Inserisci il nome della persona da modificare :<select name="name">
+						<option th:each="cur: ${data}" th:text="${cur.name}">
+					</select>
+				</p>
+				<p>
+					inserisci il nome del team : <select name="test">
+						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
+					</select>
+				</p>
+				<!--  <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p> -->
+				<button>conferma</button>
+			</fieldset>
 		</form>
-		</p>
-		<hr />
-		<p>
-		<form method="get" action="/red/coder/createRole">
 
-			inserisci il nome della persona a cui aggiungere un ruolo : <select
-				name="name">
+	<p style="line-height: 250px"></p>
+		<hr />
+		
+		
+		<form method="get" action="/red/coder/createRole">
+		<fieldset>
+		<legend>AGGIUNGI RUOLO A UN CODER</legend>
+
+			<p>inserisci il nome della persona a cui aggiungere un ruolo : <select name="name">
 				<option th:each="cur: ${data}" th:text="${cur.name}"></option>
-			</select> inserisci il nome del nuovo ruolo : <select name="role">
+			</select> </p>
+			
+			<p>inserisci il nome del nuovo ruolo : <select name="role">
 
 				<option th:each="cur: ${role}" th:text="${cur.name}"></option>
-			</select>
+			</select></p>
 
 			<button>conferma</button>
+			</fieldset>
 		</form>
-		</p>
-		<p></p>
+		
+		
+		<p style="line-height: 250px"></p>
+		
 		<p>
 		<form method="get" action="/red/coder/deleteRole">
+		<fieldset>
+		<legend>TOGLIERE RUOLO A UN CODER</legend>
 
-			inserisci il nome della persona a cui togliere un ruolo : <select
+			<p>inserisci il nome della persona a cui togliere un ruolo : <select
 				name="name">
 				<option th:each="cur: ${data}" th:text="${cur.name}"></option>
-			</select> inserisci il nome del ruolo da togliere : <select name="role">
+			</select></p>
+			
+			<p> inserisci il nome del ruolo da togliere : <select name="role">
 
 				<option th:each="cur: ${role}" th:text="${cur.name}"></option>
-			</select>
+			</select></p>
 
 			<button>conferma</button>
-			</p>
+			</fieldset>
+			
 		</form>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
+		
+		<p style="line-height: 250px"></p>
+		
 		<hr>
 		<button>
 			Back to <a href="/red/index.html">Red Homepage</a>

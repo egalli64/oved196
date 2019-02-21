@@ -18,7 +18,7 @@
 
 	<p>The teams:</p>
 
-	<table align=center>
+	<table>
 		<tr>
 
 			<th>TEAM</th>
@@ -32,7 +32,7 @@
 
 	</table>
 
-
+<p style="line-height: 250px"></p>
 
 	<form method="get" action="/red/team/delete">
 <fieldset>
@@ -41,24 +41,22 @@
 			inserisci team da eliminare : <select name="id">
 
 				<option th:each="cur: ${data}" th:text="${cur.name}">
-			</select>
+			</select></p>
 			<button>conferma</button>
 			</fieldset>
 	</form>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
+	<p style="line-height: 150px"></p>
 
 	<form method="get" action="/red/team/create">
 	<fieldset>
 	<legend>CREA TEAM</legend>
 		<p>
-			inserisci nome del team da creare : <input type="text" name="name">
+			inserisci nome del team da creare : <input type="text" name="name"></p>
 			<button>conferma</button>
 			</fieldset>
 	</form>
 
+	<p style="line-height: 250px"></p>
 
 	<form method="get" action="/red/team/rename">
 		<fieldset>
