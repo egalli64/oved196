@@ -36,10 +36,10 @@ public class RedRoleController {
 		return "/red/roles";
 	}
 	
-	private void save(RedCoder coder, Model model) {
+	private void save(RedRole coder, Model model) {
 		logger.trace("save()");
 		try {
-			repositoryCoder.save(coder);
+			repositoryRole.save(coder);
 		} catch (DataAccessException dae) {
 			String message = "Can't give name " + coder.getName() + " to ";
 			if (coder.getId() != 0) {
@@ -59,6 +59,17 @@ public class RedRoleController {
 		
 		return findAll(model);
 	}
+	
+	 @GetMapping("/red/role/createRole")
+	    public String create( //
+	            @RequestParam String nameRole, //
+	            Model model) {
+	        logger.trace("create()");
+
+	        save(new RedRole( nameRole), model);
+	        return findAll(model);
+	    }
+	
 	
 	@GetMapping("/red/role/deleteRole")
 	public String deleteRole(@RequestParam String nameRole, Model model) {

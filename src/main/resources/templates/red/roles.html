@@ -43,18 +43,8 @@
 	<form  method="get" action="/red/role/createRole">
    
    
-   <p> inserisci il nome della persona a cui aggiungere un ruolo :
-   <select name="name">
-
-					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				<p> inserisci il nome del nuovo ruolo :
-   <select name="role">
-
-					<option th:each="cur: ${role}" th:text="${cur.name}"  >
-					</option>
-				</select> 
+   <p> Inserisci ruolo da aggiungere :
+  <input type="text" name="nameRole">
 				
 
  </p> 
@@ -67,18 +57,13 @@
    <form  method="get" action="/red/role/deleteRole">
    
    
-   <p> inserisci il nome della persona a cui togliere un ruolo :
-   <select name="name">
-
-					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				<p> inserisci il nome del ruolo da togliere :
-   <select name="role">
+   <p> Inserisci il ruolo da eliminare :
+   <select name="nameRole">
 
 					<option th:each="cur: ${role}" th:text="${cur.name}"  >
 					</option>
 				</select> 
+
 				
 
  </p> 
