@@ -8,6 +8,7 @@ package dd.red;
 
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +30,14 @@ import dd.red.model.RedRole;
 import dd.red.model.RedRoleRepository;
 import dd.red.model.RedTeam;
 import dd.red.model.RedTeamRepository;
+//import pa.model.Employee;
 
 @Controller
 public class RedCoderController {
 	private static final Logger logger = LoggerFactory.getLogger(RedCoderController.class);
-
+//	private static final String CODER = "IT_PROG";
+	
+	
 	@Autowired
 	RedCoderRepository repository;
 	@Autowired
@@ -78,7 +84,16 @@ public class RedCoderController {
         return findAll(model);
     }
 	
-	
+//	@GetMapping("/sortedStClerk")
+ //   public String sortedcORDERS(Model model) {
+//        logger.debug("Sorted employees");
+
+//        List<RedCoder> result = repository.findByJobId("ST_CLERK", Sort.by(Direction.ASC, "name"));
+
+//        model.addAttribute("employees", result);
+ //       model.addAttribute("msg", " st_clerks sorted by last name");
+//        return "employees";
+//    }
 	
 	
 	

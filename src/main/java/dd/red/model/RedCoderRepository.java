@@ -15,9 +15,9 @@ public interface RedCoderRepository extends CrudRepository<RedCoder, Long> {
 	public void save(RedRole coder);
 	
 	
-	public List<RedCoder> findByJobIdOrderById(String id_c);
+//	public List<RedCoder> findByJobIdOrderById(String id_c);
 
-    public List<RedCoder> findByJobIdOrderByLastName(String name);
+//    public List<RedCoder> findByJobIdOrderByName(String name);
 
 
 }
