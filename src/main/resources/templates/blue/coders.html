@@ -16,6 +16,14 @@
 		<hr />	
 	</div>
 	<p class = you>Lista Programmatori</p>
+	<form action = "blue/teams">
+		<p>Ordina per:  
+			<input type = "radio" name = "by" value = "Team" checked="checked">Team &nbsp
+			<input type = "radio" name = "by" value = "Firstname">Nome &nbsp 
+			<input type = "radio" name = "by" value = "Lastname">Cognome &nbsp
+			<input type = "radio" name = "by" value = "Role">Ruolo &nbsp
+		</p>
+	</form>
 	<table class = due align = center>
 		<tr> 
 			<th scope="col">Nome</th>
@@ -112,15 +120,13 @@
 			<input name="lastname" required="required">
 		</label>
 		<label> Team:
-			<select name="teamid">
-				<option value="0">-</option>			
+			<select name="teamid">			
 				<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
 				</option>
 			</select>
 		</label>
 		<label> Ruolo:
-			<select name="roleid">
-				<option value="0">-</option>			
+			<select name="roleid">			
 				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 				</option>
 			</select>

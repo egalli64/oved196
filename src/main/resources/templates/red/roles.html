@@ -3,101 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <title>Roles (red)</title>
-<link rel="stylesheet" type="text/css"
-	th:href="@{/red/css/styler.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
 <body>
-<section>
-<center>
-	<h2> ROLES </h2>
-	<p>
-		<!--  This is just for debugging purpose: <span th:text="${data}">[]</span> -->
-	</p>
-	<hr />
-	
-	<table>
-	<tr><th>NOMI</th></tr>
-		<tr>
-		
+	<section>
+		<center>
+			<h2>ROLES</h2>
+			<p>
+				<!--  This is just for debugging purpose: <span th:text="${data}">[]</span> -->
+			</p>
+			<hr />
+
+			<table>
+				<tr>
+					<th>NOMI</th>
+					<th>RUOLI</th>
+				</tr>
+				
+				
+				<!--  <tr th:each="cur: ${coder}">
+					<td th:text="${cur.name}">Bjarne 
+					</td> -->
+					
+				
+				<tr th:each="cur: ${coder}">
+			<td th:text="${cur.name}"></td>
 			
-			
-		</tr>
-		<tr th:each="cur: ${coder}">
-		<td th:text="${cur.name}">Bjarne
-	<!--  	<td th:text="${cur.role.name}">Bjarne</td> -->
-		<th:block th:each="role : ${role}">
-				<span th:text="${role.name}">[]</span><span>&nbsp-</span>
+			<th:block th:each="roles : ${cur.roles}">
+				<td th:text="${roles.name}" height=auto >red</td>
 			</th:block>
-		</td>
-			
-		
-		
-			
-			
 		</tr>
-		<tr>
-		
-	
-		
-		
-			
-		</tr>
-		
-	</table>
-	<hr />
-	
-	<form  method="get" action="/red/role/createRole">
-   
-   
-   <p> inserisci il nome della persona a cui aggiungere un ruolo :
-   <select name="name">
-
-					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				<p> inserisci il nome del nuovo ruolo :
-   <select name="role">
-
-					<option th:each="cur: ${role}" th:text="${cur.name}"  >
-					</option>
-				</select> 
 				
 
- </p> 
-   
-   
-   <button >conferma</button></form>
-   
-   <p></p>
-   
-   <form  method="get" action="/red/role/deleteRole">
-   
-   
-   <p> inserisci il nome della persona a cui togliere un ruolo :
-   <select name="name">
 
-					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				<p> inserisci il nome del ruolo da togliere :
-   <select name="role">
 
-					<option th:each="cur: ${role}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				
 
- </p> 
-   
-   
-   <button >conferma</button></form>
-   
-     <p></p>
-   
-   <form  method="get" action="/red/role/setRole">
-   
-   
-<!--    <p> inserisci il nome della persona a cui modificare un ruolo :
+
+				</tr>
+				<tr>
+
+
+
+
+
+				</tr>
+
+			</table>
+			<hr />
+
+			<form method="get" action="/red/role/createRole">
+
+
+				<p>
+					inserisci il nome della persona a cui aggiungere un ruolo : <select
+						name="name">
+
+						<option th:each="cur: ${coder}" th:text="${cur.name}">
+						</option>
+					</select>
+				<p>
+					inserisci il nome del nuovo ruolo : <select name="role">
+
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+
+
+				</p>
+
+
+				<button>conferma</button>
+			</form>
+
+			<p></p>
+
+			<form method="get" action="/red/role/deleteRole">
+
+
+				<p>
+					inserisci il nome della persona a cui togliere un ruolo : <select
+						name="name">
+
+						<option th:each="cur: ${coder}" th:text="${cur.name}">
+						</option>
+					</select>
+				<p>
+					inserisci il nome del ruolo da togliere : <select name="role">
+
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+
+
+				</p>
+
+
+				<button>conferma</button>
+			</form>
+
+			<p></p>
+
+			<form method="get" action="/red/role/setRole">
+
+
+				<!--    <p> inserisci il nome della persona a cui modificare un ruolo :
    <select name="name">
 
 					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
@@ -121,16 +128,17 @@
    
    
    <button >conferma</button></form>
-	--> 
-	
-		 <p></p>
- <p></p>
- <p></p>
+	-->
+
+				<p></p>
+				<p></p>
+				<p></p>
 
 
-	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
-	
-</center>
-</section>
+				<button>
+					Back to <a href="/red/index.html">Red Homepage</a>
+				</button>
+		</center>
+	</section>
 </body>
 </html>
