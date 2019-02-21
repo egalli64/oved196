@@ -35,14 +35,16 @@ public class RedTeamController {
 	 
 	 private void save(RedTeam team, Model model) {
 	        logger.trace("save()");
+	        String message;
 	        try {
 	            repository.save(team);
+	             message = "azione eseguita correttamente";
 	        } catch (DataAccessException dae) {
-	            String message = "Can't give name " + team.getName() + " to ";
+	             message = "non puoi dargli quel nome " + team.getName() + " al ";
 	            if (team.getId() != 0) {
 	                message += " team " + team.getId();
 	            } else {
-	                message += " your new team";
+	                message += " al tuo nuovo";
 	            }
 	            logger.error(message);
 	            model.addAttribute("msg", message);
