@@ -5,6 +5,12 @@ text-align: center;
 
   
 background:  -webkit-radial-gradient(center, circle farthest-corner, #FF0000 0%, #ffc1c1 100%);
+
+}
+
+fieldset{
+	max-width: 700px;
+	margin: auto;
 }
 
 section
@@ -21,7 +27,7 @@ table {
 	background: #f5ffff;
   border-collapse: collapse;
   text-align: center;
-  
+  margin: auto;
   
 }
  
