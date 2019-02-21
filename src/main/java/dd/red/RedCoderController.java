@@ -30,7 +30,8 @@ import dd.red.model.RedRole;
 import dd.red.model.RedRoleRepository;
 import dd.red.model.RedTeam;
 import dd.red.model.RedTeamRepository;
-//import pa.model.Employee;
+
+
 
 @Controller
 public class RedCoderController {
@@ -188,6 +189,24 @@ public class RedCoderController {
 	     
 	        return findAll(model);
 	    }
+		@GetMapping("/red/coder/orderByName")
+		public String orderByName( Model model) {
+			model.addAttribute("data", repository.findAllByOrderByName());
+			model.addAttribute("team", repositoryTeam.findAll());
+			model.addAttribute("role", repositoryRole.findAll());
+			return "/red/coders";
+		}
+		/* @GetMapping("/sortedStClerk")
+	    public String sortedEmployees(Model model) {
+	        logger.debug("Sorted employees");
+
+	        List<Employee> result = repo.findByJobId("ST_CLERK", Sort.by(Direction.ASC, "lastName"));
+
+	        model.addAttribute("employees", result);
+	        model.addAttribute("msg", " st_clerks sorted by last name");
+	        return "employees";
+	    }*/
+
 	 
 	 
 	
