@@ -1,12 +1,10 @@
 body {
-   
-  margin: auto;
-   
- padding: auto;
 
- 
+text-align: center;
+
+
   
- background:  -webkit-radial-gradient(center, circle farthest-corner, #FF0000 0%, #ffc1c1 100%);
+background:  -webkit-radial-gradient(center, circle farthest-corner, #FF0000 0%, #ffc1c1 100%);
 }
 
 section
@@ -22,7 +20,9 @@ table {
 	
 	background: #f5ffff;
   border-collapse: collapse;
-  text-align: left;
+  text-align: center;
+  
+  
 }
  
  table th{
@@ -144,5 +144,7 @@ h1 span{
 h2 {
 	color: lime;
 }
+
+
  
 }
