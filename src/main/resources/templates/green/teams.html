@@ -6,10 +6,10 @@
 <title>TEAMS (green)</title>
 <link rel="stylesheet" type="text/css"
 	th:href="@{/green/css/styles.css}">
-</head>
-<font face="Verdana" size="6" color="#ccffcc">
-	<h1>TEAMS</h1>
-</font>
+</head><center>
+<font face="Verdana" size="6" color="green">
+	<h2>TEAMS</h2>
+</font></center>
 <body>
 
 
@@ -21,13 +21,13 @@
 -->
 	<div th:if="${msg}">
 		<p>
-			Comando ricevuto: <span th:text=${msg}>hello!</span>
+			<i><font face="Verdana" size="2" color="white">Comando ricevuto:</font></i><font face="Verdana" size="2" color="white"><i><span th:text=${msg}>hello!</span></i></font>
 		</p>
 		<hr />
 	</div>
 
 	<center>
-		<table>
+		<table  width=”500″ border=”8″ cellpadding=”10″>
 			<tr>
 				<th><font face="Verdana" size="6" color="green">
 
@@ -52,7 +52,7 @@
 					Crea nuovo Team: <input name="name" required="required">
 			</font>
 			</label>
-			<button>Go!</button>
+			<button>Enter</button>
 
 		</form>
 		<hr />
@@ -69,7 +69,7 @@
 			</font>
 			</label> <label> <input name="name" required="required">
 			</label>
-			<button>Go!</button>
+			<button>Enter</button>
 		</form>
 		<hr />
 		<form method="get" action="/green/teams/delete">
@@ -85,14 +85,16 @@
 				</select>
 			</font>
 			</label>
-			<button>Go!</button>
-		</form>
-		<hr />
+			<button>Enter</button>
+			</form>
+	<hr />
 		<p>
-			<br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
+			<br></br> <br></br> <br></br> 
 		<p>
-			Torna <a href="/green/index.html">homepage team green</a>
+	<font face="Verdana" size="3" color="white">Torna <a href="/green/index.html">homepage team green</a></font>
 		</p>
+	</center>
+<br></br><br></br>
 </body>
 </center>
 </html>
