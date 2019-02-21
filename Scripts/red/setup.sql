@@ -4,7 +4,11 @@
 --create user oved identified by password account unlock;
 --grant connect, resource to oved;
 --alter user oved quota unlimited on users;
-
+--drop older table
+DROP TABLE RED_CODERS_ROLES;
+DROP TABLE RED_ROLES;
+DROP TABLE RED_CODERS;
+DROP TABLE RED_TEAMS;
 -- teams
 CREATE TABLE RED_teams(
 	team_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
