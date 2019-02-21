@@ -5,17 +5,20 @@
 <title>Roles (green)</title>
 <link rel="stylesheet" type="text/css"
 	th:href="@{/green/css/styles.css}">
-</head>
+</head><center>
+<font face="Verdana" size="6" color="green">
+	<h2>Roles</h2>
+	</font></center>
 <body>
-	<h1>Roles</h1>
 	<!-- <p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
 	</p>
 	<hr />-->
-	<p>The roles:</p>
-	<table>
+	<!--<p>The roles:</p>  -->
+	<center>
+	<table  width=”500″ border=”8″ cellpadding=”10″>
 		<tr>
-			<th>ROLES</th>
+	<th><font face="Verdana" size="6" color="green"><h3>NAME</h3></font></th>
 			<!-- <th>NAME</th> -->
 
 		</tr>
@@ -30,19 +33,51 @@
 
 
 	</table>
-
-	<form action="/green/roles/rename">
-		<label>Change role: <select name="id">
+	</center>
+	<br></br>
+	<br></br>
+	<hr />
+<center>
+	<form action="/green/roles/change_role">
+		<label><font face="Verdana" size="5" color="#ccffcc">Cambia role: 
+		<select name="id_role">
 				<option th:each="cur: ${data}" th:value="${cur.id}"
 					th:text="${cur.name}">green</option>
 		</select>
-		</label> <label>as: <input name="name" required="required">
+		</font></label> 
+		<label><input name="role_name" required="required">
 		</label>
-		<button>Go!</button>
+		<button>Enter</button>
 	</form>
-
-
-
+	<br></br>
+	<hr />
+	<form action="/green/roles/add_role">
+		<label><font face="Verdana" size="5" color="#ccffcc">Aggiungi role: 
+		<input name="role_name" required="required"></font>
+		</label>
+		<button>Enter</button>
+	</form>
+	<br></br>
+	<hr />
+	<form action="/green/roles/remove_role">
+		<label><font face="Verdana" size="5" color="#ccffcc">Elimina role: 
+		<select name="id_role">
+				<option th:each="cur: ${data}" th:value="${cur.id}"
+					th:text="${cur.name}">green</option>
+		</select>
+		</font></label> 
+		<button>Enter</button>
+	</form>
+	<br></br>
+	<hr />
+		<p>
+			<br></br> <br></br> <br></br> 
+		<p>
+			 <font face="Verdana" size="3" color="white">Torna <a href="/green/index.html">homepage team green</a></font>
+		</p>
+	</center>
+<br></br>
+<br></br>
 </body>
 
 </html>

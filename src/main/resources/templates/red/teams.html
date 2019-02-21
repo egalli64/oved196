@@ -8,76 +8,87 @@
 
 <body>
 
-	<h2>
+	<h2>TEAMS</h2>
+	<div th:if="${msg}">
+		<span th:text=${msg}>hello!</span>
+	</div>
 
-			TEAMS
-			
 
-			
 
-		</h2>
-		<div th:if="${msg}">
-		<span th:text=${msg}>hello!</span></div>
-	
-	
-	
-	
+
 	<p>The teams:</p>
-	<table>
+
+	<table align=center>
 		<tr>
-			
+
 			<th>TEAM</th>
-			
+
 		</tr>
 		<tr th:each="cur: ${data}">
 			<td th:text="${cur.name}">Bjarne</td>
-			
-			
+
+
 		</tr>
+
 	</table>
-	
-	
-	<form  method="get" action="/red/team/delete">
-   <p>
-				inserisci team da eliminare : <select
-					name="id">
+
+
+
+	<form method="get" action="/red/team/delete">
+<fieldset>
+<legend>ELIMINA TEAM</legend>
+		<p>
+			inserisci team da eliminare : <select name="id">
+
+				<option th:each="cur: ${data}" th:text="${cur.name}">
+			</select>
+			<button>conferma</button>
+			</fieldset>
+	</form>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+
+	<form method="get" action="/red/team/create">
+	<fieldset>
+	<legend>CREA TEAM</legend>
+		<p>
+			inserisci nome del team da creare : <input type="text" name="name">
+			<button>conferma</button>
+			</fieldset>
+	</form>
+
+
+	<form method="get" action="/red/team/rename">
+		<fieldset>
+			<legend>MODIFICA TEAM</legend>
+			<p>
+				inserisci team da modificare : <select name="id">
 
 					<option th:each="cur: ${data}" th:text="${cur.name}">
 				</select>
-				<button >conferma</button>
-   </form>
-   <p> </p>
-   <p> </p>
-   <p> </p>
-   <p> </p>
+			</p>
+		
+		
+		
+			<p>
+				inserisci il nome nuovo : <input type="text" name="name">
+			</p>
+			<button>conferma</button>
+		</fieldset>
+	</form>
 
-	<form  method="get" action="/red/team/create">
-   <p> inserisci nome del team da creare : <input type="text" name="name"> 
-   <button >conferma</button></form>
-   
-   
-   <form  method="get" action="/red/team/rename">
-    <p> inserisci team da modificare : <select
-					name="id">
-
-					<option th:each="cur: ${data}" th:text="${cur.name}">
-				</select>
+	<p></p>
+	<p></p>
+	<p></p>
+	<hr>
 
 
+	<button>
+		Back to <a href="/red/index.html">Red Homepage</a>
+	</button>
 
 
- </p>
-   <p> inserisci il nome nuovo : <input type="text" name="name"> </p>
-   <button >conferma</button></form>
-   
- <p></p>
- <p></p>
- <p></p>
- <hr>
-
-
-	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
-	
-	
 </body>
 </html>

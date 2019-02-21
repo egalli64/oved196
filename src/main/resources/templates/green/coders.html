@@ -8,45 +8,44 @@
 <link rel="stylesheet" type="text/css"
 	th:href="@{/green/css/styles.css}">
 </head>
-<font face="Verdana" size="6" color="#ccffcc">
-	<h1>CODERS</h1>
-</font>
+<center><font face="Verdana" size="6" color="green">
+	<h2>CODERS</h2>
+</font></center>
 <body>
 
-	This is just for debugging purpose:
+	<!--  This is just for debugging purpose:
 	<span th:text="${dataCoders}">[]</span>,
 	<span th:text="${dataTeams}">[]</span>,
-	<span th:text="${dataRoles}">[]</span>
+	<span th:text="${dataRoles}">[]</span>-->
 
 <center>
-	<table>
+	<table  border=”0.5″ >
 		
 		<tr>
-			<th><font face="Verdana" size="6" color="green">
+			<td><font face="Verdana" size="6" color="green">
 
 					<h3>NAME</h3>
-			</font></th>
-			<th><font face="Verdana" size="6" color="green">
+			</font></td>
+			<td><font face="Verdana" size="6" color="green">
 
 					<h3>SURNAME</h3>
-			</font></th>
-			<th><font face="Verdana" size="6" color="green">
+			</font></td>
+			<td><font face="Verdana" size="6" color="green">
 					<h3>TEAM</h3>
-			</font></th>
+			</font></td>
 
-			<th><font face="Verdana" size="6" color="green">
-
-					<h3>ROLE</h3>
-			</font></th>
+			<td ><font face="Verdana" size="6" color="green">
+							<h3>ROLE</h3></font>
+			</td>
 
 		</tr>
 		<tr th:each="cur: ${dataCoders}">
 			<td th:text="${cur.name}"></td>
 			<td th:text="${cur.surname}"></td>
 			<td th:text="${cur.team.name}"></td>
-			<th:block th:each="roles : ${cur.roles}">
-				<td th:text="${roles.name}">green</td>
-			</th:block>
+			<td><th:block th:each="roles : ${cur.roles}">
+				<span th:text="|-${roles.name}|">green</span><span>&nbsp</span>
+			</th:block></td>
 		</tr>
 		
 	</table>
@@ -133,7 +132,7 @@
 	</form>
 	<hr />
 	<p>
-		Torna <a href="/green/index.html">homepage team green</a>
+		<font face="Verdana" size="3" color="white">Torna <a href="/green/index.html">homepage team green</a></font>
 	</p>
 	</center>
 </body>
