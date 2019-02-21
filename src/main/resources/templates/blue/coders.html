@@ -112,15 +112,13 @@
 			<input name="lastname" required="required">
 		</label>
 		<label> Team:
-			<select name="teamid">
-				<option value="0">-</option>			
+			<select name="teamid">			
 				<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
 				</option>
 			</select>
 		</label>
 		<label> Ruolo:
-			<select name="roleid">
-				<option value="0">-</option>			
+			<select name="roleid">			
 				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
 				</option>
 			</select>

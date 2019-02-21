@@ -110,17 +110,19 @@ public class BlueTeamController {
 	@GetMapping("/blue/settings/delete")
 	public String delete(@RequestParam Integer id, Model model) {
 		if (id == 0) {
-			String message = "Attenzione seleziona tutti i campi!";
+			String message = "Attenzione! Selezionare un team.";
 			model.addAttribute("msg", message);
-		} else {
-			try {
-				teamRepo.deleteById(id);
-			} catch (DataAccessException dae) {
-				String message = String.format("Can't delete team %d", id);
-				// logger.error(message);
-				model.addAttribute("msg", message);
-			}
+			return settings(model);
+		} 
+		
+		try {
+			teamRepo.deleteById(id);
+		} catch (DataAccessException dae) {
+			String message = String.format("Can't delete team %d", id);
+			// logger.error(message);
+			model.addAttribute("msg", message);
 		}
+		
 		return settings(model);
 	}
 }
