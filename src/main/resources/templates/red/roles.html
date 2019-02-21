@@ -41,27 +41,31 @@
 
 		</table>
 		<hr />
+<p style="line-height: 250px"></p>
 
 		<form method="get" action="/red/role/createRole">
+		<fieldset>
+		<legend>CREA RUOLO</legend>
 
 
 			<p>
-				Inserisci ruolo da aggiungere : <input type="text" name="nameRole">
+				 ruolo da aggiungere : <input type="text" name="nameRole">
 
 
 			</p>
 
 
 			<button>conferma</button>
+			</fieldset>
 		</form>
 
-		<p></p>
+<p style="line-height: 250px"></p>
 
 		<form method="get" action="/red/role/deleteRole">
-
-
+<fieldset>
+<legend>ELIMINA RUOLO</legend>
 			<p>
-				Inserisci il ruolo da eliminare : <select name="nameRole">
+				ruolo da eliminare : <select name="nameRole">
 
 					<option th:each="cur: ${role}" th:text="${cur.name}"></option>
 				</select>
@@ -72,6 +76,7 @@
 
 
 			<button>conferma</button>
+			</fieldset>
 		</form>
 
 		<p></p>
