@@ -28,18 +28,18 @@ CREATE TABLE RED_coders(
 );
 
 
-INSERT INTO RED_coders (coder_name,team_id)values('Luca Marascio', 1);
-INSERT INTO RED_coders (coder_name,team_id)values('Giovanni Cufari', 1);
-INSERT INTO RED_coders (coder_name,team_id)values ('Giovanni Patrone', 1);
-INSERT INTO RED_coders (coder_name,team_id)values('Christian Rondeno', 1);
-INSERT INTO RED_coders (coder_name,team_id)values('Luana Gigliotti', 2);
-INSERT INTO RED_coders (coder_name,team_id)values('Alessandra Napoli', 2);
-INSERT INTO RED_coders (coder_name,team_id)values('Michele Vatri', 2);
-INSERT INTO RED_coders (coder_name,team_id)values('Enrico Deli', 2);
-INSERT INTO RED_coders (coder_name,team_id)values('Alessandra D''Isabella', 3);
-INSERT INTO RED_coders (coder_name,team_id)values('Carlo Contestabile', 3);
-INSERT INTO RED_coders (coder_name,team_id)values('Riccardo Garritano', 3);
-INSERT INTO RED_coders (coder_name,team_id)values('Kelly Miotto', 3);
+INSERT INTO RED_coders (coder_name,team_id)values('Luca Marascio', 2);
+INSERT INTO RED_coders (coder_name,team_id)values('Giovanni Cufari', 2);
+INSERT INTO RED_coders (coder_name,team_id)values ('Giovanni Patrone', 2);
+INSERT INTO RED_coders (coder_name,team_id)values('Christian Rondeno', 2);
+INSERT INTO RED_coders (coder_name,team_id)values('Luana Gigliotti', 3);
+INSERT INTO RED_coders (coder_name,team_id)values('Alessandra Napoli', 3);
+INSERT INTO RED_coders (coder_name,team_id)values('Michele Vatri', 3);
+INSERT INTO RED_coders (coder_name,team_id)values('Enrico Deli', 3);
+INSERT INTO RED_coders (coder_name,team_id)values('Alessandra D''Isabella', 4);
+INSERT INTO RED_coders (coder_name,team_id)values('Carlo Contestabile', 4);
+INSERT INTO RED_coders (coder_name,team_id)values('Riccardo Garritano', 4);
+INSERT INTO RED_coders (coder_name,team_id)values('Kelly Miotto', 4);
 
 -- roles
 CREATE TABLE RED_roles(
