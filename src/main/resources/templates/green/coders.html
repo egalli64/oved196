@@ -59,7 +59,7 @@
 			<label><font face="Verdana" size="5" color="#ccffcc">Cambia
 					team: <select name="id_coder">
 						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
-							th:text="${cur.name}">green</option>
+							th:text="|${cur.name} ${cur.surname}|">green</option>
 				</select>
 			</font> </label> <label> <select name="id_team">
 					<option th:each="cur: ${dataTeams}" th:value="${cur.id}"
@@ -76,7 +76,7 @@
 		<label> <font face="Verdana" size="5" color="#ccffcc">Aggiungi
 				nuovo Role: <select name="id_coder">
 					<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
-						th:text="${cur.name}">green</option>
+						th:text="|${cur.name} ${cur.surname}|">green</option>
 			</select>
 		</font>
 		</label> <label> <select name="id_role">
@@ -93,7 +93,7 @@
 		<label> <font face="Verdana" size="5" color="#ccffcc">Elimina
 				Role: <select name="id_coder">
 					<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
-						th:text="${cur.name}">green</option>
+						th:text="|${cur.name} ${cur.surname}|">green</option>
 			</select>
 		</font></label> <label> <select name="id_role">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}"
@@ -108,15 +108,16 @@
 	<form method="get" action="/green/coders/rename_role">
 
 		<label> <font face="Verdana" size="5" color="#ccffcc">Aggiungi
-				nuovo Coder: <select name="id_coder">
-					<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
-						th:text="${cur.name}">green</option>
-			</select>
-		</font></label> <label><select name="id_role">
+				nuovo Coder: <input name="coders.name" required="required">
+				
+		</font></label> <label>
+			<input name="roles.name" required="required">
+			</label>
+			<label> <select name="id_role">
 				<option th:each="cur: ${dataRoles}" th:value="${cur.id}"
 					th:text="${cur.name}">green</option>
-		</select> </label>
-
+		</select>
+		</label>
 		<button>Enter</button>
 	</form>
 
@@ -125,7 +126,7 @@
 		<label> <font face="Verdana" size="5" color="#ccffcc">Elimina
 				Coder: <select name="id_coder">
 					<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
-						th:text="${cur.name}">green</option>
+							th:text="|${cur.name} ${cur.surname}|">green</option>
 			</select>
 		</font></label>
 		<button>Enter</button>

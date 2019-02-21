@@ -62,8 +62,8 @@
 			<label> <font face="Verdana" size="5" color="#ccffcc">
 
 					Rinomina team: <select name="id_team">
-<!--  <<<<<<< HEAD
-						<option th:each="cur: ${dataTeams}" th:value="${cur.id}"
+
+						<option th:each="cur: ${data}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
 				</select>
 			</font>
@@ -75,22 +75,10 @@
 		<form method="get" action="/green/teams/delete">
 			<label> <font face="Verdana" size="5" color="#ccffcc">
 
-=======-->
-				<option th:each="cur: ${data}" th:value="${cur.id}" th:text="${cur.name}">
-					green
-				</option>
-			</select>
-		</font>	</label> 
-		<label>con: <input name="name" required="required">
-		</label>
-		<button>Go!</button>
-		</center>
-	</form>
-	<hr />
 	<form method="get" action="/green/teams/delete">
 		<label> <font face="Verdana" size="5" color="#ccffcc">
 				<center>
-<!-->>>>>>> branch 'master' of https://github.com/egalli64/oved196.git-->
+
 					Elimina team: <select name="id">
 						<option th:each="cur: ${data}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
