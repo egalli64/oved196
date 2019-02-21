@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -82,11 +81,11 @@ public class BlueCoderController {
 			coders = coderRepo.findAllByOrderByLastname();
 			break;
 
-//		case "Team":
-//			coders = coderRepo.findAllByOrderById();
-//			break;
-////
-//		case "Role":
+		case "Team":
+		coders = coderRepo.findAllByOrderByTeam();
+		break;
+
+//	case "Role":
 //			coders = coderRepo.findAllOrderByRole();
 //			break;
 
