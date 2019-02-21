@@ -39,37 +39,6 @@ public class BlueTeamController {
 		model.addAttribute("teams", teamRepo.findAll());
 		return "/blue/settings";
 	}
-	
-	@GetMapping("/blue/teams/orderby")
-	public String orderBy(@RequestParam String by, Model model) {
-
-		List<BlueCoder> coders;
-
-		switch (by) {
-		case "firstname":
-			coders = coderRepo.findAllByOrderByFirstname();
-			break;
-
-		case "lastname":
-			coders = coderRepo.findAllByOrderByLastname();
-			break;
-
-		case "Team":
-		coders = coderRepo.findAllByOrderByTeam();
-		break;
-
-//	case "Role":
-//			coders = coderRepo.findAllOrderByRole();
-//			break;
-
-		default:
-			coders = coderRepo.findAllByOrderByIdCoder();
-		}
-		
-		model.addAttribute("coders", coders);
-		model.addAttribute("teams", teamRepo.findAll());
-		return "/blue/teams";
-	}
 
 	private void save(BlueTeam team, Model model) {
 		// logger.trace("save()");
