@@ -10,10 +10,17 @@
 	<h2>Roles</h2>
 	</font></center>
 <body>
+<div th:if="${msg}">
+		<p>
+			<i><font face="Verdana" size="2" color="white">Comando ricevuto:</font></i><font face="Verdana" size="2" color="white"><i><span th:text=${msg}>hello!</span></i></font>
+		</p>
+		<hr />
+	</div>
 	<!-- <p>
 		This is just for debugging purpose: <span th:text="${data}">[]</span>
 	</p>
 	<hr />-->
+	
 	<!--<p>The roles:</p>  -->
 	<center>
 	<table  width=”500″ border=”8″ cellpadding=”10″>
