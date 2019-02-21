@@ -3,102 +3,171 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Red Coders </title>
+<title>Red Coders</title>
 <link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
 <hr>
 
 <body>
-<section>
-<center>
-	 <h2>CODERS </h2>
-	<p>
-	
-		  This is just for debugging purpose: <span th:text="${team}">[]</span> 
-	</p>
-	<hr />
-	
-	
-	<table>
-	
-		<tr>
-			<th>NAME</th>
-			<th>TEAM</th>
-		</tr>
-		<tr th:each="cur: ${data}">
-			<td th:text="${cur.name}">Bjarne</td>
-		  	<td th:text="${cur.team.name}">red</td> 
-		</tr>
-		
-	</table>
-	
-	
-	
-	<form  method="get" action="/red/coder/deleteCoder">
-   <p> inserisci il nome della persona da eliminare : 
-   <select name="name">
+	<section>
+		<center>
+			<h2>CODERS</h2>
+			<p>
 
-					<option th:each="cur: ${data}" th:text="${cur.name}">
-				</select>
+				This is just for debugging purpose: <span th:text="${team}">[]</span>
+			</p>
+			<hr />
 
 
-   <button >conferma</button>
-   </form>
-</p>
-	<form  method="get" action="/red/coder/createCoder">
-   
-   <p> inserisci nome della nuova persona : <input type="text" name="name"> </p>
-   <p> inserisci il nome del team :
-   <select name="id_t">
-
-					<option th:each="cur: ${team}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				
-
- </p> 
-   
-   
-   <button >conferma</button></form>
-   
-   <form  method="get" action="/red/coder/setTeam">
-    <p> Inserisci il nome della persona da modificare :<select
-					name="name">
-
-					<option th:each="cur: ${data}" th:text="${cur.name}">
-				</select> 
+			<table>
+				<tr>
+					<th>NOMI</th>
+					<th>TEAM</th>
+					<th>RUOLI</th>
+				</tr>
+				<tr>
 
 
- </p>
-  <p> inserisci il nome del team :
-   <select name="test">
 
-					<option th:each="cur: ${team}" th:text="${cur.name}"  >
-					</option>
-				</select> 
-				
-
- </p> 
-  <!--  <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p> --> 
-   <button >conferma</button></form>
-   
-	
-	
-	<hr />
-	
-	<p></p>
- <p></p>
- <p></p>
+				</tr>
+				<tr th:each="cur: ${data}">
+					<td th:text="${cur.name}"></td>
+					<td th:text="${cur.team.name}"></td>
+					<th:block th:each="roles : ${cur.roles}">
+						<td th:text="${roles.name}">red</td>
+					</th:block>
+				</tr>
+				<tr>
 
 
-	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
-	
-	<hr>
-<div th:if="${msg}">
-		<p><span th:text=${msg}>hello!</span></p>
-		<hr />	 
-</center>
-</section>
+
+
+
+				</tr>
+
+			</table>
+
+
+
+			<form method="get" action="/red/coder/deleteCoder">
+				<p>
+					inserisci il nome della persona da eliminare : <select name="name">
+
+						<option th:each="cur: ${data}" th:text="${cur.name}">
+					</select>
+
+
+					<button>conferma</button>
+			</form>
+			</p>
+			<form method="get" action="/red/coder/createCoder">
+
+				<p>
+					inserisci nome della nuova persona : <input type="text" name="name">
+				</p>
+				<p>
+					inserisci il nome del team : <select name="id_t">
+
+						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
+					</select>
+
+
+				</p>
+
+
+				<button>conferma</button>
+			</form>
+
+			<form method="get" action="/red/coder/setTeam">
+				<p>
+					Inserisci il nome della persona da modificare :<select name="name">
+
+						<option th:each="cur: ${data}" th:text="${cur.name}">
+					</select>
+
+
+				</p>
+				<p>
+					inserisci il nome del team : <select name="test">
+
+						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
+					</select>
+
+
+				</p>
+				<!--  <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p> -->
+				<button>conferma</button>
+			</form>
+
+
+
+			<hr />
+
+			<form method="get" action="/red/coder/createRole">
+
+
+				<p>
+					inserisci il nome della persona a cui aggiungere un ruolo : <select
+						name="name">
+
+						<option th:each="cur: ${data}" th:text="${cur.name}"></option>
+					</select>
+				<p>
+					inserisci il nome del nuovo ruolo : <select name="role">
+
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+
+
+				</p>
+
+
+				<button>conferma</button>
+			</form>
+
+			<p></p>
+
+			<form method="get" action="/red/coder/deleteRole">
+
+
+				<p>
+					inserisci il nome della persona a cui togliere un ruolo : <select
+						name="name">
+
+						<option th:each="cur: ${data}" th:text="${cur.name}"></option>
+					</select>
+				<p>
+					inserisci il nome del ruolo da togliere : <select name="role">
+
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+
+
+				</p>
+
+
+				<button>conferma</button>
+			</form>
+
+			<p></p>
+
+			<p></p>
+			<p></p>
+			<p></p>
+
+
+			<button>
+				Back to <a href="/red/index.html">Red Homepage</a>
+			</button>
+
+			<hr>
+			<div th:if="${msg}">
+				<p>
+					<span th:text=${msg}>hello!</span>
+				</p>
+				<hr />
+		</center>
+	</section>
 </body>
 
 </html>

@@ -147,30 +147,31 @@ public class BlueCoderController {
 		Set<BlueRole> codrol = coder.getRole();
 		Iterator<BlueRole> itr = codrol.iterator();
 
-		if (!(codrol.contains(role))) {
-			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname() + " non ha il ruolo di "
-					+ role.getNomeRole() + "!";
-			logger.error(message);
-			model.addAttribute("msg", message);
-			return coders(model);
-		}
-		int size = codrol.size();
-		if (size > 1) {
-			while (itr.hasNext()) {
-				if (itr.next().getIdRole() == roleid) { // c'è
-					itr.remove();
-					coderRepo.save(coder);
-					break;
-				}
-			}
-		} else {
+		if (codrol.size() == 1) {
 			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname()
 					+ " deve avere almeno un ruolo!";
 			logger.error(message);
 			model.addAttribute("msg", message);
 			return coders(model);
 		}
-		model.addAttribute("msg", ok);
+
+
+		while (itr.hasNext()) {
+			if (itr.next().getIdRole() == roleid) { // c'è
+				itr.remove();
+				coderRepo.save(coder);
+				model.addAttribute("msg", ok);
+				return coders(model);
+			}
+		}
+		
+		if (!(model.containsAttribute(ok))) {
+			String message = "Attenzione: " + coder.getFirstname() + " " + coder.getLastname() + " non ha il ruolo di "
+					+ role.getNomeRole() + "!";
+			logger.error(message);
+			model.addAttribute("msg", message);
+			return coders(model);
+		}
 		return coders(model);
 	}
 

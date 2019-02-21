@@ -83,7 +83,7 @@ public class RedTeamController {
 	        return findAll(model);
 	    }
 	 
-	 @GetMapping("/red/team/delete")
+	@GetMapping("/red/team/delete")
 	    public String delete( 
 	            @RequestParam String id, 
 	            Model model) {

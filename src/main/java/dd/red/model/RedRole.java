@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,6 +25,7 @@ public class RedRole {
 
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ROLE_ID")
 	private long id;
 
@@ -36,11 +39,11 @@ public class RedRole {
 	List<RedCoder> coders;
 
 
-	protected RedRole() {
+	public RedRole() {
 	}
 
-	public RedRole(long id, String name) {
-		this.id = id;
+	public RedRole( String name) {
+		
 		this.name = name;
 	}
 
