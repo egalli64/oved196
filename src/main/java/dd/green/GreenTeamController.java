@@ -37,6 +37,8 @@ public class GreenTeamController {
 		logger.trace("Saved");
 		try {
 			repository.save(team);
+			String message = "Team " + team.getName() + " inserito con successo";
+			model.addAttribute("msg", message);
 		} catch (DataAccessException dae) {
 			String message = "Non puoi! " + team.getName() + " già esistente";
 			logger.error(message);
@@ -61,22 +63,22 @@ public class GreenTeamController {
 		}
 		if (message.equals("")) {
 			save(new GreenTeam(upperName), model);
+			
 		}
-
-		model.addAttribute("data", repository.findAll());
+						
 		return findAll(model);
 	}
 
 	@GetMapping("/green/teams/rename")
 	public String rename( //
-			@RequestParam long id, //
+			@RequestParam long id_team, //
 			@RequestParam String name, //
 			Model model) {
 		logger.trace("rename()");
 
 		String upperName = name.toUpperCase();
 		String message = "";
-		Optional<GreenTeam> opt = repository.findById(id);
+		Optional<GreenTeam> opt = repository.findById(id_team);
 		Iterable<GreenTeam> teams = repository.findAll();
 		for (GreenTeam t : teams) {
 			if (t.getName().equalsIgnoreCase(name)) {
@@ -109,7 +111,7 @@ public class GreenTeamController {
 		try {
 			repository.deleteById(id);
 		} catch (DataAccessException dae) {
-			String message = String.format("Non è possibile eliminare il team");
+			String message = String.format("Non puoi eliminare il team selezionato");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
