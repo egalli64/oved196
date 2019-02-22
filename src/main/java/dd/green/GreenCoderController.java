@@ -80,17 +80,19 @@ public class GreenCoderController {
 		Optional<GreenCoder> optCoders = repositoryCoders.findById(id_coder);
 		Optional<GreenTeam> optTeam = repositoryTeams.findById(id_team);
 
-		if (optCoders.isPresent()) {
+		if (optCoders.isPresent() && optTeam.get().getId() != optCoders.get().getTeam().getId() ) {
 			GreenCoder coder = optCoders.get();
 			logger.debug(String.format("Squadra %s rinominato in %s", coder.getTeam(), optTeam.get().getName()));
 			GreenTeam team = new GreenTeam(id_team);
 			coder.setTeam(team);
 			save(coder, model);
-			String message = coder.getName() + " " + coder.getSurname() + " è passato nella squadra " + optTeam.get().getName();
+			String message = coder.getName() + " " + coder.getSurname() + " è ora nella squadra " + optTeam.get().getName();
 			model.addAttribute("msg", message);
-		} else {
+		}else{ 
+			GreenTeam team = optTeam.get();
 			GreenCoder coder = optCoders.get();
-			String message = coder.getName() + " " + coder.getSurname() + "è già nella squadra " + optTeam.get().getName();
+			String message = coder.getName() + " " + coder.getSurname() + " è già nella squadra " + team.getName();
+			model.addAttribute("msg", message);
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
@@ -119,7 +121,13 @@ public class GreenCoderController {
 		if (check == false) {
 			rol_cod.add(role);
 			repositoryCoders.save(coder);
-			String message = coder.getRoles() + " creato";
+			String message = "Ruolo "+ role.getName() + " assegnato a "+ repositoryCoders.findById(id_coder).get().getName() + " " + repositoryCoders.findById(id_coder).get().getSurname();
+			model.addAttribute("msg", message);
+		}else{ 
+			
+			String message = coder.getName() + " " + coder.getSurname() + " ha già il ruolo " + role.getName();
+			model.addAttribute("msg", message);
+			logger.error(message);
 			model.addAttribute("msg", message);
 		}
 
@@ -138,7 +146,7 @@ public class GreenCoderController {
 
 		rol_cod.removeIf(r -> r.getId() == id_role);
 		repositoryCoders.save(coder);
-		String message = "Il ruolo " + coder.getRoles() + "è stato rimosso";
+		String message = "Il ruolo è stato rimosso";
 		model.addAttribute("msg", message);
 
 		return findAll(model);
@@ -182,7 +190,7 @@ public class GreenCoderController {
 		
 		try {
 			repositoryCoders.deleteById(id_coder);
-			String message = "coder rimosso";
+			String message = "Coder rimosso";
 			model.addAttribute("msg", message);
 		} catch (DataAccessException dae) {
 			String message = String.format("Non puoi eliminare il coder selezionato");
