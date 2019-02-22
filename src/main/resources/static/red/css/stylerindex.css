@@ -190,7 +190,7 @@ h1 span{
 }
 
 
-@keyframes animate{
+/*@keyframes animate{
    
  0%{
    
@@ -200,7 +200,7 @@ h1 span{
    
      filter: blur(10px);
    
- }
+ }*/
    
  100%{
       
@@ -211,7 +211,7 @@ h1 span{
  filter: blur(0);
    
  }
- /*
+ 
  h2{
  margin: 0;
    
@@ -315,4 +315,4 @@ h2 span:nth-child(13)
 {
     animation-delay: 4.3s;
 }
- */
+ 
