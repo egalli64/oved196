@@ -36,23 +36,29 @@
 
 	<form method="get" action="/red/team/delete">
 <fieldset>
-<legend>ELIMINA TEAM</legend>
+<legend>DELETE TEAM</legend>
 		<p>
-			inserisci team da eliminare : <select name="id">
+			team's name  : <select name="id">
 
 				<option th:each="cur: ${data}" th:text="${cur.name}">
 			</select></p>
-			<button>conferma</button>
+			<button onclick = "return confirm( 'Are you sure ?');">ok</button>
 			</fieldset>
+			
+			
+			
+			
+			
+			
 	</form>
 	<p style="line-height: 150px"></p>
 
 	<form method="get" action="/red/team/create">
 	<fieldset>
-	<legend>CREA TEAM</legend>
+	<legend>CREATE TEAM</legend>
 		<p>
-			inserisci nome del team da creare : <input type="text" name="name"></p>
-			<button>conferma</button>
+			 team's name  : <input type="text" name="name"></p>
+			<button>ok</button>
 			</fieldset>
 	</form>
 
@@ -60,20 +66,20 @@
 
 	<form method="get" action="/red/team/rename">
 		<fieldset>
-			<legend>MODIFICA TEAM</legend>
+			<legend>MODIFY TEAM</legend>
 			<p>
-				inserisci team da modificare : <select name="id">
+				team's name: <select name="id">
 
 					<option th:each="cur: ${data}" th:text="${cur.name}">
 				</select>
+		
+		
+		
+		
+		
+				 new name : <input type="text" name="name">
 			</p>
-		
-		
-		
-			<p>
-				inserisci il nome nuovo : <input type="text" name="name">
-			</p>
-			<button>conferma</button>
+			<button>ok</button>
 		</fieldset>
 	</form>
 
