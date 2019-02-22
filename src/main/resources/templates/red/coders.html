@@ -63,20 +63,20 @@
 						<option th:each="cur: ${data}" th:text="${cur.name}">
 					</select>
 				</p>
-				<button onclick="return confirm( 'Are you sure ?');">ok</button>
+				<button onclick="return confirm( 'Are you sure ?');">OK</button>
 			</fieldset>
 		</form>
 		<form method="get" action="/red/coder/createCoder">
 			<fieldset>
 				<legend>CREATE CODER</legend>
 				<p>
-					NEW CODER'S NAME : <input type="text" name="name"> coder's team: <select
+					NEW CODER'S NAME : <input type="text" name="name"> CODER'S NAME: <select
 						name="id_t">
 
 						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
 					</select>
 				</p>
-				<button onclick="return confirm( 'Are you sure ?');">ok</button>
+				<button onclick="return confirm( 'Are you sure ?');">OK</button>
 			</fieldset>
 		</form>
 		<p>
@@ -92,7 +92,7 @@
 					</select>
 				</p>
 				<!--  <p> Inserisci il nome del nuovo team : <input type="text" name="test"> </p> -->
-				<button>ok</button>
+				<button>OK</button>
 			</fieldset>
 		</form>
 		<p style="line-height: 250px"></p>
@@ -104,13 +104,13 @@
 				<p>
 					CODER'S NAME : <select name="name">
 						<option th:each="cur: ${data}" th:text="${cur.name}"></option>
-					</select> coder's role : <select name="role">
+					</select> CODER'S ROLE : <select name="role">
 
 						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
 					</select>
 				</p>
 
-				<button>ok</button>
+				<button>OK</button>
 			</fieldset>
 		</form>
 		<p style="line-height: 250px"></p>
@@ -129,12 +129,11 @@
 					</select>
 				</p>
 
-				<button onclick="return confirm( 'Are you sure ?');">ok</button>
+				<button onclick="return confirm( 'Are you sure ?');">OK</button>
 			</fieldset>
 		</form>
 
 		<p style="line-height: 250px"></p>
-
 		<hr>
 		<button>
 			Back to <a href="/red/index.html">Red Homepage</a>

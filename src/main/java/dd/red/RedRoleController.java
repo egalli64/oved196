@@ -45,7 +45,7 @@ public class RedRoleController {
 			if (coder.getId() != 0) {
 				message += " coder " + coder.getId();
 			} else {
-				message += " il tuo cambiamento";
+				message += " your change";
 			}
 			logger.error(message);
 			model.addAttribute("msg", message);
@@ -78,11 +78,11 @@ public class RedRoleController {
 		role = repositoryRole.findByName(nameRole).get();
 		long r = role.getId();
 		repositoryRole.deleteById(r);
-		String message = String.format("Il ruolo è stato eliminato correttamente", nameRole);
+		String message = String.format("You had changed the role correctly", nameRole);
         System.out.println(message);
 	}
 	catch (DataAccessException dae) {
-		String message = String.format("Non si può cancellare il ruolo ", nameRole);
+		String message = String.format(" you don't save the role ", nameRole);
         logger.error(message);
         model.addAttribute("msg", message);
     }

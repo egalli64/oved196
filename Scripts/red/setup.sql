@@ -15,7 +15,7 @@ CREATE TABLE RED_teams(
 	team_name varchar2(10) UNIQUE
 );
 
-INSERT INTO RED_teams (team_name) values('bench');
+INSERT INTO RED_teams (team_name) values('-');
 INSERT INTO RED_teams (team_name) values('red');
 INSERT INTO RED_teams (team_name) values('blue');
 INSERT INTO RED_teams (team_name) values('green');

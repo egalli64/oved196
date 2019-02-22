@@ -60,19 +60,18 @@ public class RedCoderController {
 		try {
 			repository.save(team);
 		} catch (DataAccessException dae) {
-			String message = " Il nome  " + team.getName() + " non ";
+			String message = " You Can't add  " + team.getName() + "  ";
 			if (team.getId() != 0) {
-				message += " nome " + team.getId();
+				message += "  " + team.getId();
 			} else {
-				message += " può essere aggiunto / nome già presente";
+				message += " this name already exist";
 			}
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
 	}
 	
-	
-	
+
 	@GetMapping("/red/coder/createRole")
     public String createRole( @RequestParam String name, @RequestParam String role, Model model) {
         logger.trace("create()");
@@ -96,10 +95,6 @@ public class RedCoderController {
 //        return "employees";
 //    }
 	
-	
-	
-	
-
 	@GetMapping("/red/coders")
 	public String getCoders(Model model) {
 		logger.trace("red getCoders");
@@ -122,7 +117,7 @@ public class RedCoderController {
 			save(team, model);
 
 		} else {
-			String message = String.format("Non si può salvare il team: ", name + "Non trovato");
+			String message = String.format("You can't save: ", name + "not found");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
@@ -137,9 +132,6 @@ public class RedCoderController {
 	        //RedTeam team = new  RedTeam ("null");
 	        
 	        RedTeam team = repositoryTeam.findByName(id_t).get();
-	        
-	        
-
 	        save(new RedCoder(name, team), model);
 	        return findAll(model);
 	    }
@@ -153,10 +145,10 @@ public class RedCoderController {
 		            team=repository.findByName(name).get();
 		            long a = team.getId();
 		            repository.deleteById(a);
-	            String message = String.format("La persona  è stata eliminata correttamente", name);
+	            String message = String.format("The coder's delete executed with success", name);
 	            System.out.println(message);
 	        } catch (DataAccessException dae) {
-	            String message = String.format("Non si può cancellare la persona ", name);
+	            String message = String.format("You can't delete the coder ", name);
 	            logger.error(message);
 	            model.addAttribute("msg", message);
 	        }

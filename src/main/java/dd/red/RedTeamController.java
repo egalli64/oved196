@@ -38,13 +38,13 @@ public class RedTeamController {
 	        String message;
 	        try {
 	            repository.save(team);
-	             message = "azione eseguita correttamente";
+	             message = " action had executed correctly";
 	        } catch (DataAccessException dae) {
-	             message = "non puoi dargli quel nome " + team.getName() + " al ";
+	             message = " ou can not assign that role " + team.getName() + " al ";
 	            if (team.getId() != 0) {
 	                message += " team " + team.getId();
 	            } else {
-	                message += " al tuo nuovo";
+	                message += " to your next";
 	            }
 	            logger.error(message);
 	            model.addAttribute("msg", message);
@@ -93,7 +93,7 @@ public class RedTeamController {
 	            team=repository.findByName(id).get();
 	            long a = team.getId();
 	            repository.deleteById(a);
-	            String message = String.format("Il team  รจ stato eliminato correttamente", id);
+	            String message = String.format(" You had deleted the team correctly", id);
 	            System.out.println(message);
 	        } catch (DataAccessException dae) {
 	            String message = String.format("Can't delete team ", id);
