@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Teams (red)</title>
+<title>Teams(red)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
 
@@ -10,56 +10,43 @@
 
 	<h2>TEAMS</h2>
 	<div th:if="${msg}">
-		<span th:text=${msg}>hello!</span>
+		<span th:text=${msg}>Hello!</span>
 	</div>
-
-
-
-
-	
-
 	<table>
 		<tr>
-
 			<th>TEAM</th>
-
 		</tr>
 		<tr th:each="cur: ${data}">
 			<td th:text="${cur.name}">Bjarne</td>
-
-
 		</tr>
 
 	</table>
 
-<p style="line-height: 250px"></p>
+	<p style="line-height: 250px"></p>
 
 	<form method="get" action="/red/team/delete">
-<fieldset>
-<legend>DELETE TEAM</legend>
-		<p>
-			team's name  : <select name="id">
+		<fieldset>
+			<legend>DELETE TEAM</legend>
+			<p>
+				TEAM'S NAME : <select name="id">
 
-				<option th:each="cur: ${data}" th:text="${cur.name}">
-			</select></p>
-			<button onclick = "return confirm( 'Are you sure ?');">ok</button>
-			</fieldset>
-			
-			
-			
-			
-			
-			
+					<option th:each="cur: ${data}" th:text="${cur.name}">
+				</select>
+			</p>
+			<button onclick="return confirm( 'Are you sure ?');">ok</button>
+		</fieldset>
+
 	</form>
 	<p style="line-height: 150px"></p>
 
 	<form method="get" action="/red/team/create">
-	<fieldset>
-	<legend>CREATE TEAM</legend>
-		<p>
-			 team's name  : <input type="text" name="name"></p>
+		<fieldset>
+			<legend>CREATE TEAM</legend>
+			<p>
+				TEAM'S NAME : <input type="text" name="name">
+			</p>
 			<button>ok</button>
-			</fieldset>
+		</fieldset>
 	</form>
 
 	<p style="line-height: 250px"></p>
@@ -68,29 +55,21 @@
 		<fieldset>
 			<legend>MODIFY TEAM</legend>
 			<p>
-				team's name: <select name="id">
+				TEAM'S NAME: <select name="id">
 
 					<option th:each="cur: ${data}" th:text="${cur.name}">
-				</select>
-		
-		
-		
-		
-		
-				 new name : <input type="text" name="name">
+				</select> NEW TEAM'S NAME : <input type="text" name="name">
 			</p>
-			<button>ok</button>
+			<button onclick="return confirm( 'Are you sure ?');">ok</button>
 		</fieldset>
 	</form>
 
 	<p style="line-height: 250px"></p>
 	<hr>
 
-
 	<button>
 		Back to <a href="/red/index.html">Red Homepage</a>
 	</button>
-
 
 </body>
 </html>
