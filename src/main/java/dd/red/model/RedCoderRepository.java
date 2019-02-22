@@ -18,7 +18,7 @@ public interface RedCoderRepository extends CrudRepository<RedCoder, Long> {
 	
 	public List<RedCoder> findAllByOrderByName();
 	public List<RedCoder> findAllByOrderByTeam();
-	
+	public List<RedCoder> findAllByOrderByRoles();
 
 //    public List<RedCoder> findByJobIdOrderByName(String name);
 

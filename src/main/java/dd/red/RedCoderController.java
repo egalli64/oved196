@@ -205,6 +205,14 @@ public class RedCoderController {
 			return "/red/coders";
 		}
 		
+		@GetMapping("/red/coder/orderByRole")
+		public String orderByrole( Model model) {
+			model.addAttribute("data", repository.findAllByOrderByRoles());
+			model.addAttribute("team", repositoryTeam.findAll());
+			model.addAttribute("role", repositoryRole.findAll());
+			return "/red/coders";
+		}
+		
 		/* @GetMapping("/sortedStClerk")
 	    public String sortedEmployees(Model model) {
 	        logger.debug("Sorted employees");
@@ -223,4 +231,3 @@ public class RedCoderController {
 
 }
 	
-
