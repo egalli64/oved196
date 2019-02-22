@@ -38,7 +38,7 @@ public class GreenTeamController {
 		logger.trace("Saved");
 		try {
 			repository.save(team);
-			String message = "Team " + team.getName() + " inserito con successo";
+			String message = "Squadra " + team.getName() + " inserita con successo";
 			model.addAttribute("msg", message);
 		} catch (DataAccessException dae) {
 			String message = "Non puoi! " + team.getName() + " già esistente";
@@ -57,7 +57,7 @@ public class GreenTeamController {
 		String message = "";
 		for (GreenTeam gt : teams) {
 			if (gt.getName().equalsIgnoreCase(upperName)) {
-				message = "Non puoi! Il team  " + upperName + " è già presente";
+				message = "Non puoi! La squadra " + upperName + " è già presente";
 				model.addAttribute("msg", message);
 				break;
 			}
@@ -83,7 +83,7 @@ public class GreenTeamController {
 		Iterable<GreenTeam> teams = repository.findAll();
 		for (GreenTeam t : teams) {
 			if (t.getName().equalsIgnoreCase(name)) {
-				message = "Il team " + upperName + " è già presente";
+				message = "La squadra " + upperName + " è già presente";
 				model.addAttribute("msg", message);
 				break;
 			}
@@ -91,11 +91,11 @@ public class GreenTeamController {
 		if (message.equals("")) {
 			if (opt.isPresent()) {
 				GreenTeam team = opt.get();
-				logger.debug(String.format("Renaming team %s as %s", team.getName(), name));
+				logger.debug(String.format("Squadra rinominata da %s a %s", team.getName(), name));
 				team.setName(upperName);
 				save(team, model);
 			} else {
-				message = String.format("Non è possibile inserire il team %s perchè è già presente", name.toLowerCase());
+				message = String.format("Non è possibile rinominare la squadra %s perchè è già presente", name.toLowerCase());
 				// logger.error(message);
 				model.addAttribute("msg", message);
 			}
@@ -114,7 +114,7 @@ public class GreenTeamController {
 		try {
 			repository.deleteById(id);
 		} catch (DataAccessException dae) {
-			String message = String.format("Non puoi eliminare il team selezionato. Devi prima eliminare le persone del team selezionato");
+			String message = String.format("Non puoi eliminare la squadra selezionata. Devi prima eliminare le persone della squadra selezionata");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
