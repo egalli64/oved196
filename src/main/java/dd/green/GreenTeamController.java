@@ -64,9 +64,9 @@ public class GreenTeamController {
 		}
 		if (message.equals("")) {
 			save(new GreenTeam(upperName), model);
-			
+
 		}
-						
+
 		return findAll(model);
 	}
 
@@ -86,6 +86,10 @@ public class GreenTeamController {
 				message = "La squadra " + upperName + " è già presente";
 				model.addAttribute("msg", message);
 				break;
+			} else if (t.getName().equalsIgnoreCase("NUOVI")) {
+				message = "La squadra NUOVI non può essere modificata";
+				model.addAttribute("msg", message);
+				break;
 			}
 		}
 		if (message.equals("")) {
@@ -95,7 +99,8 @@ public class GreenTeamController {
 				team.setName(upperName);
 				save(team, model);
 			} else {
-				message = String.format("Non è possibile rinominare la squadra %s perchè è già presente", name.toLowerCase());
+				message = String.format("Non è possibile rinominare la squadra %s perchè è già presente",
+						name.toLowerCase());
 				// logger.error(message);
 				model.addAttribute("msg", message);
 			}
@@ -103,22 +108,28 @@ public class GreenTeamController {
 		model.addAttribute("data", repository.findAll());
 		return findAll(model);
 	}
-		
 
 	@GetMapping("/green/teams/delete")
-	public String delete( 
-			@RequestParam long id,
-			Model model,
-			String name) {
-		
-		try {
-			repository.deleteById(id);
-		} catch (DataAccessException dae) {
-			String message = String.format("Non puoi eliminare la squadra selezionata. Devi prima eliminare le persone della squadra selezionata");
-			logger.error(message);
-			model.addAttribute("msg", message);
-		}
+	public String delete(@RequestParam long id, Model model, String name) {
 
+		Optional<GreenTeam> opt = repository.findById(id);
+
+		if (opt.get().getName().equalsIgnoreCase("NUOVI")) {
+			String message = "La squadra NUOVI non può essere eliminata";
+			model.addAttribute("msg", message);
+		} else {
+
+			try {
+				String message = String.format("La squadra " + opt.get().getName() + " è stata eliminata");
+				model.addAttribute("msg", message);
+				repository.deleteById(id);
+			} catch (DataAccessException dae) {
+				String message = String.format(
+						"Non puoi eliminare la squadra selezionata. Devi prima eliminare le persone della squadra selezionata");
+				logger.error(message);
+				model.addAttribute("msg", message);
+			}
+		}
 		return findAll(model);
 	}
 }
