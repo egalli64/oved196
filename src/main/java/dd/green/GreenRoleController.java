@@ -65,7 +65,7 @@ public class GreenRoleController {
 		if (message.equals("")) {
 			if (opt.isPresent()) {
 				GreenRole role = opt.get();
-				logger.debug(String.format("Renaming role %s as %s", role.getName(), role_name));
+				logger.debug(String.format("Ruolo rinominato da %s a %s", role.getName(), role_name));
 				role.setName(role_name.toUpperCase());
 				save(role, model);
 			} else {
@@ -92,7 +92,7 @@ public class GreenRoleController {
 			}
 		}
 		if (message.equals("")) {
-			save(new GreenRole(role_name), model);
+			save(new GreenRole(role_name.toUpperCase()), model);
 		}
 
 		return findAll(model);
@@ -102,13 +102,16 @@ public class GreenRoleController {
 	public String removeRole(@RequestParam long id_role, Model model) {
 
 		try {
+			String message = "Ruolo " + repository.findById(id_role).get().getName() + " eliminato con successo";
+			model.addAttribute("msg", message);
 			repository.deleteById(id_role);
+
 		} catch (DataAccessException dae) {
 			String message = String.format("Non puoi eliminare il ruolo selezionato. Elimina prima le persone associate del ruolo selezionato");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
-
+		
 		return findAll(model);
 	}
 	
