@@ -2,160 +2,147 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Modifica Coders</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
-	<script src="@{scrpt/myscrpt.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Modifica Coders</title>
+<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
+<script src="@{scrpt/myscrpt.js}"></script>
 </head>
-<body>
-	<h1>Coders Editing</h1>
 
-	<hr />
-	<div th:if="${msg}">
-		<p class = me><span th:text=${msg}>hello!</span></p>
-		<hr />	
+<div class="menu">
+	<button class="menubutton">
+		<a href="/blue/homepage.html">Blue homepage</a>
+	</button>	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/teams">Teams view</a>
+	</button>	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/settings">Teams editing</a>
+	</button>
+</div>
+
+<body>
+	<div class="contenitore">
+		<h1>Coders Editing</h1>
+
+		<hr />
+		<div th:if="${msg}">
+			<p class=me>
+				<span th:text=${msg}>hello!</span>
+			</p>
+			<hr />
+		</div>
+		<div class="contenuto">
+
+			<p class=you>Lista Programmatori</p>
+			<form action="/blue/coders/orderby">
+				<p>
+					Ordina per: <input type="radio" name="by" value="Team"
+						checked="checked">Team/Cognome &nbsp <input type="radio"
+						name="by" value="firstname">Nome &nbsp <input type="radio"
+						name="by" value="lastname">Cognome &nbsp
+					<button type="submit">Sort</button>
+				</p>
+				<br>
+			</form>
+			<table class=due align=center>
+				<tr>
+					<th scope="col">Nome</th>
+					<th scope="col">Cognome</th>
+					<th scope="col">Team</th>
+					<th scope="col">Ruolo</th>
+				</tr>
+				<tr th:each="cod : ${coders}">
+					<td th:text="${cod.firstname}">[]</td>
+					<td th:text="${cod.lastname}">[]</td>
+					<td th:text="${cod.team.name}">[]</td>
+					<td><th:block th:each="role : ${cod.role}">
+							<span th:text="${role.nomeRole}">[]</span>
+							<span>&nbsp-</span>
+						</th:block></td>
+				</tr>
+			</table>
+			<hr />
+			<br>
+			<form action="/blue/coders/changeteam">
+				<label> Cambia il team a una persona: <br> <br>
+					Coder: <select name="coderId">
+						<option value="0">-</option>
+						<option th:each="cod: ${coders}" th:value="${cod.idCoder}"
+							th:text="${cod.firstname + ' ' + cod.lastname}">caio</option>
+				</select>
+				</label> <label>Scegli il nuovo team: <select name="teamId">
+						<option th:each="cur: ${teams}" th:value="${cur.id}"
+							th:text="${cur.name}">blue</option>
+				</select>
+				</label>
+				<button>OK</button>
+			</form>
+			<hr />
+			<br>
+			<form action="/blue/coders/addrole">
+				<label> Aggiungi un ruolo ad un programmatore<br> <br>
+					Coder: <select name="coderid">
+						<option value="0">-</option>
+						<option th:each="cod : ${coders}" th:value="${cod.idCoder}"
+							th:text="${cod.firstname + ' ' + cod.lastname}">caio</option>
+				</select>
+				</label> <label> Ruolo: <select name="roleid">
+						<option th:each="role : ${roles}" th:value="${role.idRole}"
+							th:text="${role.nomeRole}">old</option>
+				</select>
+				</label>
+				<button>OK</button>
+			</form>
+			<hr />
+			<br>
+			<form action="/blue/coders/removerole">
+				<label> Rimuovi un ruolo ad un programmatore<br> <br>
+					Coder: <select name="coderid">
+						<option value="0">-</option>
+						<option th:each="cod : ${coders}" th:value="${cod.idCoder}"
+							th:text="${cod.firstname + ' ' + cod.lastname}">caio</option>
+				</select>
+				</label> <label> Ruolo: <select name="roleid">
+						<option th:each="role : ${roles}" th:value="${role.idRole}"
+							th:text="${role.nomeRole}">old</option>
+				</select>
+				</label>
+				<button>OK</button>
+			</form>
+			<hr />
+			<br>
+
+			<form action="/blue/coders/addcoder">
+				<label> Aggiungi un nuovo programmatore<br> <br>
+					Nome: <input name="firstname" required="required">
+				</label> <label> Cognome: <input name="lastname" required="required">
+				</label> <label> Team: <select name="teamid">
+						<option th:each="team : ${teams}" th:value="${team.id}"
+							th:text="${team.name}"></option>
+				</select>
+				</label> <label> Ruolo: <select name="roleid">
+						<option th:each="role : ${roles}" th:value="${role.idRole}"
+							th:text="${role.nomeRole}"></option>
+				</select>
+				</label>
+				<button>OK</button>
+			</form>
+			<hr />
+			<br>
+			<form action="/blue/coders/removecoder">
+				<label> Rimuovi un programmatore<br> <br> Coder: <select
+					name="id">
+						<option value="0">-</option>
+						<option th:each="cod : ${coders}" th:value="${cod.idCoder}"
+							th:text="${cod.firstname + ' ' + cod.lastname}"></option>
+				</select>
+				</label>
+				<button
+					onclick="return confirm('Sicuro? Il processo &egrave irreversibile.');">OK</button>
+			</form>
+			<hr />
+
+		</div>
 	</div>
-	<p class = you>Lista Programmatori</p>
-	<form action = "/blue/coders/orderby">
-		<p>Ordina per:  
-			<input type = "radio" name = "by" value = "Team" checked="checked">Team/Cognome &nbsp
-			<input type = "radio" name = "by" value = "firstname">Nome &nbsp 
-			<input type = "radio" name = "by" value = "lastname">Cognome &nbsp
-			<button type="submit">Sort</button>
-		</p>
-		<br>
-	</form>
-	<table class = due align = center>
-		<tr> 
-			<th scope="col">Nome</th>
-			<th scope="col">Cognome</th>
-			<th scope="col">Team</th>
-			<th scope="col">Ruolo</th>
-		</tr>
-		<tr th:each="cod : ${coders}">		
-			<td th:text="${cod.firstname}">[]</td>
-			<td th:text="${cod.lastname}">[]</td>
-			<td th:text="${cod.team.name}">[]</td>
-			<td><th:block th:each="role : ${cod.role}">
-				<span th:text="${role.nomeRole}">[]</span><span>&nbsp-</span>
-			</th:block></td>
-		</tr>
-	</table>
-	<hr/>
-<br>
-		<form action="/blue/coders/changeteam" >
-	<label> Cambia il team a una persona: <br>
-	<br>
-	Coder:
-			<select name="coderId">	
-				<option value="0">-</option>		
-				<option th:each="cod: ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
-					caio
-				</option>
-			</select>
-	</label>
-	<label>Scegli il nuovo team:
-			<select name="teamId">			
-				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
-					blue
-				</option>
-			</select>
-		</label>
-		<button>OK</button>
-	</form>
-	<hr/>
-	<br>
-	<form action="/blue/coders/addrole" >
-		<label> Aggiungi un ruolo ad un programmatore<br>
-		<br>
-			Coder:
-			<select name="coderid">	
-				<option value="0">-</option>	
-				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
-					caio
-				</option>
-			</select>
-		</label>
-		<label> Ruolo:
-			<select name="roleid">			
-				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
-					old
-				</option>
-			</select>
-		</label>
-		<button>OK</button>
-	</form>
-	<hr/>
-	<br>
-	<form action="/blue/coders/removerole" >
-		<label> Rimuovi un ruolo ad un programmatore<br>
-		<br>
-			Coder:
-			<select name="coderid">
-				<option value="0">-</option>			
-				<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
-					caio
-				</option>
-			</select>
-		</label>
-		<label> Ruolo:
-			<select name="roleid">			
-				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
-					old
-				</option>
-			</select>
-		</label>
-		<button>OK</button>
-	</form>
-	<hr/>
-	<br>
-	
-	<form action="/blue/coders/addcoder">
-		<label> Aggiungi un nuovo programmatore<br>
-		<br>
-		Nome:
-			<input name="firstname" required="required">
-		</label>
-		<label>
-			Cognome:
-			<input name="lastname" required="required">
-		</label>
-		<label> Team:
-			<select name="teamid">			
-				<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
-				</option>
-			</select>
-		</label>
-		<label> Ruolo:
-			<select name="roleid">			
-				<option th:each="role : ${roles}" th:value="${role.idRole}" th:text="${role.nomeRole}">
-				</option>
-			</select>
-		</label>
-	<button>OK</button>
-	</form>
-	<hr/>
-	<br>
-	<form action="/blue/coders/removecoder">
-		<label> Rimuovi un programmatore<br>
-		<br>
-		Coder:
-		<select name="id">
-			<option value="0">-</option>			
-			<option th:each="cod : ${coders}" th:value="${cod.idCoder}" th:text="${cod.firstname + ' ' + cod.lastname}">
-			</option>
-		</select>
-		</label>
-	<button onclick="return confirm('Sicuro? Il processo &egrave irreversibile.');">OK</button>
-	</form>
-		<hr/>
-	
-	<p>
-		Back to <a href="/blue/homepage.html">Blue homepage</a>
-	</p>
-	<p>
-		Go to <a href="/blue/settings">teams editing</a>
-	</p>
-		
 </body>
 </html>
