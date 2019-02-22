@@ -3,80 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <title>Roles (red)</title>
-<link rel="stylesheet" type="text/css"
-	th:href="@{/red/css/styler.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
 <body>
-<section>
-<center>
-	<h2> ROLES </h2>
-	<p>
-		<!--  This is just for debugging purpose: <span th:text="${data}">[]</span> -->
-	</p>
-	<hr />
-	
-	<table>
-	
-	
-	<th>RUOLI</th>
-	</tr>
-		<tr>
-		
-			
-			
-		</tr>
-		<tr th:each="cur: ${role}">
-			<td th:text="${cur.name}"></td>
+	<section>
 
-		</tr>
-		<tr>
-		
-	
-		
-		
-			
-		</tr>
-		
-	</table>
-	<hr />
-	
-	<form  method="get" action="/red/role/createRole">
-   
-   
-   <p> Inserisci ruolo da aggiungere :
-  <input type="text" name="nameRole">
-				
+		<h2>ROLES</h2>
+		<p>
+			<!--  This is just for debugging purpose: <span th:text="${data}">[]</span> -->
+		</p>
+		<div th:if="${msg}">
+			<span th:text=${msg}>hello!</span>
+		</div>
+		<hr />
 
- </p> 
-   
-   
-   <button >conferma</button></form>
-   
-   <p></p>
-   
-   <form  method="get" action="/red/role/deleteRole">
-   
-   
-   <p> Inserisci il ruolo da eliminare :
-   <select name="nameRole">
+		<table >
 
-					<option th:each="cur: ${role}" th:text="${cur.name}"  >
-					</option>
-				</select> 
+			<tr>
+				<th>RUOLI</th>
+			</tr>
+			<tr>
 
-				
 
- </p> 
+
+			</tr>
+			<tr th:each="cur: ${role}">
+				<td th:text="${cur.name}"></td>
+
+			</tr>
+			<tr>
+
+
+
+
+
+			</tr>
+
+		</table>
+		<hr />
+<p style="line-height: 250px"></p>
+
+		<form method="get" action="/red/role/createRole">
+		<fieldset>
+		<legend>CREA RUOLO</legend>
+
+
+			<p>
+				 ruolo da aggiungere : <input type="text" name="nameRole">
+
+
+			</p>
+
+
+			<button>conferma</button>
+			</fieldset>
+		</form>
+
+<p style="line-height: 250px"></p>
+
+		<form method="get" action="/red/role/deleteRole">
+<fieldset>
+<legend>ELIMINA RUOLO</legend>
+			<p>
+				ruolo da eliminare : <select name="nameRole">
+
+					<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+				</select>
+
+
+
+			</p>
+
+
+			<button>conferma</button>
+			</fieldset>
+		</form>
+
+		<p></p>
+
+		<!--  <form  method="get" action="/red/role/setRole">
    
    
-   <button >conferma</button></form>
-   
-     <p></p>
-   
-   <form  method="get" action="/red/role/setRole">
-   
-   
-<!--    <p> inserisci il nome della persona a cui modificare un ruolo :
+   <p> inserisci il nome della persona a cui modificare un ruolo :
    <select name="name">
 
 					<option th:each="cur: ${coder}" th:text="${cur.name}"  >
@@ -100,16 +108,18 @@
    
    
    <button >conferma</button></form>
-	--> 
+	-->
+
 	
-		 <p></p>
- <p></p>
- <p></p>
+	
+		<p style="line-height: 250px"></p>
 
 
-	<button>Back to <a href="/red/index.html">Red Homepage</a></button>
-	
-</center>
-</section>
+		<button>
+			Back to <a href="/red/index.html">Red Homepage</a>
+		</button>
+
+
+	</section>
 </body>
 </html>

@@ -93,7 +93,7 @@ public class RedTeamController {
 	            team=repository.findByName(id).get();
 	            long a = team.getId();
 	            repository.deleteById(a);
-	            String message = String.format("Il team  è stato eliminato correttamente", id);
+	            String message = String.format("Il team  รจ stato eliminato correttamente", id);
 	            System.out.println(message);
 	        } catch (DataAccessException dae) {
 	            String message = String.format("Can't delete team ", id);
