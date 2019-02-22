@@ -39,38 +39,20 @@
 
 			<p class=you>Lista Team</p>
 
-			<table class=uno align=center>
-				<tr th:each="t : ${teams}">
-					<td th:text="${t.name}">[]</td>
-				</tr>
-			</table>
-			<hr />
-			<form action="/blue/teams/orderby">
-				<p>
-					Ordina per: <input type="radio" name="by" value="Team"
-						checked="checked">Team/Cognome &nbsp <input type="radio"
-						name="by" value="firstname">Nome &nbsp <input type="radio"
-						name="by" value="lastname">Cognome &nbsp
-					<button type="submit">Sort</button>
-				</p>
-			</form>
-			<table class=due align=center>
-				<tr>
-					<th scope="col">Nome</th>
-					<th scope="col">Cognome</th>
-					<th scope="col">Team</th>
-					<th scope="col">Ruolo</th>
-				</tr>
-				<tr th:each="cod : ${coders}">
-					<td th:text="${cod.firstname}">[]</td>
-					<td th:text="${cod.lastname}">[]</td>
-					<td th:text="${cod.team.name}">[]</td>
-					<td><th:block th:each="role : ${cod.role}">
-							<span th:text="${role.nomeRole}">[]</span>
-							<span>&nbsp-</span>
-						</th:block></td>
-				</tr>
-			</table>
+			<table class = uno align = center>
+		<tr>
+			<th:block th:each = "cur : ${teams}">
+				<td th:text = "${cur.name}">[]</td>
+			</th:block>
+		</tr>
+		<tr>
+			<td th:each = "i: ${#numbers.sequence(0, sizez - 1)}">
+				<th:block th:each = "sec : ${coders[i]}">
+				<span th:text = "${'- ' + sec.firstname + ' ' + sec.lastname}">[]</span><br>
+				</th:block>
+			</td>
+		</tr>
+	</table>
 			<hr />
 		</div>
 	</div>
