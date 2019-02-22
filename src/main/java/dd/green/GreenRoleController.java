@@ -104,7 +104,7 @@ public class GreenRoleController {
 		try {
 			repository.deleteById(id_role);
 		} catch (DataAccessException dae) {
-			String message = String.format("Non puoi eliminare il ruolo selezionato");
+			String message = String.format("Non puoi eliminare il ruolo selezionato. Elimina prima le persone associate del ruolo selezionato");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}

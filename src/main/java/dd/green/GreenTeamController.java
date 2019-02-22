@@ -1,6 +1,7 @@
 package dd.green;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,13 +106,15 @@ public class GreenTeamController {
 		
 
 	@GetMapping("/green/teams/delete")
-	public String delete( //
-			@RequestParam long id, //
-			Model model) {
+	public String delete( 
+			@RequestParam long id,
+			Model model,
+			String name) {
+		
 		try {
 			repository.deleteById(id);
 		} catch (DataAccessException dae) {
-			String message = String.format("Non puoi eliminare il team selezionato");
+			String message = String.format("Non puoi eliminare il team selezionato. Devi prima eliminare le persone del team selezionato");
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
