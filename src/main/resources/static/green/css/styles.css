@@ -33,7 +33,7 @@ img {
 	-webkit-border-radius: 180px;
 	border-radius: 180px;
 	border: 7px solid #009700
-}
+	   }
 
 
 button {
@@ -49,6 +49,25 @@ button {
 	position: relative;
 	top: 1px;
 	width: 100px;
+}
+* {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+}
+
+body {
+      background-color: #2e3235
+}
+
+.pic {
+      border: 5px solid #717377;
+      float: left;
+      height: 300px;
+      width: 300px;
+      margin: 20px;
+      overflow: hidden;
 }
 
 <!--background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%-->
