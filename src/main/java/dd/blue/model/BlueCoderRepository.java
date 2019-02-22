@@ -15,14 +15,10 @@ public interface BlueCoderRepository extends CrudRepository<BlueCoder, Integer> 
 	
 	public List<BlueCoder> findAllByOrderByIdCoder();
 
-	public List<BlueCoder> findAllByOrderByFirstname();
+	public List<BlueCoder> findAllByOrderByFirstnameAscLastnameAsc();
 
-	public List<BlueCoder> findAllByOrderByLastname();
+	public List<BlueCoder> findAllByOrderByLastnameAscFirstnameAsc();
 
 	@Query("select bc from BlueCoder bc inner join bc.team bt order by bt.name, bc.lastname")
     public List<BlueCoder> findAllByOrderByTeam();
-//	public List<BlueCoder> findAllOrderByRole();
-
-	//public List<BlueCoder> findAll(Sort sort);
-
 }

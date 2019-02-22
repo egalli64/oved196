@@ -74,11 +74,11 @@ public class BlueCoderController {
 
 		switch (by) {
 		case "firstname":
-			coders = coderRepo.findAllByOrderByFirstname();
+			coders = coderRepo.findAllByOrderByFirstnameAscLastnameAsc();
 			break;
 
 		case "lastname":
-			coders = coderRepo.findAllByOrderByLastname();
+			coders = coderRepo.findAllByOrderByLastnameAscFirstnameAsc();
 			break;
 
 		case "Team":
