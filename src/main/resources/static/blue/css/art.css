@@ -158,7 +158,7 @@ table.uno td, table.uno th {
   color : #ffffff;
 }
 table.uno tbody td {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
   color: #FFFFFF;
 }
@@ -170,7 +170,7 @@ table.uno thead {
   border-bottom: 10px solid #398AA4;
 }
 table.uno thead th {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
   color: #FFFFFF;
   text-align: left;
@@ -181,7 +181,7 @@ table.uno thead th:first-child {
 }
 
 table.uno tfoot td {
-  font-size: 13px;
+  font-size: 16px;
 }
 table.uno tfoot .links {
   text-align: right;

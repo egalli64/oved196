@@ -151,7 +151,7 @@ public class BlueTeamController {
 		try {
 			teamRepo.deleteById(id);
 		} catch (DataAccessException dae) {
-			String message = String.format("Can't delete team %d", id);
+			String message = "Impossibile cancellare una squadra con dei membri";
 			// logger.error(message);
 			model.addAttribute("msg", message);
 		}
