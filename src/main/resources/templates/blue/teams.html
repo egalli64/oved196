@@ -1,62 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Squadre</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
-	<script src="@{scrpt/myscrpt.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Squadre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
+<script src="@{scrpt/myscrpt.js}"></script>
 </head>
+<div class="menu">
+	<button class="menubutton">
+		<a href="/blue/homepage.html">Blue homepage</a>
+	</button>
+	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/teams">Teams view</a>
+	</button>
+	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/settings">Teams editing</a>
+	</button>
+	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/coders">Coders editing</a>
+	</button>
+</div>
 <body>
-	<h1>Squadre</h1>
-
 	<hr />
-	<div th:if="${msg}">
-		<p class = me><span th:text=${msg}>hello!</span></p>
-		<hr />	
-	</div>
-	<p class = you>Lista Team</p>
-	
-	<table class = uno align = center>
-		<tr th:each="t : ${teams}">		
-			<td th:text="${t.name}">[]</td>
-		</tr>
-	</table>
-	<hr/>
-	<form action = "/blue/teams/orderby">
-		<p>Ordina per:  
-			<input type = "radio" name = "by" value = "Team" checked="checked">Team &nbsp
-			<input type = "radio" name = "by" value = "firstname">Nome &nbsp 
-			<input type = "radio" name = "by" value = "lastname">Cognome &nbsp
-			<button type="submit">Sort</button>
-		</p>
-	</form>
-	<table class = due align = center>
-		<tr> 
-			<th scope="col">Nome</th>
-			<th scope="col">Cognome</th>
-			<th scope="col">Team</th>
-			<th scope="col">Ruolo</th>
-		</tr>
-		<tr th:each="cod : ${coders}">		
-			<td th:text="${cod.firstname}">[]</td>
-			<td th:text="${cod.lastname}">[]</td>
-			<td th:text="${cod.team.name}">[]</td>
-			<td><th:block th:each="role : ${cod.role}">
-				<span th:text="${role.nomeRole}">[]</span><span>&nbsp-</span>
-			</th:block></td>		
-		</tr>
-	</table>
-	<hr/>
+	<div class="contenitore">
+		<h1>Squadre</h1>
 
-	<p>
-		Back to <a href="/blue/homepage.html">Blue homepage</a>
-	</p>
-	<p>
-		Go to <a href="/blue/settings">teams editing</a>
-	</p>
-	<p>
-		Go to <a href="/blue/coders">coders editing</a>
-	</p>
-		
+		<hr />
+		<div th:if="${msg}">
+			<p class=me>
+				<span th:text=${msg}>hello!</span>
+			</p>
+			<hr />
+		</div>
+		<div class="contenuto">
+
+			<p class=you>Lista Team</p>
+
+			<table class=uno align=center>
+				<tr th:each="t : ${teams}">
+					<td th:text="${t.name}">[]</td>
+				</tr>
+			</table>
+			<hr />
+			<form action="/blue/teams/orderby">
+				<p>
+					Ordina per: <input type="radio" name="by" value="Team"
+						checked="checked">Team/Cognome &nbsp <input type="radio"
+						name="by" value="firstname">Nome &nbsp <input type="radio"
+						name="by" value="lastname">Cognome &nbsp
+					<button type="submit">Sort</button>
+				</p>
+			</form>
+			<table class=due align=center>
+				<tr>
+					<th scope="col">Nome</th>
+					<th scope="col">Cognome</th>
+					<th scope="col">Team</th>
+					<th scope="col">Ruolo</th>
+				</tr>
+				<tr th:each="cod : ${coders}">
+					<td th:text="${cod.firstname}">[]</td>
+					<td th:text="${cod.lastname}">[]</td>
+					<td th:text="${cod.team.name}">[]</td>
+					<td><th:block th:each="role : ${cod.role}">
+							<span th:text="${role.nomeRole}">[]</span>
+							<span>&nbsp-</span>
+						</th:block></td>
+				</tr>
+			</table>
+			<hr />
+		</div>
+	</div>
 </body>
 </html>
