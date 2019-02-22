@@ -38,7 +38,7 @@ public class BlueCoderController {
 	@GetMapping("/blue/teams")
 	public String getAll(Model model) {
 
-		Iterable<BlueTeam> ttt = teamRepo.findAll();
+		Iterable<BlueTeam> ttt = teamRepo.findAllByOrderByName();
 		model.addAttribute("teams", ttt);
 		
 		Iterator<BlueTeam> tt = ttt.iterator();
@@ -46,7 +46,7 @@ public class BlueCoderController {
 		List<List<BlueCoder>> ris = new ArrayList<>();
 		
 		while(tt.hasNext()) {
-			List<BlueCoder> sut = coderRepo.findByTeam_Name(tt.next().getName());
+			List<BlueCoder> sut = coderRepo.findByTeam_NameOrderByLastnameAscFirstnameAsc(tt.next().getName());
 			ris.add(sut);
 		}
 		
