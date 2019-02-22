@@ -147,25 +147,46 @@ public class GreenCoderController {
 		
 		logger.trace("create()");
 				
-
+		GreenRole role = (repositoryRoles.findById(id_role)).get();
 		Optional<GreenTeam> team =  repositoryTeams.findByName("NUOVI");
 		
 //		Optional<GreenTeam> team =  repositoryTeams.findById(4L);	
 
 		
 		GreenCoder coder = new GreenCoder(name,surname,team.get(),null);
-//		
-		Set<GreenRole> rol_cod = coder.getRoles();
-		coder.setRoles(rol_cod);
-//
 		save(coder, model);
+//		
+		long b = coder.getId();
+		
+		GreenCoder coder2 = (repositoryCoders.findById(b)).get();
+		Set<GreenRole> rol_cod = coder2.getRoles();
+
+		boolean check = false;
+		for (GreenRole r : rol_cod) {
+			if (r.getId() == id_role) {
+				check = true;
+				break;
+			}
+		}
+		if (check == false) {
+			rol_cod.add(role);
+			repositoryCoders.save(coder);
+		}
+
+		return findAll(model);
+	}
+//		Set<GreenRole> rol_cod = coder.getRoles();
+//		rol_cod.add(role);
+//		coder.setRoles(rol_cod);
+//
+//		save(coder, model);
 		
 //		save(new GreenCoder(name,surname,team.get()), model);
 				
-		return findAll(model);
+//		return findAll(model);
 		
 
-	}
+//	}
 	
 	@GetMapping("/green/coders/delete_coder")
 	public String deleteCoder( //
