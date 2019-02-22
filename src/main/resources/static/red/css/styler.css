@@ -13,18 +13,25 @@ background:  -webkit-radial-gradient(center, circle farthest-corner, #FF0000 0%,
 fieldset
 {
 /*  font-family:Impact, Charcoal, sans-serif;*/
-  background-color:#0066cc;
+  /*background-color:#0066cc;*/
+  
+  background:   -webkit-linear-gradient(left,  #0066cc 0%, #0066cc 100%);
+  
   
   padding:10px;	
  /* margin-left:200;*/
   
   max-width: 700px;
 	margin: auto;
+	
+	color: #FF0000;
+	
 }
 
 legend{
     font-family:Impact, sans-serif ;
     font-size:20px;
+    color: #000000;
     
 }
   Button {
@@ -205,9 +212,108 @@ h1 span{
    
  }
  
+h2{
+ margin: 0;
+   
+ padding: 0;
+  
+ position: absolute;
+ 
+ top: 80%;
+  
+ transform: translateY(-50%);
+  
+ text-shadow: 0 0 10px #000;
+   
+ width: 100%;
+    
+ text-align:center;
+ 
+    
+ color:#ddd;
+  
+ font-size: 2em;
+  
+ font-family:italic;
+   
+ letter-spacing: 0.2em;
 
-h2 {
-	color: lime;
+}
+h2 span{
+    
+    opacity: 0;
+    display: inline-block;
+    animation: animate 1s linear forwards;
+}
+
+
+
+@keyframes animate
+{
+    0%
+    {
+        opacity: 0;
+        transform: rotateY(90deg);
+        filter: blur(5px);
+    }
+    100%
+    {
+        opacity: 1;
+        transform: rotateY(0deg);
+        filter: blur(0);
+    }
+}
+h2 span:nth-child(1)
+{
+    animation-delay: 1s;
+}
+h2 span:nth-child(2)
+{
+    animation-delay: 2s;
+}
+h2 span:nth-child(3)
+{
+    animation-delay: 2.5s;
+}
+h2 span:nth-child(4)
+{
+    animation-delay: 2.7s;
+}
+h2 span:nth-child(5)
+{
+    animation-delay: 3s;
+}
+h2 span:nth-child(6)
+{
+    animation-delay: 3.5s;
+}
+h2 span:nth-child(7)
+{
+    animation-delay: 3.7s;
+}
+h2 span:nth-child(8)
+{
+    animation-delay: 3.8s;
+}
+h2 span:nth-child(9)
+{
+    animation-delay: 3.9s;
+}
+h2 span:nth-child(10)
+{
+    animation-delay: 4s;
+}
+h2 span:nth-child(11)
+{
+    animation-delay: 4.1s;
+}
+h2 span:nth-child(12)
+{
+    animation-delay: 4.2s;
+}
+h2 span:nth-child(13)
+{
+    animation-delay: 4.3s;
 }
 
 
