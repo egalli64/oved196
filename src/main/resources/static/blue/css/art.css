@@ -29,8 +29,11 @@ div.menu
 button.menubutton
 {
 	width: 130px;
-background-color: #3831ce;
-border: none;
+	height: 36px;
+	background-color: #3831ce;
+	border: none;
+	text-align: center;
+	vertical-align: middle;
 }
 
 div.contenitore
@@ -47,15 +50,16 @@ p {
 }
 
 p.you {
-	color: #d88967;
+	color: #3831ce;
 	font-size: x-large;
 }
 
 p.me {
-	color: #ca3535;
-	border: medium;
-	border-color: black;
+	color: #ff0000;
 	font-size: x-large;
+	border: 25px #ff0000;
+  	padding: 25px;
+  	margin: 25px;
 }
 
 a {
@@ -84,9 +88,16 @@ table.due td, table th {
   border: 1px solid #AAAAAA;
   padding: 3px 2px;
 }
+table.due th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+  font-color:#3831ce; 
+}
+
 table.due tbody td {
   font-size: 13px;
 }
+
 table.due tr:nth-child(even) {
   background: #D0E4F5;
 }
@@ -100,7 +111,7 @@ table.due thead {
 table.due thead th {
   font-size: 15px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #3831ce;
   text-align: center;
   border-left: 2px solid #D0E4F5;
 }
@@ -170,3 +181,4 @@ table.uno tfoot .links a{
   padding: 2px 8px;
   border-radius: 5px;
 }
+
