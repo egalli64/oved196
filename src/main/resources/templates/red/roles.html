@@ -2,83 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Roles (red)</title>
+<title>Roles(red)</title>
 <link rel="stylesheet" type="text/css" th:href="@{/red/css/styler.css}">
 </head>
 <body>
 	<section>
-
 		<h2>ROLES</h2>
 		<p>
 			<!--  This is just for debugging purpose: <span th:text="${data}">[]</span> -->
 		</p>
 		<div th:if="${msg}">
-			<span th:text=${msg}>hello!</span>
+			<span th:text=${msg}>Hello!</span>
 		</div>
 		<hr />
-
-		<table >
-
+		<table>
 			<tr>
-				<th>RUOLI</th>
+				<th>ROLES</th>
 			</tr>
 			<tr>
-
-
-
 			</tr>
 			<tr th:each="cur: ${role}">
 				<td th:text="${cur.name}"></td>
-
 			</tr>
 			<tr>
-
-
-
-
-
 			</tr>
-
 		</table>
 		<hr />
-<p style="line-height: 250px"></p>
-
+		<p style="line-height: 250px"></p>
 		<form method="get" action="/red/role/createRole">
-		<fieldset>
-		<legend>CREA RUOLO</legend>
-
-
-			<p>
-				 ruolo da aggiungere : <input type="text" name="nameRole">
-
-
-			</p>
-
-
-			<button>conferma</button>
+			<fieldset>
+				<legend>CREATE ROLES</legend>
+				<p>
+					NEW ROLE'S NAME: <input type="text" name="nameRole">
+				</p>
+				<button>OK</button>
 			</fieldset>
 		</form>
-
-<p style="line-height: 250px"></p>
-
+		<p style="line-height: 250px"></p>
 		<form method="get" action="/red/role/deleteRole">
-<fieldset>
-<legend>ELIMINA RUOLO</legend>
-			<p>
-				ruolo da eliminare : <select name="nameRole">
-
-					<option th:each="cur: ${role}" th:text="${cur.name}"></option>
-				</select>
-
-
-
-			</p>
-
-
-			<button>conferma</button>
+			<fieldset>
+				<legend>DELETE ROLE</legend>
+				<p>
+					ROLE'S NAME : <select name="nameRole">
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+				</p>
+				<button onclick="return confirm( 'Are you sure ?');">ok</button>
 			</fieldset>
 		</form>
-
 		<p></p>
 
 		<!--  <form  method="get" action="/red/role/setRole">
@@ -110,16 +81,10 @@
    <button >conferma</button></form>
 	-->
 
-	
-	
 		<p style="line-height: 250px"></p>
-
-
 		<button>
 			Back to <a href="/red/index.html">Red Homepage</a>
 		</button>
-
-
 	</section>
 </body>
 </html>

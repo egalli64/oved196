@@ -13,44 +13,33 @@
 
 		<h2>CODERS</h2>
 		<p>
-
 			<!--  This is just for debugging purpose: <span th:text="${team}">[]</span> -->
 		</p>
 		<div th:if="${msg}">
-			<span th:text=${msg}>hello!</span>
+			<span th:text=${msg}>Hello!</span>
 		</div>
 		<hr />
-		
-		
 		<form method="get" action="/red/coder/orderByName">
-		
+
 			<button>Sort by name</button>
-			
+
 		</form>
-		
-			<p style="line-height: 250px"></p>
-				
+		<p style="line-height: 250px"></p>
 		<form method="get" action="/red/coder/orderByTeam">
-		
 			<button>Sort by team</button>
-			
 		</form>
-		
-			<p style="line-height: 250px"></p>
-		
+		<p style="line-height: 250px"></p>
 		<form method="get" action="/red/coder/orderByRole">
-		
+
 			<button>Sort by role</button>
-			
 		</form>
-		
-			<p style="line-height: 250px"></p>
-		
-	<table style = "text-align:center">
+		<p style="line-height: 250px"></p>
+
+		<table style="text-align: center">
 			<tr>
 				<th>NAME</th>
 				<th>TEAM</th>
-				<th colspan = "6">ROLES</th>
+				<th colspan="6">ROLES</th>
 			</tr>
 			<tr>
 			</tr>
@@ -64,54 +53,41 @@
 			<tr>
 			</tr>
 		</table>
-
 		<p style="line-height: 250px"></p>
-
 		<p>
 		<form method="get" action="/red/coder/deleteCoder">
 			<fieldset>
 				<legend>DELETE CODER</legend>
 				<p>
-					Name : <select name="name">
-				
-
+					CODER'S NAME: <select name="name">
 						<option th:each="cur: ${data}" th:text="${cur.name}">
 					</select>
 				</p>
-					<button>ok</button>
+				<button onclick="return confirm( 'Are you sure ?');">ok</button>
 			</fieldset>
 		</form>
-
-
 		<form method="get" action="/red/coder/createCoder">
 			<fieldset>
 				<legend>CREATE CODER</legend>
 				<p>
-					new name : <input type="text" name="name">
-
-
-					 coder's team: <select name="id_t">
+					NEW CODER'S NAME : <input type="text" name="name"> coder's team: <select
+						name="id_t">
 
 						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
 					</select>
 				</p>
-				<button>ok</button>
-
+				<button onclick="return confirm( 'Are you sure ?');">ok</button>
 			</fieldset>
 		</form>
-
 		<p>
 		<form method="get" action="/red/coder/setTeam">
 			<fieldset>
 				<legend>MODIFY CODER</legend>
 
 				<p>
-					coder's name :<select name="name">
+					CODER'S NAME :<select name="name">
 						<option th:each="cur: ${data}" th:text="${cur.name}">
-					</select>
-				
-				
-					new coder's team : <select name="test">
+					</select> NEW CODER'S NAME : <select name="test">
 						<option th:each="cur: ${team}" th:text="${cur.name}"></option>
 					</select>
 				</p>
@@ -119,53 +95,46 @@
 				<button>ok</button>
 			</fieldset>
 		</form>
-
-	<p style="line-height: 250px"></p>
+		<p style="line-height: 250px"></p>
 		<hr />
-		
-		
 		<form method="get" action="/red/coder/createRole">
-		<fieldset>
-		<legend>ADD ROLE TO A CODER</legend>
+			<fieldset>
+				<legend>ADD ROLE TO A CODER</legend>
 
-			<p>coder's name : <select name="name">
-				<option th:each="cur: ${data}" th:text="${cur.name}"></option>
-			</select> 
-			
-			coder's role : <select name="role">
+				<p>
+					CODER'S NAME : <select name="name">
+						<option th:each="cur: ${data}" th:text="${cur.name}"></option>
+					</select> coder's role : <select name="role">
 
-				<option th:each="cur: ${role}" th:text="${cur.name}"></option>
-			</select></p>
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+				</p>
 
-			<button>ok</button>
+				<button>ok</button>
 			</fieldset>
 		</form>
-		
-		
 		<p style="line-height: 250px"></p>
-		
+
 		<p>
 		<form method="get" action="/red/coder/deleteRole">
-		<fieldset>
-		<legend>REMOVE ROLE TO A CODER</legend>
+			<fieldset>
+				<legend>REMOVE ROLE TO A CODER</legend>
 
-			<p> coder's name : <select
-				name="name">
-				<option th:each="cur: ${data}" th:text="${cur.name}"></option>
-			</select>
-			
-			 old coder's role : <select name="role">
+				<p>
+					CODER'S NAME : <select name="name">
+						<option th:each="cur: ${data}" th:text="${cur.name}"></option>
+					</select> OLD CODER'S NAME : <select name="role">
 
-				<option th:each="cur: ${role}" th:text="${cur.name}"></option>
-			</select></p>
+						<option th:each="cur: ${role}" th:text="${cur.name}"></option>
+					</select>
+				</p>
 
-			<button>ok</button>
+				<button onclick="return confirm( 'Are you sure ?');">ok</button>
 			</fieldset>
-			
 		</form>
-		
+
 		<p style="line-height: 250px"></p>
-		
+
 		<hr>
 		<button>
 			Back to <a href="/red/index.html">Red Homepage</a>
