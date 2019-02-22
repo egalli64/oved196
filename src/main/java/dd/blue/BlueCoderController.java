@@ -1,5 +1,6 @@
 package dd.blue;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -36,10 +37,23 @@ public class BlueCoderController {
 
 	@GetMapping("/blue/teams")
 	public String getAll(Model model) {
-		// logger.trace("getAll()");
-		model.addAttribute("coders", coderRepo.findAll());
-		model.addAttribute("teams", teamRepo.findAll());
-		model.addAttribute("roles", roleRepo.findAll());
+
+		Iterable<BlueTeam> ttt = teamRepo.findAll();
+		model.addAttribute("teams", ttt);
+		
+		Iterator<BlueTeam> tt = ttt.iterator();
+		
+		List<List<BlueCoder>> ris = new ArrayList<>();
+		
+		while(tt.hasNext()) {
+			List<BlueCoder> sut = coderRepo.findByTeam_Name(tt.next().getName());
+			ris.add(sut);
+		}
+		
+		model.addAttribute("sizez", ris.size());
+		
+		model.addAttribute("coders", ris);
+		
 		return "/blue/teams";
 	}
 
