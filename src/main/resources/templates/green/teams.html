@@ -8,7 +8,7 @@
 	th:href="@{/green/css/styles.css}">
 </head>
 <font face="Verdana" size="6" color="#ccffcc">
-	<h1>TEAMS</h1>
+	<h1>SQUADRE</h1>
 </font>
 <body>
 
@@ -31,7 +31,7 @@
 			<tr>
 				<th><font face="Verdana" size="6" color="green">
 
-						<h3>NAME</h3>
+						<h3>NOMI</h3>
 				</font></th>
 			</tr>
 			<tr th:each="cur: ${data}">
@@ -49,10 +49,10 @@
 
 			<label> <font face="Verdana" size="5" color="#ccffcc">
 
-					Crea nuovo Team: <input name="name" required="required">
+					Crea nuovo squadra: <input name="name" required="required">
 			</font>
 			</label>
-			<button>Enter</button>
+			<button>Invio</button>
 			<br></br>
 
 		</form>
@@ -62,7 +62,7 @@
 
 			<label> <font face="Verdana" size="5" color="#ccffcc">
 
-					Rinomina team: <select name="id_team">
+					Rinomina squadra: <select name="id_team">
 
 						<option th:each="cur: ${data}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
@@ -70,7 +70,7 @@
 			</font>
 			</label> <label> <input name="name" required="required">
 			</label>
-			<button>Enter</button>
+			<button>Invio</button>
 			<br></br>			
 		</form>
 		<hr />
@@ -79,13 +79,13 @@
 
 	<form method="get" action="/green/teams/delete">
 		<label> <font face="Verdana" size="5" color="#ccffcc">			
-					Elimina team: <select name="id">
+					Elimina squadra: <select name="id">
 						<option th:each="cur: ${data}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
 				</select>
 			</font>
 			</label>
-			<button>Enter</button>
+			<button>Invio</button>
 			<br></br>			
 		</form>
 		<hr /></center>

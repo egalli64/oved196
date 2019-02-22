@@ -7,7 +7,7 @@
 	th:href="@{/green/css/styles.css}">
 </head><center>
 <font face="Verdana" size="6" color="green">
-	<h2>Roles</h2>
+	<h2>RUOLI</h2>
 	</font></center>
 <body>
 <center><font face="Verdana" size="3" color="white"><div th:if="${msg}"></font></center>
@@ -25,7 +25,7 @@
 	<center>
 	<table  width=”500″ border=”8″ cellpadding=”10″>
 		<tr>
-	<th><font face="Verdana" size="6" color="green"><h3>NAME</h3></font></th>
+	<th><font face="Verdana" size="6" color="green"><h3>NOMI</h3></font></th>
 			<!-- <th>NAME</th> -->
 
 		</tr>
@@ -46,7 +46,7 @@
 	<hr />
 <center>
 	<form action="/green/roles/change_role">
-		<label><font face="Verdana" size="5" color="#ccffcc">Cambia role: 
+		<label><font face="Verdana" size="5" color="#ccffcc">Cambia nome ruolo: 
 		<select name="id_role">
 				<option th:each="cur: ${data}" th:value="${cur.id}"
 					th:text="${cur.name}">green</option>
@@ -54,26 +54,26 @@
 		</font></label> 
 		<label><input name="role_name" required="required">
 		</label>
-		<button>Enter</button>
+		<button>Invio</button>
 	</form>
 	<br></br>
 	<hr />
 	<form action="/green/roles/add_role">
-		<label><font face="Verdana" size="5" color="#ccffcc">Aggiungi role: 
+		<label><font face="Verdana" size="5" color="#ccffcc">Aggiungi nuovo ruolo: 
 		<input name="role_name" required="required"></font>
 		</label>
-		<button>Enter</button>
+		<button>Invio</button>
 	</form>
 	<br></br>
 	<hr />
 	<form action="/green/roles/remove_role">
-		<label><font face="Verdana" size="5" color="#ccffcc">Elimina role: 
+		<label><font face="Verdana" size="5" color="#ccffcc">Elimina ruolo: 
 		<select name="id_role">
 				<option th:each="cur: ${data}" th:value="${cur.id}"
 					th:text="${cur.name}">green</option>
 		</select>
 		</font></label> 
-		<button>Enter</button>
+		<button>Invio</button>
 	</form>
 	<br></br>
 	<hr />
