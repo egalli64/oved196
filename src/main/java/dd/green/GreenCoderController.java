@@ -158,7 +158,7 @@ public class GreenCoderController {
 		Set<GreenRole> rol_cod = coder.getRoles();
 		coder.setRoles(rol_cod);
 //
-//		save(coder, model);
+		save(coder, model);
 		
 //		save(new GreenCoder(name,surname,team.get()), model);
 				
