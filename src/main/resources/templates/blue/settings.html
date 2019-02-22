@@ -2,68 +2,82 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Squadre</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
-	<script src="@{scrpt/myscrpt.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Squadre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/blue/css/art.css}">
+<script src="@{scrpt/myscrpt.js}"></script>
 </head>
+<div class="menu">
+	<button class="menubutton">
+		<a href="/blue/homepage.html">Blue homepage</a>
+	</button>
+	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/teams">Teams view</a>
+	</button>
+	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/settings">Teams editing</a>
+	</button>
+	&nbsp &nbsp &nbsp &nbsp
+	<button class="menubutton">
+		<a href="/blue/coders">Coders editing</a>
+	</button>
+</div>
 <body>
-	<h1>Creazione e Modifica squadre</h1>
+	<hr />
+	<div class="contenitore">
+		<h1>Creazione e Modifica squadre</h1>
 
-	<hr />
-	<div th:if="${msg}">
-		<p class = me><span th:text=${msg}>hello!</span></p>
-		<hr />	
+		<hr />
+		<div th:if="${msg}">
+			<p class=me>
+				<span th:text=${msg}>hello!</span>
+			</p>
+			<hr />
+		</div>
+		<div class="contenuto">
+
+			<p class=you>I nostri team</p>
+
+			<table class=uno align=center>
+				<tr th:each="t : ${teams}">
+					<td th:text="${t.name}">[]</td>
+				</tr>
+			</table>
+			<hr />
+			<form action="/blue/settings/create">
+				<label>Crea un nuovo team con il nome: <input name="name"
+					required="required">
+				</label>
+				<button>OK</button>
+			</form>
+			<hr />
+
+			<form action="/blue/settings/rename">
+				<label>Rinomina un team: <select name="id">
+						<option th:each="cur: ${teams}" th:value="${cur.id}"
+							th:text="${cur.name}">blue</option>
+				</select>
+				</label> <label>as: <input name="name" required="required">
+				</label>
+				<button>OK</button>
+			</form>
+			<hr />
+			<form action="/blue/settings/delete">
+				<label>Elimina un team: <select name="id">
+						<option value="0">-</option>
+						<option th:each="cur: ${teams}" th:value="${cur.id}"
+							th:text="${cur.name}">blue</option>
+				</select>
+				</label>
+				<button
+					onclick="return confirm('Sicuro? Il processo &egrave irreversibile.');">OK</button>
+			</form>
+			<hr />
+
+		</div>
 	</div>
-	<p class = you>I nostri team</p>
-	
-	<table class = uno align = center>
-		<tr th:each="t : ${teams}">		
-			<td th:text="${t.name}">[]</td>
-		</tr>
-	</table>
-	<hr/><form action="/blue/settings/create">
-		<label>Crea un nuovo team con il nome:
-			<input name="name" required="required">
-		</label>
-		<button>OK</button>
-	</form>
-	<hr />
-	
-	<form action="/blue/settings/rename">
-		<label>Rinomina un team:
-			<select name="id">
-				<option th:each="cur: ${teams}" 
-				th:value="${cur.id}" th:text="${cur.name}">
-					blue
-				</option>
-			</select>
-		</label>
-		<label>as:
-			<input name="name" required="required">
-		</label>
-		<button>OK</button>
-	</form>
-	<hr />
-	<form action="/blue/settings/delete">
-		<label>Elimina un team:
-			<select name="id">
-				<option value="0" > - </option>
-				<option th:each="cur: ${teams}" th:value="${cur.id}" th:text="${cur.name}">
-					blue
-				</option>
-			</select>
-		</label>
-		<button  onclick="return confirm('Sicuro? Il processo &egrave irreversibile.');">OK</button>
-	</form>
-	<hr />
-	
-	<p>
-		Back to <a href="/blue/homepage.html">Blue homepage</a>
-	</p>
-	<p>
-		Go to <a href="/blue/coders">coders editing</a>
-	</p>
-		
+
 </body>
 </html>
