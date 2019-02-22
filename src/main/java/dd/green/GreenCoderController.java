@@ -78,19 +78,19 @@ public class GreenCoderController {
 		logger.trace("rename()");
 
 		Optional<GreenCoder> optCoders = repositoryCoders.findById(id_coder);
-		// Optional<GreenRole> optRole = repositoryRoles.findById(id_team);
+		Optional<GreenTeam> optTeam = repositoryTeams.findById(id_team);
 
 		if (optCoders.isPresent()) {
 			GreenCoder coder = optCoders.get();
-			logger.debug(String.format("Squadra %s rinominato in %s", coder.getTeam(), id_team));
+			logger.debug(String.format("Squadra %s rinominato in %s", coder.getTeam(), optTeam.get().getName()));
 			GreenTeam team = new GreenTeam(id_team);
 			coder.setTeam(team);
 			save(coder, model);
-			String message = coder.getName() + " " + coder.getSurname() + " è passato nella squadra " + team.getName();
+			String message = coder.getName() + " " + coder.getSurname() + " è passato nella squadra " + optTeam.get().getName();
 			model.addAttribute("msg", message);
 		} else {
 			GreenCoder coder = optCoders.get();
-			String message = coder.getName() + " " + coder.getSurname() + "è già nella squadra " + coder.getTeam().getName();
+			String message = coder.getName() + " " + coder.getSurname() + "è già nella squadra " + optTeam.get().getName();
 			logger.error(message);
 			model.addAttribute("msg", message);
 		}
