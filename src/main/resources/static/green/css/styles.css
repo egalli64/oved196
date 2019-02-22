@@ -1,5 +1,9 @@
 body {
-	background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%); 
+
+	background: -webkit-linear-gradient(top, #b4ddb4 0%, #83c783 17%, #52b152 33%,
+		#008a00 67%, #005700 83%, #002400 100%);
+	); 
+
 }
 
 h1 {
@@ -17,6 +21,34 @@ table, th, td {
 	font-size: 30px;
 }
 
+
+td {
+	color: #80ff00;
+}
+
+
 img {
+	border: 7px solid #0000ff;
+	-moz-border-radius: 180px;
+	-webkit-border-radius: 180px;
+	border-radius: 180px;
 	border: 7px solid #009700
 }
+
+
+button {
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee),
+		to(#0078a5));
+	background: -webkit-linear-gradient(top, #00adee, #0078a5);
+	background: -moz-linear-gradient(top, #00adee, #0078a5);
+	background: -ms-linear-gradient(top, #00adee, #0078a5);
+	background: -o-linear-gradient(top, #00adee, #0078a5);
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	position: relative;
+	top: 1px;
+	width: 100px;
+}
+
+<!--background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%-->
