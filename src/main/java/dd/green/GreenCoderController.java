@@ -70,22 +70,6 @@ public class GreenCoderController {
 		}
 	}
 
-//	private void saveRole(GreenRole role, Model model) {
-//		logger.trace("save()");
-//		try {
-//			repositoryRoles.save(role);
-//		} catch (DataAccessException dae) {
-//			String message = "Non posso aggiungere " + role.getName() + " al ";
-//			if (role.getId() != 0) {
-//				message += " coder " + role.getId();
-//			} else {
-//				message += " il tuo nuovo coder";
-//			}
-//			logger.error(message);
-//			model.addAttribute("msg", message);
-//		}
-//	}
-
 	@GetMapping("/green/coders/change_team")
 	public String change_team( //
 			@RequestParam long id_coder, //
@@ -156,7 +140,7 @@ public class GreenCoderController {
 
 	@GetMapping("/green/coders/add_coder")
 	public String addCoder( //
-//			@RequestParam long id_role, //
+			@RequestParam long id_role, //
 			@RequestParam String name, //
 			@RequestParam String surname, //
 			Model model) {
@@ -169,14 +153,14 @@ public class GreenCoderController {
 //		Optional<GreenTeam> team =  repositoryTeams.findById(4L);	
 
 		
-//		GreenCoder coder = new GreenCoder(name,surname,team.get(),null);
+		GreenCoder coder = new GreenCoder(name,surname,team.get(),null);
 //		
-//		Set<GreenRole> rol_cod = coder.getRoles();
-//		coder.setRoles(rol_cod);
+		Set<GreenRole> rol_cod = coder.getRoles();
+		coder.setRoles(rol_cod);
 //
 //		save(coder, model);
 		
-		save(new GreenCoder(name,surname,team.get()), model);
+//		save(new GreenCoder(name,surname,team.get()), model);
 				
 		return findAll(model);
 		
