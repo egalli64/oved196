@@ -106,7 +106,7 @@ public class GreenCoderController {
 		GreenCoder coder = (repositoryCoders.findById(id_coder)).get();
 		GreenRole role = (repositoryRoles.findById(id_role)).get();
 		Set<GreenRole> rol_cod = coder.getRoles();
-
+		
 		boolean check = false;
 		for (GreenRole r : rol_cod) {
 			if (r.getId() == id_role) {
@@ -171,6 +171,8 @@ public class GreenCoderController {
 	public String deleteCoder( //
 			@RequestParam long id_coder, //
 			Model model) {
+		
+		
 		try {
 			repositoryCoders.deleteById(id_coder);
 		} catch (DataAccessException dae) {
