@@ -24,18 +24,21 @@
 		<a href="/blue/coders">Coders editing</a>
 	</button>
 </div>
+
 <body>
 	<hr />
 	<div class="contenitore">
-		<h1>Creazione e Modifica squadre</h1>
+		<h1>Teams Editing</h1>
 
 		<hr />
-		<div th:if="${msg}">
+		<div class=messaggio th:if="${msg}">
 			<p class=me>
 				<span th:text=${msg}>hello!</span>
 			</p>
-			<hr />
 		</div>
+		
+		<hr>
+		
 		<div class="contenuto">
 
 			<p class=you>I nostri team</p>
