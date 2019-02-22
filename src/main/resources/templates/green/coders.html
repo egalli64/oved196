@@ -52,9 +52,9 @@
 	</center>
 	<br></br>
 	<hr />
+	<center>
 	<form method="get" action="/green/coders/change_team">
-		<center>
-
+	
 			<label><font face="Verdana" size="5" color="#ccffcc">Cambia
 					team: <select name="id_coder">
 						<option th:each="cur: ${dataCoders}" th:value="${cur.id}"
@@ -130,10 +130,11 @@
 		</font></label>
 		<button>Enter</button>
 	</form>
-	<hr />
-	<p>
-		<font face="Verdana" size="3" color="white">Torna alla <a href="/green/index.html">homepage team green</a></font>
-	</p>
-	</center>
+	<hr /></center>
+	
+	<p><center>
+		<font face="Verdana" size="3" color="white">Torna alla </font><a href="/green/index.html"><font face="Verdana" size="3" color="white">GreenTeam Homepage</font></a>
+	</center></p>
+	
 </body>
 </html>

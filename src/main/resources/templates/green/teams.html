@@ -19,9 +19,9 @@
 		This is just for debugging purpose: <span th:text="${dataCoders}">[]</span>,<span th:text="${dataTeams}">[]</span>,<span th:text="${dataRoles}">[]</span>
 	</p>
 -->
-	<div th:if="${msg}">
+	<font face="Verdana" size="3" color="white"><div th:if="${msg}"></font>
 		<p>
-			Comando ricevuto: <span th:text=${msg}>hello!</span>
+			<font face="Verdana" size="3" color="white">Comando ricevuto: <span th:text=${msg}>hello!</span></font>
 		</p>
 		<hr />
 	</div>
@@ -53,6 +53,7 @@
 			</font>
 			</label>
 			<button>Enter</button>
+			<br></br>
 
 		</form>
 		<hr />
@@ -70,15 +71,14 @@
 			</label> <label> <input name="name" required="required">
 			</label>
 			<button>Enter</button>
+			<br></br>			
 		</form>
 		<hr />
 		<form method="get" action="/green/teams/delete">
 			<label> <font face="Verdana" size="5" color="#ccffcc">
 
 	<form method="get" action="/green/teams/delete">
-		<label> <font face="Verdana" size="5" color="#ccffcc">
-				<center>
-
+		<label> <font face="Verdana" size="5" color="#ccffcc">			
 					Elimina team: <select name="id">
 						<option th:each="cur: ${data}" th:value="${cur.id}"
 							th:text="${cur.name}">green</option>
@@ -86,13 +86,16 @@
 			</font>
 			</label>
 			<button>Enter</button>
+			<br></br>			
 		</form>
-		<hr />
-		<p>
-			<br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
-		<p>
-			Torna <a href="/green/index.html">homepage team green</a>
-		</p>
+		<hr /></center>
+		<p><center>
+			<font face="Verdana" size="3" color="white">Torna alla</font> <a href="/green/index.html"><font face="Verdana" size="3" color="white">GreenTeam Homepage</font></a>
+		</center></p>
+		<br></br>
+		<br></br>
+		<br></br>
+		
 </body>
 </center>
 </html>
